@@ -1,0 +1,2736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<style>
+
+/* Variables de color */
+:root {
+  --color-primary: #df3431;   
+  --color-lilac: #d9dcec;     
+  --color-cream: #faf5dd;     
+  --color-accent: #718bae;    
+  --color-dark: #2a4f71;      
+}
+
+/* Reset básico / tipografía */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  margin: 0;
+  background-color: #ffffff;
+  color: #222222;
+}
+
+/* TOP BAR */
+.top-bar {
+  background-color: var(--color-dark);
+  color: #ffffff;
+}
+
+/* NAVBAR */
+.main-navbar {
+  font-size: 0.9rem;
+}
+
+.navbar-brand {
+  letter-spacing: 0.05em;
+}
+
+.logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.nav-link {
+  color: #333333 !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-primary) !important;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+  background-color: #c62d2a;
+  border-color: #c62d2a;
+}
+
+.btn-outline-primary {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-outline-primary:hover {
+  color: #ffffff;
+  background-color: var(--color-primary);
+}
+
+/* BOTÓN DEL BUSCADOR EN NAVBAR (DISPARADOR) */
+.search-trigger {
+  flex: 1;
+  max-width: 260px;          
+  min-width: 180px;
+  margin: 0 1.5rem;
+  border: none;
+  background-color: #f5f5f5;
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: text;
+}
+
+.search-trigger:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(223, 52, 49, 0.3);
+}
+
+.search-icon {
+  font-size: 1.1rem;
+  margin-right: 0.6rem;
+  color: #888888;
+}
+
+.search-text {
+  font-size: 0.9rem;
+  color: #777777;
+}
+
+/* Ocultar el disparador en pantallas pequeñas y dejar solo el menú */
+@media (max-width: 991.98px) {
+  .search-trigger {
+    display: none !important;
+  }
+}
+
+/* Ocultar resultados sin coincidencia (para el filtro) */
+.hidden-by-search {
+  display: none !important;
+}
+
+/* OVERLAY COMPLETO DE BÚSQUEDA */
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 1050; /* por encima del contenido */
+}
+
+.search-overlay.open {
+  display: block;
+}
+
+.search-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.search-overlay-content {
+  position: relative;
+  padding-top: 90px; /* un poco debajo del navbar */
+}
+
+.search-overlay-header {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+.search-overlay-input {
+  border: none;
+  box-shadow: none;
+  font-size: 1rem;
+  background: transparent;
+}
+
+.search-overlay-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.search-overlay-helper {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: #666666;
+}
+
+/* ============ CARRITO LATERAL DESPLEGABLE ============ */
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 1060; /* un poco por encima del overlay de búsqueda */
+}
+
+.cart-overlay.open {
+  display: block;
+}
+
+.cart-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Panel lateral a la derecha */
+.cart-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 360px;
+  max-width: 100%;
+  background-color: #ffffff;
+  box-shadow: -12px 0 35px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cart-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem 1.25rem;
+}
+
+.cart-items-empty {
+  font-size: 0.9rem;
+  color: #777777;
+}
+
+.cart-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0 0 0.15rem;
+}
+
+.cart-item-price {
+  font-size: 0.8rem;
+  color: #777777;
+  margin: 0;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.cart-qty-btn {
+  border: 1px solid #dddddd;
+  background-color: #ffffff;
+  border-radius: 999px;
+  width: 24px;
+  height: 24px;
+  font-size: 0.8rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cart-qty {
+  font-size: 0.85rem;
+  min-width: 16px;
+  text-align: center;
+}
+
+.cart-remove {
+  border: none;
+  background: transparent;
+  color: #999999;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* Footer del carrito */
+.cart-footer {
+  padding: 0.75rem 1.25rem 1.25rem;
+  border-top: 1px solid #eeeeee;
+}
+
+.cart-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.cart-total span:last-child {
+  font-weight: 600;
+}
+
+
+/* HERO */
+.hero-home {
+  background-color: #000;
+}
+
+.hero-panel {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  padding: 3.5rem 2.5rem;
+}
+
+.hero-panel-content {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.badge-cta {
+  background-color: #ffffff;
+  color: var(--color-primary);
+  display: inline-block;
+  padding: 0.15rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.hero-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+
+.hero-title span {
+  font-size: 1.8rem;
+}
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+.hero-note {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+/* HERO imagen */
+.hero-image-wrapper {
+  background: radial-gradient(circle at 0 0, var(--color-lilac), transparent 55%),
+    radial-gradient(circle at 80% 10%, var(--color-accent), transparent 60%),
+    radial-gradient(circle at 10% 80%, var(--color-cream), transparent 55%),
+    #111111;
+  padding: 3rem 2rem;
+  position: relative;
+}
+
+.hero-image-layer {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-objects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 120px;
+  gap: 1rem;
+}
+
+.hero-card {
+  border-radius: 1.25rem;
+  padding: 1rem;
+  background: rgba(250, 245, 221, 0.95);
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: flex-end;
+}
+
+/* diferentes tonos para las tarjetas del hero */
+.HC-1 {
+  background: linear-gradient(135deg, #ffe3d2, #fff0e2);
+}
+.HC-2 {
+  background: linear-gradient(135deg, #f6e4ff, #fdf5ff);
+}
+.HC-3 {
+  background: linear-gradient(135deg, #d1e6ff, #f0f7ff);
+}
+.HC-4 {
+  background: linear-gradient(135deg, #fdf3c4, #fff8dd);
+}
+.HC-5 {
+  background: linear-gradient(135deg, #ffe0dd, #fff3f2);
+}
+
+/* STATS */
+.stats-section {
+  background-color: #ffffff;
+}
+
+.stat-item {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background-color: #fafafa;
+}
+
+.stat-number {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  margin-bottom: 0;
+  color: #555;
+}
+
+/* NOVEDADES */
+.novedades-section {
+  background: linear-gradient(135deg, var(--color-cream), #ffffff);
+}
+
+.section-title {
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.section-text {
+  font-size: 0.95rem;
+  color: #555555;
+}
+
+.novedades-card {
+  border-radius: 1.5rem;
+  padding: 2rem;
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.novedades-card .tag {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background-color: var(--color-dark);
+  color: #ffffff;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+/* FANDOM CARDS */
+.fandom-section {
+  background: #ffffff;
+}
+
+.fandom-card {
+  border-radius: 1.5rem;
+  padding: 2.5rem 2rem;
+  color: #ffffff;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.15);
+}
+
+.fandom-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.fandom-card p {
+  font-size: 0.9rem;
+}
+
+.fandom-card .btn {
+  align-self: flex-start;
+  font-size: 0.8rem;
+}
+
+.fandom-anime {
+  background: linear-gradient(135deg, #ff9a8b, #ff6a88);
+}
+
+.fandom-comics {
+  background: linear-gradient(135deg, #7f7fd5, #86a8e7);
+}
+
+.fandom-games {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+
+/* BANNER COLAB */
+.banner-colab-section {
+  background-color: #f9fafc;
+}
+
+/* PRODUCTOS */
+.productos-section {
+  background-color: #ffffff;
+}
+
+.link-ver-todo {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #555;
+}
+
+.link-ver-todo:hover {
+  color: var(--color-primary);
+}
+
+.product-card {
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image {
+  background: linear-gradient(135deg, var(--color-cream), #ffffff);
+  height: 170px;
+}
+
+.product-image.PI-2 {
+  background: linear-gradient(135deg, #f6e4ff, #ffffff);
+}
+
+.product-image.PI-3 {
+  background: linear-gradient(135deg, #d1e6ff, #ffffff);
+}
+
+.product-image.PI-4 {
+  background: linear-gradient(135deg, #ffe2dd, #ffffff);
+}
+
+.product-body {
+  padding: 1rem;
+}
+
+.product-tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #777;
+  margin-bottom: 0.25rem;
+}
+
+.product-title {
+  font-size: 0.98rem;
+  margin-bottom: 0.25rem;
+}
+
+.product-meta {
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 0.5rem;
+}
+
+.product-price {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.product-price-old {
+  font-size: 0.8rem;
+  text-decoration: line-through;
+  color: #999;
+  margin-left: 0.25rem;
+}
+
+/* BANNER FINAL */
+.banner-final {
+  background-color: var(--color-cream);
+}
+
+.banner-final-title {
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+
+.banner-final-text {
+  font-size: 0.95rem;
+  color: #555;
+  max-width: 420px;
+}
+
+.banner-final-visual {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 0.75rem;
+}
+
+.bf-item {
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 0.85rem;
+  background-color: #ffffff;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.bf-1 {
+  grid-column: 1 / 3;
+}
+
+/* CORREO */
+.correo-section {
+  background-color: #ffffff;
+}
+
+/* CONTACTO */
+.contacto-section {
+  background-color: #f9fafc;
+}
+
+/* FORMULARIOS */
+.newsletter-form input,
+.contact-form input,
+.contact-form textarea {
+  border-radius: 999px;
+}
+
+.contact-form textarea {
+  border-radius: 1rem;
+}
+
+/* FOOTER */
+.footer {
+  background-color: #111111;
+  color: #f0f0f0;
+  font-size: 0.85rem;
+}
+
+.footer h5,
+.footer h6 {
+  color: #ffffff;
+}
+
+.footer a {
+  color: #f0f0f0;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--color-primary);
+}
+
+/* RESPONSIVE */
+@media (max-width: 991.98px) {
+  .hero-panel {
+    text-align: center;
+  }
+
+  .hero-panel-content {
+    max-width: 100%;
+  }
+
+  .hero-objects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 110px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hero-panel {
+    padding: 2rem 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .hero-objects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+        /* Tarjeta estilo tienda (idéntico al diseño de referencia) */
+
+.product-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #ececec;
+  padding: 18px;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: 0.2s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0px 6px 22px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagen */
+.product-image {
+    height: 170px !important;
+    width: 100% !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    background: transparent !important;
+    display: block !important;
+}
+
+.product-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* Categoría */
+.product-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: #8e8e8e;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Título */
+.product-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Descripción pequeña debajo del título */
+.product-meta {
+  font-size: 0.83rem;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+/* Precios */
+.product-price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.product-price-old {
+  font-size: 0.85rem;
+  text-decoration: line-through;
+  color: #b1b1b1;
+  margin-left: 6px;
+}
+
+/* Botón "Añadir al carrito" */
+.add-to-cart {
+  margin-top: 6px;
+  font-size: 0.9rem !important;
+  padding: 8px 14px !important;
+  border-radius: 8px !important;
+  border: 1px solid #d64545 !important;
+  color: #d64545 !important;
+  background: transparent !important;
+  transition: 0.2s ease;
+}
+
+.add-to-cart:hover {
+  background: #d64545 !important;
+  color: #fff !important;
+}
+
+  /* Variables de color */
+        :root {
+            --color-primary: #df3431;   
+            --color-lilac: #d9dcec;     
+            --color-cream: #faf5dd;     
+            --color-accent: #718bae;    
+            --color-dark: #2a4f71;      
+        }
+
+        /* Reset básico / tipografía */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            background-color: #ffffff;
+            color: #222222;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            background-color: var(--color-dark);
+            color: #ffffff;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+        }
+
+        /* NAVBAR */
+        .main-navbar {
+            font-size: 0.9rem;
+        }
+
+        .navbar-brand {
+            letter-spacing: 0.05em;
+        }
+
+        .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            background-color: var(--color-primary);
+            color: #fff;
+            font-weight: 700;
+            margin-right: 4px;
+        }
+
+        .nav-link {
+            color: #333333 !important;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-primary) !important;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #c62d2a;
+            border-color: #c62d2a;
+        }
+
+        .btn-outline-primary {
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .btn-outline-primary:hover {
+            color: #ffffff;
+            background-color: var(--color-primary);
+        }
+
+        /* BOTÓN DEL BUSCADOR EN NAVBAR (DISPARADOR) */
+        .search-trigger {
+            flex: 1;
+            max-width: 260px;          
+            min-width: 180px;
+            margin: 0 1.5rem;
+            border: none;
+            background-color: #f5f5f5;
+            border-radius: 999px;
+            padding: 0.4rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            cursor: text;
+        }
+
+        .search-trigger:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(223, 52, 49, 0.3);
+        }
+
+        .search-icon {
+            font-size: 1.1rem;
+            margin-right: 0.6rem;
+            color: #888888;
+        }
+
+        .search-text {
+            font-size: 0.9rem;
+            color: #777777;
+        }
+
+        /* Ocultar el disparador en pantallas pequeñas y dejar solo el menú */
+        @media (max-width: 991.98px) {
+            .search-trigger {
+                display: none !important;
+            }
+        }
+
+        /* HERO OFERTAS - ELIMINADO */
+        
+        /* SECCIÓN OFERTAS */
+        .ofertas-section {
+            background-color: var(--color-primary);
+            color: #ffffff;
+            padding: 4rem 0;
+        }
+
+        .ofertas-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .badge-oferta {
+            background-color: #ffffff;
+            color: var(--color-primary);
+            display: inline-block;
+            padding: 0.15rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .ofertas-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 0.75rem;
+        }
+
+        .ofertas-subtitle {
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .ofertas-note {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .productos-container {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: #222222;
+        }
+
+        .section-text {
+            font-size: 0.95rem;
+            color: #555555;
+        }
+
+        .link-ver-todo {
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: #555;
+        }
+
+        .link-ver-todo:hover {
+            color: var(--color-primary);
+        }
+
+        /* TARJETAS DE PRODUCTOS EN OFERTA */
+        .product-card-oferta {
+            border-radius: 1.25rem;
+            overflow: hidden;
+            background-color: #ffffff;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-image {
+            background: linear-gradient(135deg, var(--color-cream), #ffffff);
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .product-image.PI-2 {
+            background: linear-gradient(135deg, #f6e4ff, #ffffff);
+        }
+
+        .product-image.PI-3 {
+            background: linear-gradient(135deg, #d1e6ff, #ffffff);
+        }
+
+        .product-image.PI-4 {
+            background: linear-gradient(135deg, #ffe2dd, #ffffff);
+        }
+
+        .product-body {
+            padding: 1rem;
+        }
+
+        .product-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #777;
+            margin-bottom: 0.25rem;
+        }
+
+        .product-title {
+            font-size: 0.98rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .product-meta {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .product-price-old {
+            font-size: 0.8rem;
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 0.25rem;
+        }
+
+        .descuento-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--color-primary);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* SECCIÓN CATEGORÍAS EN OFERTA */
+        .categorias-ofertas {
+            background: linear-gradient(135deg, var(--color-cream), #ffffff);
+            padding: 4rem 0;
+        }
+
+        .categoria-card {
+            border-radius: 1.5rem;
+            padding: 2rem;
+            background: #ffffff;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .categoria-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .categoria-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .categoria-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .categoria-text {
+            font-size: 0.9rem;
+            color: #555555;
+        }
+
+        /* BANNER OFERTA FLASH */
+        .banner-oferta-flash {
+            background-color: var(--color-dark);
+            color: #ffffff;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .banner-oferta-flash-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .banner-oferta-flash-text {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .countdown-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            min-width: 70px;
+        }
+
+        .countdown-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        /* SECCIÓN TESTIMONIOS */
+        .testimonios-section {
+            background-color: #ffffff;
+            padding: 4rem 0;
+        }
+
+        .testimonio-card {
+            border-radius: 1.25rem;
+            padding: 1.5rem;
+            background-color: #f9fafc;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonio-text {
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonio-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonio-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--color-lilac);
+            margin-right: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--color-dark);
+        }
+
+        .testimonio-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .testimonio-role {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 0;
+        }
+
+        /* NEWSLETTER */
+        .newsletter-section {
+            background-color: var(--color-cream);
+            padding: 3rem 0;
+        }
+
+        .newsletter-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-text {
+            font-size: 0.9rem;
+            color: #555555;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-form input {
+            border-radius: 999px;
+            padding: 0.75rem 1.5rem;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: #111111;
+            color: #f0f0f0;
+            font-size: 0.85rem;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer h5,
+        .footer h6 {
+            color: #ffffff;
+        }
+
+        .footer a {
+            color: #f0f0f0;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--color-primary);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 991.98px) {
+            .ofertas-header {
+                text-align: center;
+            }
+
+            .ofertas-header {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .ofertas-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .ofertas-title {
+                font-size: 2.1rem;
+            }
+
+            .countdown {
+                gap: 0.5rem;
+            }
+
+            .countdown-item {
+                min-width: 60px;
+                padding: 0.5rem;
+            }
+
+            .countdown-number {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* MODAL DE DETALLES DE PRODUCTO */
+.product-modal-content {
+    border-radius: 1rem;
+    position: relative;
+    padding: 0;
+}
+
+/* Botón de cierre en la esquina superior derecha */
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.modal-close-btn:hover {
+    opacity: 0.9;
+}
+
+.modal-product-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.modal-product-price {
+    font-size: 2.2rem;
+    color: var(--color-primary); /* Rojo */
+}
+
+/* Imagen de producto dentro del modal */
+.product-image-preview {
+    background-color: #f7f7f7;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.product-image-preview img {
+    max-height: 500px;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Acordeón de detalles (estilo minimalista) */
+.accordion-item {
+    border: none;
+    border-bottom: 1px solid #eee;
+}
+
+.accordion-header {
+    margin: 0;
+}
+
+.accordion-button {
+    font-weight: 600;
+    padding: 1rem 0;
+    background-color: #ffffff;
+    color: #222222;
+    box-shadow: none;
+    transition: color 0.2s;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--color-primary);
+}
+
+.accordion-body {
+    padding: 0.5rem 0 1rem 0;
+}
+
+/* Responsive para el modal */
+@media (max-width: 767.98px) {
+    .modal-dialog {
+        margin: 0;
+        min-height: 100vh;
+    }
+    .product-modal-content {
+        min-height: 100vh;
+        border-radius: 0;
+    }
+    .modal-body {
+        padding: 15px !important;
+    }
+    .modal-product-name {
+        font-size: 1.5rem;
+    }
+    .modal-product-price {
+        font-size: 1.8rem;
+    }
+}
+
+
+
+</style>
+</head>
+<body>
+
+  
+  
+  <!-- TOP BAR -->
+  <div class="top-bar text-center small py-1">
+    <span>Envíos a todo México • Pagos seguros • Coleccionables originales</span>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top main-navbar">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand fw-bold" href="#">
+        <span class="logo-icon">P</span>icks
+      </a>
+
+      <!-- DISPARADOR DEL BUSCADOR (HEADER) -->
+      <button type="button" id="searchTrigger" class="search-trigger d-none d-lg-flex">
+        <span class="search-icon">🔍</span>
+        <span class="search-text">Buscar</span>
+      </button>
+
+      <!-- Botón hamburguesa -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menú -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+          </li>
+
+          <!-- Ediciones especiales -->
+          <li class="nav-item">
+            <a class="nav-link" href="#ediciones-especiales">Ediciones especiales</a>
+          </li>
+
+          <!-- Fandom -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="fandomDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Fandom
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="fandomDropdown">
+              <li><a class="dropdown-item" href="#">Anime</a></li>
+              <li><a class="dropdown-item" href="#">Manga</a></li>
+              <li><a class="dropdown-item" href="#">Música</a></li>
+              <li><a class="dropdown-item" href="#">Cómics</a></li>
+              <li><a class="dropdown-item" href="#">Caricaturas</a></li>
+              <li><a class="dropdown-item" href="#">Películas y Series</a></li>
+            </ul>
+          </li>
+
+          <!-- Categoría -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="categoriaDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Categoría
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="categoriaDropdown">
+              <li><a class="dropdown-item" href="#">Figuras</a></li>
+              <li><a class="dropdown-item" href="#">Cartas</a></li>
+              <li><a class="dropdown-item" href="#">Llaveros</a></li>
+              <li><a class="dropdown-item" href="#">Posters</a></li>
+              <li><a class="dropdown-item" href="#">Accesorios</a></li>
+              <li><a class="dropdown-item" href="#">Cómics</a></li>
+            </ul>
+          </li>
+
+          <!-- Oferta -->
+          <li class="nav-item">
+            <a class="nav-link" href="oferta">Ofertas</a>
+          </li>
+
+          <!-- Correo (pago / newsletter) -->
+          <li class="nav-item">
+            <a class="nav-link" href="#correo">Correo</a>
+          </li>
+
+          <!-- Contacto -->
+          <li class="nav-item">
+            <a class="nav-link" href="#contacto">Contacto</a>
+          </li>
+
+          <!-- Carrito -->
+          <li class="nav-item ms-lg-3">
+            <button type="button" id="cartTrigger" class="btn btn-outline-secondary btn-sm cart-trigger">
+              🛒 <span id="cartCount">0</span>
+            </button>
+          </li>
+
+          <!-- CTA -->
+          <li class="nav-item ms-lg-3">
+            <a href="#ofertas" class="btn btn-primary btn-sm">
+              Ver colección
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- OVERLAY COMPLETO DE BÚSQUEDA -->
+  <div id="searchOverlay" class="search-overlay">
+    <div class="search-overlay-backdrop"></div>
+
+    <div class="search-overlay-content">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            <div class="search-overlay-header">
+              <span class="search-icon">🔍</span>
+              <input
+                id="searchInput"
+                type="search"
+                class="form-control search-overlay-input"
+                placeholder="Buscar coleccionables por nombre, fandom o categoría..."
+                aria-label="Buscar"
+              />
+              <button
+                type="button"
+                id="searchClose"
+                class="btn-close ms-2"
+                aria-label="Cerrar"
+              ></button>
+            </div>
+            <p class="search-overlay-helper">
+              Ejemplos: "figuras anime", "cartas holográficas", "poster ciudad", "llaveros Marvel".
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- CARRITO LATERAL DESPLEGABLE -->
+  <div id="cartOverlay" class="cart-overlay">
+    <div class="cart-backdrop"></div>
+
+    <aside class="cart-panel">
+      <div class="cart-header">
+        <h2 class="cart-title">Tu carrito</h2>
+        <button
+          type="button"
+          id="cartClose"
+          class="btn-close"
+          aria-label="Cerrar"
+        ></button>
+      </div>
+
+      <div class="cart-body">
+        <div id="cartItems" class="cart-items cart-items-empty">
+          Tu carrito está vacío.
+        </div>
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cartTotal">MXN$0.00</span>
+        </div>
+        <button class="btn btn-primary w-100" type="button">
+          Ir a pagar
+        </button>
+      </div>
+    </aside>
+  </div>
+<section class="ofertas-section">
+    <div class="ofertas-header">
+  <div class="ofertas-header">
+       
+        <h2 class="ofertas-title">Ofertas especiales</h2>
+        <p class="ofertas-subtitle">Ahorra en tus articulos favoritos </p>
+        </div>
+    </div>
+</section>
+
+<section id="ofertas" class="productos-section py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="section-title mb-0">OFERTAS LIMITADAS</h2>
+ 
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Producto 1 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card"
+             data-name="Figura Heroe de Fuego"
+             data-tags="figura heroe fuego anime edicion limitada coleccionable">
+          <div class="product-image">
+            <img src="images/of1.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Figura</p>
+            <h3 class="product-title">Figura "Héroe de Fuego"</h3>
+            <p class="product-meta">Edición limitada • 15 cm</p>
+            <p class="product-price"> MXN$529.50 <span class="product-price-old">MXN$1,059</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-1" data-name="Figura Héroe de Fuego" data-price="529.50">
+              Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 2 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card"
+             data-name="Deck Galaxy Legends"
+             data-tags="cartas deck galaxy legends holograficas tcg juego coleccionable">
+          <div class="product-image PI-2">
+            <img src="images/of2.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Cartas</p>
+            <h3 class="product-title">Deck "Galaxy Legends"</h3>
+            <p class="product-meta">50 cartas holográficas</p>
+            <p class="product-price"> MXN$399.00 <span class="product-price-old">MXN$799</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-2" data-name="Deck Galaxy Legends" data-price="399.00">
+              Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 3 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card"
+             data-name="Poster Ciudad Neon"
+             data-tags="poster ciudad neon impresion hd pared decoracion">
+          <div class="product-image PI-3">
+            <img src="images/of3.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Ciudad Neon"</h3>
+            <p class="product-meta">Impresión HD • 50x70 cm</p>
+            <p class="product-price"> MXN$249.00 <span class="product-price-old">MXN$499</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-3" data-name="Poster Ciudad Neon" data-price="249.00">
+              Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 4 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card"
+             data-name="Llavero Portal Estelar"
+             data-tags="llavero portal estelar accesorio acrilico llaves anime sci-fi">
+          <div class="product-image PI-4">
+            <img src="images/of4.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Accesorio</p>
+            <h3 class="product-title">Llavero "Portal Estelar"</h3>
+            <p class="product-meta">Acrílico doble cara</p>
+            <p class="product-price"> MXN$149.00 <span class="product-price-old">MXN$299</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-4" data-name="Llavero Portal Estelar" data-price="149.00">
+              Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- PRODUCTOS 5 AL 19 (LOS 15 EXTRAS) -->
+      <!-- Producto 5 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card" data-name="Poster Galaxia Azul" data-tags="poster galaxia espacio hd decoracion pared">
+          <div class="product-image PI-4-extra">
+            <img src="images/of5.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Galaxia Azul"</h3>
+            <p class="product-meta">Impresión HD • 50x70 cm</p>
+            <p class="product-price"> MXN$249.00 <span class="product-price-old">MXN$499</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-5" data-name="Poster Galaxia Azul" data-price="249.00">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 6 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card" data-name="Poster Bosque Místico" data-tags="poster bosque naturaleza hd pared">
+          <div class="product-image PI-5">
+            <img src="images/of6.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Bosque Místico"</h3>
+            <p class="product-meta">Impresión HD • 60x90 cm</p>
+            <p class="product-price"> MXN$279.00 <span class="product-price-old">MXN$549</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-6" data-name="Poster Bosque Místico" data-price="279.00">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 7 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card" data-name="Poster Samurai" data-tags="poster samurai japon arte pared hd">
+          <div class="product-image PI-6">
+            <img src="images/of7.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Samurai"</h3>
+            <p class="product-meta">Impresión HD • 40x60 cm</p>
+            <p class="product-price"> MXN$199.00 <span class="product-price-old">MXN$399</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-7" data-name="Poster Samurai" data-price="199.00">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 8 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card" data-name="Poster Montañas Doradas" data-tags="poster montañas doradas paisaje hd">
+          <div class="product-image PI-7">
+            <img src="images/of8.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Montañas Doradas"</h3>
+            <p class="product-meta">Impresión HD • 50x50 cm</p>
+            <p class="product-price"> MXN$229.00 <span class="product-price-old">MXN$459</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-8" data-name="Poster Montañas Doradas" data-price="229.00">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 9 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card" data-name="Poster Atardecer Rosa" data-tags="poster atardecer rosa cielo hd decoracion">
+          <div class="product-image PI-8">
+            <img src="images/of9.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Atardecer Rosa"</h3>
+            <p class="product-meta">Impresión HD • 50x80 cm</p>
+            <p class="product-price"> MXN$259.00 <span class="product-price-old">MXN$499</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-9" data-name="Poster Atardecer Rosa" data-price="259.00">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 10 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card" data-name="Poster Lobo Alfa" data-tags="poster lobo animal alfa hd decoracion">
+          <div class="product-image PI-9">
+            <img src="images/of10.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Lobo Alfa"</h3>
+            <p class="product-meta">Impresión HD • 45x60 cm</p>
+            <p class="product-price"> MXN$219.00 <span class="product-price-old">MXN$439</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-10" data-name="Poster Lobo Alfa" data-price="219.00">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 11 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card" data-name="Poster Retro Gamer" data-tags="poster retro gamer videojuegos decoracion">
+          <div class="product-image PI-10">
+            <img src="images/of11.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Retro Gamer"</h3>
+            <p class="product-meta">Impresión HD • 40x50 cm</p>
+            <p class="product-price"> MXN$189.00 <span class="product-price-old">MXN$349</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-11" data-name="Poster Retro Gamer" data-price="189.00">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 12 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card" data-name="Poster Olas Turquesa" data-tags="poster olas mar oceano turquesa hd">
+          <div class="product-image PI-11">
+            <img src="images/of12.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Olas Turquesa"</h3>
+            <p class="product-meta">Impresión HD • 50x90 cm</p>
+            <p class="product-price"> MXN$269.00 <span class="product-price-old">MXN$499</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-12" data-name="Poster Olas Turquesa" data-price="269.00">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 13 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card" data-name="Poster Cyber Punk" data-tags="poster cyberpunk ciudad futurista hd">
+          <div class="product-image PI-12">
+            <img src="images/of13.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Cyber Punk"</h3>
+            <p class="product-meta">Impresión HD • 60x100 cm</p>
+            <p class="product-price"> MXN$299.00 <span class="product-price-old">MXN$599</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-13" data-name="Poster Cyber Punk" data-price="299.00">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 14 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card" data-name="Poster Minimalista Zen" data-tags="poster minimalista zen decoracion hogar calma">
+          <div class="product-image PI-13">
+            <img src="images/of14.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Minimalista Zen"</h3>
+            <p class="product-meta">Impresión HD • 40x70 cm</p>
+            <p class="product-price"> MXN$239.00 <span class="product-price-old">MXN$449</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-14" data-name="Poster Minimalista Zen" data-price="239.00">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 15 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card" data-name="Poster Automóvil Clásico" data-tags="poster carro clasico vintage decoracion">
+          <div class="product-image PI-14">
+            <img src="images/of15.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Automóvil Clásico"</h3>
+            <p class="product-meta">Impresión HD • 60x80 cm</p>
+            <p class="product-price"> MXN$279.00 <span class="product-price-old">MXN$539</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-15" data-name="Poster Automóvil Clásico" data-price="279.00">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 16 -->
+      <div class="col-6 col-md-3">
+        <div class="product-card" data-name="Poster Anime Nights" data-tags="poster anime noches ciudad decoracion">
+          <div class="product-image PI-15">
+            <img src="images/of16.png" alt="">
+          </div>
+          <div class="product-body">
+            <p class="product-tag">Poster</p>
+            <h3 class="product-title">Poster "Anime Nights"</h3>
+            <p class="product-meta">Impresión HD • 50x70 cm</p>
+            <p class="product-price"> MXN$249.00 <span class="product-price-old">MXN$499</span></p>
+            <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+                    data-id="prod-16" data-name="Poster Anime Nights" data-price="249.00">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+<!-- Producto 5 -->
+<div class="col-6 col-md-3">
+  <div class="product-card"
+       data-name="Figura Dragón Carmesí"
+       data-tags="figura dragon carmesi fantasia coleccionable anime">
+    <div class="product-image PI-5">
+            <img src="images/of17.png" alt="">
+        <img src="" alt="">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Figura</p>
+      <h3 class="product-title">Figura "Dragón Carmesí"</h3>
+      <p class="product-meta">Edición especial • 18 cm</p>
+      <p class="product-price">
+        MXN$589.00
+        <span class="product-price-old">MXN$1,179</span>
+      </p>
+      <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="prod-5"
+        data-name="Figura Dragón Carmesí"
+        data-price="589.00">
+        Añadir al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 6 -->
+<div class="col-6 col-md-3">
+  <div class="product-card"
+       data-name="Llavero Ninja Sombra"
+       data-tags="llavero ninja sombra acrilico anime coleccionable">
+    <div class="product-image PI-6">
+            <img src="images/of18.png" alt="">
+        <img src="" alt="">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Llavero</p>
+      <h3 class="product-title">Llavero "Ninja Sombra"</h3>
+      <p class="product-meta">Acrílico resistente</p>
+      <p class="product-price">
+        MXN$129.00
+        <span class="product-price-old">MXN$259</span>
+      </p>
+      <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="prod-6"
+        data-name="Llavero Ninja Sombra"
+        data-price="129.00">
+        Añadir al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 7 -->
+<div class="col-6 col-md-3">
+  <div class="product-card"
+       data-name="Figura Guerrero Estelar"
+       data-tags="figura guerrero estelar sci-fi coleccionable">
+    <div class="product-image PI-7">
+            <img src="images/of19.png" alt="">
+        <img src="" alt="">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Figura</p>
+      <h3 class="product-title">Figura "Guerrero Estelar"</h3>
+      <p class="product-meta">Escala 1:10 • 20 cm</p>
+      <p class="product-price">
+        MXN$649.00
+        <span class="product-price-old">MXN$1,299</span>
+      </p>
+      <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="prod-7"
+        data-name="Figura Guerrero Estelar"
+        data-price="649.00">
+        Añadir al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 8 -->
+<div class="col-6 col-md-3">
+  <div class="product-card"
+       data-name="Poster Bosque Místico"
+       data-tags="poster bosque mistico decoracion impresion hd">
+    <div class="product-image PI-8">
+            <img src="images/of20.png" alt="">
+        <img src="" alt="">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Póster</p>
+      <h3 class="product-title">Póster "Bosque Místico"</h3>
+      <p class="product-meta">60x90 cm • HD</p>
+      <p class="product-price">
+        MXN$199.00
+        <span class="product-price-old">MXN$399</span>
+      </p>
+      <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="prod-8"
+        data-name="Póster Bosque Místico"
+        data-price="199.00">
+        Añadir al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 9 -->
+<div class="col-6 col-md-3">
+  <div class="product-card"
+       data-name="Llavero Espíritu Zorro"
+       data-tags="llavero espiritu zorro kitsune anime acrilico">
+    <div class="product-image PI-9">
+            <img src="images/of21.png" alt="">
+        <img src="" alt="">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Llavero</p>
+      <h3 class="product-title">Llavero "Espíritu Zorro"</h3>
+      <p class="product-meta">Acrílico doble capa</p>
+      <p class="product-price">
+        MXN$139.00
+        <span class="product-price-old">MXN$279</span>
+      </p>
+      <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="prod-9"
+        data-name="Llavero Espíritu Zorro"
+        data-price="139.00">
+        Añadir al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 10 -->
+<div class="col-6 col-md-3">
+  <div class="product-card"
+       data-name="Figura Robot Centinela"
+       data-tags="figura robot centinela futurista coleccionable">
+    <div class="product-image PI-10">
+        <img src="images/of22.png" alt="">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Figura</p>
+      <h3 class="product-title">Figura "Robot Centinela"</h3>
+      <p class="product-meta">Articulada • 17 cm</p>
+      <p class="product-price">
+        MXN$599.00
+        <span class="product-price-old">MXN$1,199</span>
+      </p>
+      <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="prod-10"
+        data-name="Figura Robot Centinela"
+        data-price="599.00">
+        Añadir al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 11 -->
+<div class="col-6 col-md-3">
+  <div class="product-card"
+       data-name="Mini Figura Guardian Azul"
+       data-tags="mini figura guardian azul coleccionable anime">
+    <div class="product-image PI-11">
+        <img src="images/of23.png" alt="">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Mini Figura</p>
+      <h3 class="product-title">Mini Figura "Guardián Azul"</h3>
+      <p class="product-meta">8 cm • PVC</p>
+      <p class="product-price">
+        MXN$89.00
+        <span class="product-price-old">MXN$179</span>
+      </p>
+      <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="prod-11"
+        data-name="Mini Figura Guardián Azul"
+        data-price="89.00">
+        Añadir al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 12 -->
+<div class="col-6 col-md-3">
+  <div class="product-card"
+       data-name="Figura Maga Celestial"
+       data-tags="figura maga celestial fantasia anime coleccionable">
+    <div class="product-image PI-12">
+        <img src="images/of24.png" alt="">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Figura</p>
+      <h3 class="product-title">Figura "Maga Celestial"</h3>
+      <p class="product-meta">Edición limitada • 22 cm</p>
+      <p class="product-price">
+        MXN$699.00
+        <span class="product-price-old">MXN$1,399</span>
+      </p>
+      <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="prod-12"
+        data-name="Figura Maga Celestial"
+        data-price="699.00">
+        Añadir al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 13 -->
+<div class="col-6 col-md-3">
+  <div class="product-card"
+       data-name="Llavero Dragón Azul"
+       data-tags="llavero dragon azul fantasia acrilico">
+    <div class="product-image PI-13">
+        <img src="images/25.png" alt="">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Llavero</p>
+      <h3 class="product-title">Llavero "Dragón Azul"</h3>
+      <p class="product-meta">Acrílico premium</p>
+      <p class="product-price">
+        MXN$129.00
+        <span class="product-price-old">MXN$259</span>
+      </p>
+      <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="prod-13"
+        data-name="Llavero Dragón Azul"
+        data-price="129.00">
+        Añadir al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 14 -->
+<div class="col-6 col-md-3">
+  <div class="product-card"
+       data-name="Poster Ciudad Retro"
+       data-tags="poster ciudad retro vaporwave decoracion">
+    <div class="product-image PI-14">
+        <img src="images/of26.png" alt="">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Póster</p>
+      <h3 class="product-title">Póster "Ciudad Retro"</h3>
+      <p class="product-meta">Impresión HD • 50x70 cm</p>
+      <p class="product-price">
+        MXN$219.00
+        <span class="product-price-old">MXN$439</span>
+      </p>
+      <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="prod-14"
+        data-name="Póster Ciudad Retro"
+        data-price="219.00">
+        Añadir al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 15 -->
+<div class="col-6 col-md-3">
+  <div class="product-card"
+       data-name="Figura Samurai Oscuro"
+       data-tags="figura samurai oscuro coleccionable anime fantasia">
+    <div class="product-image PI-15">
+        <img src="images/of27.png" alt="">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Figura</p>
+      <h3 class="product-title">Figura "Samurái Oscuro"</h3>
+      <p class="product-meta">Escala 1:12 • 18 cm</p>
+      <p class="product-price">
+        MXN$629.00
+        <span class="product-price-old">MXN$1,259</span>
+      </p>
+      <button type="button" class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="prod-15"
+        data-name="Figura Samurái Oscuro"
+        data-price="629.00">
+        Añadir al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
+
+
+   <!-- FOOTER -->
+  <footer class="footer py-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5 class="mb-3">Picks</h5>
+          <p class="small mb-0">
+            E-commerce especializado en figuras, cartas, posters, accesorios y
+            más coleccionables para fans de todas las edades.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h6>Navegación</h6>
+          <ul class="list-unstyled small">
+            <li><a href="#ediciones-especiales">Ediciones especiales</a></li>
+            <li><a href="#ofertas">Ofertas</a></li>
+            <li><a href="#correo">Correo</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6>Síguenos</h6>
+          <ul class="list-unstyled small">
+            <li>Instagram</li>
+            <li>Facebook</li>
+            <li>X (Twitter)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center small mt-3 text-muted">
+        © 2025 Picks. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+  
+ <div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content product-modal-content">
+            <button type="button" class="btn-close modal-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+            
+            <div class="modal-body p-4 p-md-5">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="product-image-preview">
+                            <img id="modalProductImage" src="" alt="Imagen del Producto" class="img-fluid rounded-3" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-7 mt-4 mt-md-0">
+                        <h1 id="modalProductName" class="modal-product-name mb-2">Nombre del Producto</h1>
+                        <p class="text-muted small mb-3">
+                            <span id="modalProductFandom">Coleccionables</span> | 
+                            <span id="modalProductTags">Edición Especial</span>
+                        </p>
+
+                        <div class="modal-price-block mb-4">
+                            <span id="modalProductPrice" class="modal-product-price fw-bold">$0.00</span>
+                        </div>
+
+                        <button id="modalAddToCartBtn" class="btn btn-primary btn-lg w-100 mb-3" data-id="" data-name="" data-price="">
+                            🛒 Añadir al Carrito
+                        </button>
+                        
+                        <div class="accordion" id="productDetailsAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Detalles del Producto
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#productDetailsAccordion">
+                                    <div class="accordion-body">
+                                        <p id="modalProductDescription">Descripción del producto aparecerá aquí.</p>
+                                        <ul class="list-unstyled">
+                                            <li><strong>Artista:</strong> <span id="modalProductArtist">Artista Desconocido</span></li>
+                                            <li><strong>Formato:</strong> <span id="modalProductFormat">Formato estándar</span></li>
+                                            <li><strong>SKU:</strong> <span id="modalProductSKU">SKU-000</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Información de Envío y Devoluciones
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#productDetailsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Envío a todo México en 3-5 días hábiles. Costo de envío se calcula al finalizar la compra. Devoluciones aceptadas solo si el producto llega dañado y sin abrir.</p>
+                                        <ul class="list-unstyled">
+                                            <li>• Envío gratuito en compras mayores a $799 MXN</li>
+                                            <li>• Tiempo de procesamiento: 24-48 horas</li>
+                                            <li>• Política de devoluciones: 15 días</li>
+                                            <li>• Productos originales con garantía</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("✅ JavaScript cargado correctamente");
+    
+    // Elementos del carrito
+    const cartOverlay = document.getElementById("cartOverlay");
+    const cartItemsContainer = document.getElementById("cartItems");
+    const cartTotalElement = document.getElementById("cartTotal");
+    const cartCountElement = document.getElementById("cartCount");
+    const cartTrigger = document.getElementById("cartTrigger");
+    const cartClose = document.getElementById("cartClose");
+    
+    console.log("Elementos del carrito:", {
+        cartOverlay: !!cartOverlay,
+        cartItemsContainer: !!cartItemsContainer,
+        cartTotalElement: !!cartTotalElement,
+        cartCountElement: !!cartCountElement,
+        cartTrigger: !!cartTrigger,
+        cartClose: !!cartClose
+    });
+
+    // Botón del modal
+    const modalAddToCartBtn = document.getElementById("modalAddToCartBtn");
+    console.log("Botón modal encontrado:", !!modalAddToCartBtn);
+
+    let cart = [];
+
+    // Información específica para cada producto
+    const productInfo = {
+        "Figura Heroe de Fuego": {
+            description: "Figura coleccionable del Héroe de Fuego en pose de batalla. Edición limitada con detalles pintados a mano y base especial. Material: PVC de alta calidad.",
+            artist: "Studio Artisan",
+            format: "Figura PVC 1:8",
+            sku: "FIG-HF-001"
+        },
+        "Deck Galaxy Legends": {
+            description: "Mazo de cartas holográficas Galaxy Legends con 50 cartas exclusivas. Incluye cartas raras, súper raras y una carta secreta. Perfecto para jugadores competitivos.",
+            artist: "TCG Masters",
+            format: "Mazo 50 cartas",
+            sku: "CARD-GL-002"
+        },
+        "Poster Ciudad Neon": {
+            description: "Póster de alta calidad con diseño de ciudad futurista en tonos neón. Impresión HD en papel premium de 200g. Ideal para decoración de habitación u oficina.",
+            artist: "Neon Dreams Studio",
+            format: "Póster 50x70cm",
+            sku: "POST-CN-003"
+        },
+        "Llavero Portal Estelar": {
+            description: "Llavero acrílico de doble cara con diseño de portal estelar. Resistente y duradero, perfecto para fans de la ciencia ficción.",
+            artist: "Cosmic Crafts",
+            format: "Llavero acrílico",
+            sku: "KEY-SP-004"
+        },
+        "Poster Galaxia Azul": {
+            description: "Impresionante póster de galaxia con tonos azules profundos. Impresión en alta resolución que captura cada detalle estelar.",
+            artist: "Space Art Collective",
+            format: "Póster 50x70cm",
+            sku: "POST-GA-005"
+        },
+        "Poster Bosque Místico": {
+            description: "Póster artístico de bosque encantado con efectos de luz mística. Crea una atmósfera mágica en cualquier espacio.",
+            artist: "Fantasy Artists",
+            format: "Póster 60x90cm",
+            sku: "POST-BM-006"
+        },
+        "Poster Samurai": {
+            description: "Arte tradicional japonés de samurái en pose de combate. Diseño minimalista con trazos precisos y elegantes.",
+            artist: "Japanese Art Studio",
+            format: "Póster 40x60cm",
+            sku: "POST-SAM-007"
+        },
+        "Poster Montañas Doradas": {
+            description: "Paisaje sereno de montañas bañadas por la luz dorada del atardecer. Inspirado en la naturaleza y la tranquilidad.",
+            artist: "Nature Vision",
+            format: "Póster 50x50cm",
+            sku: "POST-MD-008"
+        },
+        "Poster Atardecer Rosa": {
+            description: "Espectacular póster de atardecer con cielos rosados y nubes dramáticas. Perfecto para amantes del arte y la fotografía.",
+            artist: "Sky Art Studio",
+            format: "Póster 50x80cm",
+            sku: "POST-AR-009"
+        },
+        "Poster Lobo Alfa": {
+            description: "Retrato poderoso de un lobo alfa en su hábitat natural. Simboliza fuerza, libertad y espíritu salvaje.",
+            artist: "Wildlife Artists",
+            format: "Póster 45x60cm",
+            sku: "POST-LA-010"
+        },
+        "Poster Retro Gamer": {
+            description: "Diseño retro inspirado en los videojuegos clásicos de los 80s y 90s. Nostalgia pura para gamers.",
+            artist: "Retro Pixel Studio",
+            format: "Póster 40x50cm",
+            sku: "POST-RG-011"
+        },
+        "Poster Olas Turquesa": {
+            description: "Captura artística de olas del océano en tonos turquesa vibrantes. Tranquilidad y movimiento en una sola imagen.",
+            artist: "Ocean Art Co.",
+            format: "Póster 50x90cm",
+            sku: "POST-OT-012"
+        },
+        "Poster Cyber Punk": {
+            description: "Visión futurista de ciudad cyberpunk con neones, tecnología y arquitectura distópica.",
+            artist: "Future Vision Studio",
+            format: "Póster 60x100cm",
+            sku: "POST-CP-013"
+        },
+        "Poster Minimalista Zen": {
+            description: "Diseño minimalista que promueve la calma y la armonía. Perfecto para espacios de meditación y relax.",
+            artist: "Zen Design Co.",
+            format: "Póster 40x70cm",
+            sku: "POST-MZ-014"
+        },
+        "Poster Automóvil Clásico": {
+            description: "Elegante póster de automóvil clásico de los años 60. Para amantes de los coches vintage.",
+            artist: "Vintage Motors Art",
+            format: "Póster 60x80cm",
+            sku: "POST-AC-015"
+        },
+        "Poster Anime Nights": {
+            description: "Escena nocturna de anime con ciudad iluminada y personajes estilo japonés. Arte anime de alta calidad.",
+            artist: "Anime Art Studio",
+            format: "Póster 50x70cm",
+            sku: "POST-AN-016"
+        },
+        "Figura Dragón Carmesí": {
+            description: "Figura detallada del Dragón Carmesí con alas desplegadas. Escultura de resina con efectos de pintura especiales.",
+            artist: "Dragon Art Studio",
+            format: "Figura resina 1:10",
+            sku: "FIG-DC-017"
+        },
+        "Llavero Ninja Sombra": {
+            description: "Llavero de ninja en movimiento con diseño de sombras. Acrílico de doble capa con efecto 3D.",
+            artist: "Shadow Crafts",
+            format: "Llavero acrílico 3D",
+            sku: "KEY-NS-018"
+        },
+        "Figura Guerrero Estelar": {
+            description: "Guerrero estelar con armadura futurista y detalles metálicos. Articulaciones móviles para diferentes poses.",
+            artist: "Space Warriors Co.",
+            format: "Figura articulada 1:10",
+            sku: "FIG-GE-019"
+        },
+        "Póster Bosque Místico": {
+            description: "Versión extendida del bosque místico con más detalles y criaturas fantásticas escondidas.",
+            artist: "Fantasy Artists",
+            format: "Póster 60x90cm",
+            sku: "POST-BM2-020"
+        },
+        "Llavero Espíritu Zorro": {
+            description: "Llavero del espíritu zorro (kitsune) con nueve colas. Diseño tradicional japonés en acrílico premium.",
+            artist: "Japanese Legends",
+            format: "Llavero acrílico",
+            sku: "KEY-EZ-021"
+        },
+        "Figura Robot Centinela": {
+            description: "Robot centinela futurista con articulaciones completas y accesorios intercambiables.",
+            artist: "Mecha Design Studio",
+            format: "Figura articulada 1:12",
+            sku: "FIG-RC-022"
+        },
+        "Mini Figura Guardián Azul": {
+            description: "Mini figura del Guardián Azul, perfecta para coleccionar o decorar tu espacio de trabajo.",
+            artist: "Mini Art Co.",
+            format: "Mini figura 8cm",
+            sku: "FIG-MG-023"
+        },
+        "Figura Maga Celestial": {
+            description: "Maga celestial con vestuario etéreo y varita mágica luminosa. Edición coleccionista numerada.",
+            artist: "Fantasy Masters",
+            format: "Figura PVC 1:7",
+            sku: "FIG-MC-024"
+        },
+        "Llavero Dragón Azul": {
+            description: "Llavero del Dragón Azul, símbolo de sabiduría y poder en la mitología oriental.",
+            artist: "Eastern Myths",
+            format: "Llavero acrílico",
+            sku: "KEY-DA-025"
+        },
+        "Póster Ciudad Retro": {
+            description: "Ciudad retro con estética vaporwave y colores pastel. Diseño único para amantes del estilo vintage.",
+            artist: "Vaporwave Studio",
+            format: "Póster 50x70cm",
+            sku: "POST-CR-026"
+        },
+        "Figura Samurái Oscuro": {
+            description: "Samurái oscuro con armadura negra y detalles en rojo. Actitud intimidante y pose de combate.",
+            artist: "Dark Art Studio",
+            format: "Figura PVC 1:12",
+            sku: "FIG-SO-027"
+        }
+    };
+
+    // Función para actualizar el carrito
+    function updateCartDisplay() {
+        console.log("🔄 Actualizando carrito, items:", cart.length);
+        cartItemsContainer.innerHTML = "";
+        let total = 0;
+        let count = 0;
+
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<div class="cart-items-empty">Tu carrito está vacío.</div>';
+            cartItemsContainer.classList.add('cart-items-empty');
+        } else {
+            cartItemsContainer.classList.remove('cart-items-empty');
+            
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                count += item.quantity;
+
+                const div = document.createElement("div");
+                div.classList.add("cart-item");
+                div.innerHTML = `
+                    <div class="cart-item-info">
+                        <p class="cart-item-name"><strong>${item.name}</strong></p>
+                        <p class="cart-item-price">MXN$${item.price} x ${item.quantity}</p>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="cart-qty-btn decrease" data-index="${index}">-</button>
+                        <span class="cart-qty">${item.quantity}</span>
+                        <button class="cart-qty-btn increase" data-index="${index}">+</button>
+                        <button class="cart-remove" data-index="${index}">×</button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(div);
+            });
+        }
+
+        cartTotalElement.textContent = `MXN$${total.toFixed(2)}`;
+        cartCountElement.textContent = count;
+        
+        // Agregar event listeners a los botones recién creados
+        addCartItemEventListeners();
+        
+        console.log("✅ Carrito actualizado");
+    }
+
+    // Función para agregar event listeners a los botones del carrito
+    function addCartItemEventListeners() {
+        // Botones de disminuir cantidad
+        document.querySelectorAll('.decrease').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const index = parseInt(this.getAttribute('data-index'));
+                console.log("➖ Disminuyendo cantidad del producto:", index);
+                
+                if (cart[index].quantity > 1) {
+                    cart[index].quantity--;
+                } else {
+                    // Si la cantidad es 1, eliminar el producto
+                    cart.splice(index, 1);
+                }
+                updateCartDisplay();
+            });
+        });
+
+        // Botones de aumentar cantidad
+        document.querySelectorAll('.increase').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const index = parseInt(this.getAttribute('data-index'));
+                console.log("➕ Aumentando cantidad del producto:", index);
+                
+                cart[index].quantity++;
+                updateCartDisplay();
+            });
+        });
+
+        // Botones de eliminar
+        document.querySelectorAll('.cart-remove').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const index = parseInt(this.getAttribute('data-index'));
+                console.log("🗑️ Eliminando producto:", index);
+                
+                cart.splice(index, 1);
+                updateCartDisplay();
+            });
+        });
+    }
+
+    // Función para agregar al carrito
+    function addToCart(name, price) {
+        console.log("➕ Agregando producto:", name, price);
+        const existing = cart.find(item => item.name === name);
+        if (existing) {
+            existing.quantity++;
+        } else {
+            cart.push({ name, price, quantity: 1 });
+        }
+        updateCartDisplay();
+    }
+
+    // EVENTO PARA EL BOTÓN DEL MODAL (cierra modal y abre carrito)
+    if (modalAddToCartBtn) {
+        modalAddToCartBtn.addEventListener("click", function() {
+            console.log("🎯 CLICK en botón modal detectado");
+            const name = this.getAttribute("data-name");
+            const price = parseFloat(this.getAttribute("data-price"));
+            
+            console.log("Datos del producto:", {name, price});
+            
+            if (name && price) {
+                addToCart(name, price);
+                
+                // Cerrar el modal
+                console.log("🔒 Cerrando modal...");
+                const modalElement = document.getElementById("productDetailModal");
+                if (modalElement) {
+                    const modal = bootstrap.Modal.getInstance(modalElement);
+                    if (modal) {
+                        modal.hide();
+                        console.log("✅ Modal cerrado");
+                    }
+                }
+                
+                // Abrir el carrito
+                console.log("🛒 Abriendo carrito...");
+                if (cartOverlay) {
+                    cartOverlay.classList.add("open");
+                    console.log("✅ Clase 'open' agregada al carrito");
+                }
+            }
+        });
+    }
+
+    // Eventos para abrir/cerrar carrito
+    if (cartTrigger) {
+        cartTrigger.addEventListener("click", function() {
+            console.log("🎯 CLICK en icono carrito");
+            cartOverlay.classList.add("open");
+        });
+    }
+
+    if (cartClose) {
+        cartClose.addEventListener("click", function() {
+            console.log("🎯 CLICK en cerrar carrito");
+            cartOverlay.classList.remove("open");
+        });
+    }
+
+    // Botones "Añadir al carrito" fuera del modal - agregan directamente y abren carrito
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const name = this.getAttribute('data-name');
+            const price = parseFloat(this.getAttribute('data-price'));
+            
+            console.log("🛒 Agregando directamente al carrito:", name, price);
+            
+            // Agregar directamente al carrito
+            addToCart(name, price);
+            
+            // Abrir el carrito automáticamente
+            if (cartOverlay) {
+                cartOverlay.classList.add("open");
+                console.log("✅ Producto agregado y carrito abierto");
+            }
+        });
+    });
+
+    // Conectar imágenes de productos al modal
+    document.querySelectorAll('.product-image').forEach(image => {
+        image.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Encontrar el producto card padre
+            const productCard = this.closest('.product-card');
+            if (productCard) {
+                const name = productCard.getAttribute('data-name');
+                // Encontrar el precio desde el botón de añadir al carrito
+                const addToCartBtn = productCard.querySelector('.add-to-cart');
+                const price = addToCartBtn ? parseFloat(addToCartBtn.getAttribute('data-price')) : 0;
+                
+                console.log("🖼️ Imagen producto clickeada:", name, price);
+                
+                openProductModal(name, price);
+            }
+        });
+    });
+
+    // Función para abrir el modal del producto (solo para imágenes)
+    function openProductModal(name, price) {
+        // Obtener información del producto
+        const product = productInfo[name] || {
+            description: `Descripción detallada de ${name}. Producto de alta calidad con garantía del fabricante.`,
+            artist: "Artista Desconocido",
+            format: "Formato estándar",
+            sku: "SKU-000"
+        };
+        
+        console.log("📦 Información del producto:", product);
+        
+        // Actualizar el modal con los datos del producto
+        document.getElementById('modalProductName').textContent = name;
+        document.getElementById('modalProductPrice').textContent = `MXN$${price}`;
+        document.getElementById('modalProductDescription').textContent = product.description;
+        
+        // ACTUALIZAR LOS NUEVOS CAMPOS
+        const modalProductArtist = document.getElementById('modalProductArtist');
+        const modalProductFormat = document.getElementById('modalProductFormat');
+        const modalProductSKU = document.getElementById('modalProductSKU');
+        
+        if (modalProductArtist) modalProductArtist.textContent = product.artist;
+        if (modalProductFormat) modalProductFormat.textContent = product.format;
+        if (modalProductSKU) modalProductSKU.textContent = product.sku;
+        
+        // Actualizar el botón del modal con los datos
+        if (modalAddToCartBtn) {
+            modalAddToCartBtn.setAttribute('data-name', name);
+            modalAddToCartBtn.setAttribute('data-price', price);
+            console.log("✅ Datos actualizados en botón modal");
+        }
+        
+        // Abrir el modal
+        const modal = new bootstrap.Modal(document.getElementById('productDetailModal'));
+        modal.show();
+        console.log("✅ Modal abierto para:", name);
+    }
+
+    // Inicializar
+    updateCartDisplay();
+    console.log("🚀 Aplicación inicializada correctamente");
+
+    // Función de prueba para forzar abrir el carrito
+    window.abrirCarrito = function() {
+        console.log("🔓 Forzando apertura del carrito");
+        if (cartOverlay) {
+            cartOverlay.classList.add("open");
+            console.log("✅ Carrito debería estar visible");
+        }
+    }
+});
+</script>
+</body>
+</html>
