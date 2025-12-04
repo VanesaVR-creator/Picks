@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picks - Coleccionables</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar text-center small py-1">
+        <span>Envíos a todo México • Pagos seguros • Coleccionables originales</span>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top main-navbar">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold" href="#">
+                <span class="logo-icon">P</span>icks
+            </a>
+
+            <!-- DISPARADOR DEL BUSCADOR (HEADER) -->
+            <button type="button" id="searchTrigger" class="search-trigger d-none d-lg-flex">
+                <span class="search-icon">🔍</span>
+                <span class="search-text">Buscar</span>
+            </button>
+
+            <!-- Botón hamburguesa -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                    </li>
+
+                    <!-- Ediciones especiales -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="EdicionesEspeciales.html">Ediciones especiales</a>
+                    </li>
+
+                    <!-- Fandom -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="fandomDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Fandom
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="fandomDropdown">
+                            <li><a class="dropdown-item" href="#">Anime</a></li>
+                            <li><a class="dropdown-item" href="#">Manga</a></li>
+                            <li><a class="dropdown-item" href="#">Música</a></li>
+                            <li><a class="dropdown-item" href="#">Cómics</a></li>
+                            <li><a class="dropdown-item" href="#">Caricaturas</a></li>
+                            <li><a class="dropdown-item" href="#">Películas y Series</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Categoría -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="categoriaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categoría
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="categoriaDropdown">
+                            <li><a class="dropdown-item" href="#">Figuras</a></li>
+                            <li><a class="dropdown-item" href="#">Cartas</a></li>
+                            <li><a class="dropdown-item" href="Llaveros.html">Llaveros</a></li>
+                            <li><a class="dropdown-item" href="#">Posters</a></li>
+                            <li><a class="dropdown-item" href="#">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="#">Cómics</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Oferta -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ofertas">Ofertas</a>
+                    </li>
+                    <!-- Correo (pago / newsletter) -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#correo">Correo</a>
+                    </li>
+                    <!-- Contacto -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                    <!-- Carrito -->
+                    <li class="nav-item ms-lg-3">
+                        <button type="button" id="cartTrigger" class="btn btn-outline-secondary btn-sm cart-trigger">
+                            🛒 <span id="cartCount">0</span>
+                        </button>
+                    </li>
+                    <!-- CTA -->
+                    <li class="nav-item ms-lg-3">
+                        <a href="#ofertas" class="btn btn-primary btn-sm">
+                            Ver colección
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- OVERLAY COMPLETO DE BÚSQUEDA -->
+    <div id="searchOverlay" class="search-overlay">
+        <div class="search-overlay-backdrop"></div>
+
+        <div class="search-overlay-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+                        <div class="search-overlay-header">
+                            <span class="search-icon">🔍</span>
+                            <input id="searchInput" type="search" class="form-control search-overlay-input" placeholder="Buscar coleccionables por nombre, fandom o categoría..." aria-label="Buscar" />
+                            <button type="button" id="searchClose" class="btn-close ms-2" aria-label="Cerrar"></button>
+                        </div>
+                        <p class="search-overlay-helper">
+                            Ejemplos: "figuras anime", "cartas holográficas", "poster ciudad", "llaveros Marvel".
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARRITO LATERAL DESPLEGABLE -->
+    <div id="cartOverlay" class="cart-overlay">
+        <div class="cart-backdrop"></div>
+
+        <aside class="cart-panel">
+            <div class="cart-header">
+                <h2 class="cart-title">Tu carrito</h2>
+                <button type="button" id="cartClose" class="btn-close" aria-label="Cerrar"></button>
+            </div>
+
+            <div class="cart-body">
+                <div id="cartItems" class="cart-items cart-items-empty">
+                    Tu carrito está vacío.
+                </div>
+            </div>
+
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">MXN$0.00</span>
+                </div>
+                <button class="btn btn-primary w-100" type="button">
+                    Ir a pagar
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- SECCIONES DE PRODUCTOS -->
+
+    <section class="featured">
+        <div class="featured-header">
+            <h2></h2>
+        </div>
+        <div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="Llaveros IMAGENES/1.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Llaveros 3D</h5>
+        <p>¡Llaveros 3D super bonitos y originales de todo tipo!</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="Llaveros IMAGENES/8.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>¡Llaveros personalizados y duraderos!</h5>
+        <p>Con material bastante resistente</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="Llaveros IMAGENES/2.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>¡Llaveros de Tela!</h5>
+        <p>Llaveros de tela de tu anime favorito</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<section class="llaveros-banner">
+  <div class="llaveros-card">
+    <h2>LLAVEROS DE TODO TIPO</h2>
+    <p>
+      Tenemos llaveros increíbles de anime, películas, series, videojuegos y cómics.
+      Diseños únicos, originales y perfectos para cualquier colección.
+    </p>
+  </div>
+</section>
+
+
+ <!-- SECCIONES DE PRODUCTOS -->
+
+<div class="cards-container">
+
+    <!-- Llavero Ojos Anime -->
+    <div class="item-card bg-1 product-card" data-id="manga-1" data-name="Pokémon Adventures" data-price="249.00" data-tags="llavero anime ojos arte coleccion">
+        <img src="Llaveros IMAGENES/3.png" alt="Llavero Ojos Anime">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Llavero Ojos Anime</h3>
+            <p class="product-meta">Arte Acrílico Premium</p>
+            <p class="price product-price">
+                MXN$249.00
+                <span class="old product-price-old">MXN$399</span>
+            </p>
+            <button class="btn btn-outline-primary btn-sm add-to-cart" data-id="manga-1" data-name="Pokémon Adventures" data-price="249.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+    <!-- Set Mini Funkos Marvel -->
+    <div class="item-card bg-2 product-card" data-id="manga-2" data-name="Attack on Titan Vol. 1" data-price="199.00" data-tags="llavero funko mini anime set coleccion">
+        <img src="Llaveros IMAGENES/4.png" alt="Mini Funko">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Set Mini Funkos Marvel</h3>
+            <p class="product-meta">Colección Anime</p>
+            <p class="price product-price">
+                MXN$199.00
+                <span class="old product-price-old">MXN$299</span>
+            </p>
+            <button class="btn btn-outline-primary btn-sm add-to-cart" data-id="manga-2" data-name="Attack on Titan Vol. 1" data-price="199.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+    <!-- Llavero Gamer Retro -->
+    <div class="item-card bg-3 product-card" data-id="manga-3" data-name="Death Note Vol. 1" data-price="189.00" data-tags="llavero gamer iconos pvc resistente">
+        <img src="Llaveros IMAGENES/5.png" alt="Llavero Gamer">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Llavero Gamer Retro</h3>
+            <p class="product-meta">Diseño Flat Icons</p>
+            <p class="price product-price">
+                MXN$189.00
+                <span class="old product-price-old">MXN$259</span>
+            </p>
+            <button class="btn btn-outline-primary btn-sm add-to-cart" data-id="manga-3" data-name="Death Note Vol. 1" data-price="189.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+    <!-- Cajas Gamer set de 3 -->
+    <div class="item-card bg-4 product-card" data-id="manga-4" data-name="Inuyasha Vol. 3" data-price="229.00" data-tags="llavero gamer mini cajas coleccion">
+        <img src="Llaveros IMAGENES/6.png" alt="Mini Gamer Boxes">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Cajas Gamer set de 3</h3>
+            <p class="product-meta">Colección Premium</p>
+            <p class="price product-price">
+                MXN$229.00
+                <span class="old product-price-old">MXN$349</span>
+            </p>
+            <button class="btn btn-outline-primary btn-sm add-to-cart" data-id="manga-4" data-name="Inuyasha Vol. 3" data-price="229.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+</div>
+<div class="cards-container">
+
+    <!-- Spider-Man Card Llavero -->
+    <div class="item-card bg-1 product-card" data-id="manga-col-1" data-name="Akira Colección" data-price="349.00" data-tags="llavero spiderman tarjeta marvel coleccion">
+        <img src="Llaveros IMAGENES/7.png" alt="Akira">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Spider-Man Card</h3>
+            <p class="product-meta">Tarjeta Laminada Premium</p>
+            <p class="price product-price">
+                MXN$349.00
+                <span class="old product-price-old">MXN$499</span>
+            </p>
+            <button class="btn btn-outline-primary btn-sm add-to-cart" data-id="manga-col-1" data-name="Akira Colección" data-price="349.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+    <!-- Logos Anime Metálicos -->
+    <div class="item-card bg-2 product-card" data-id="manga-col-2" data-name="Jujutsu Kaisen Tomos 1-3" data-price="159.00" data-tags="llavero anime logos metal akatsuki shingeki l">
+        <img src="Llaveros IMAGENES/9.png" alt="Jujutsu Kaisen">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Logos Anime Metálicos</h3>
+            <p class="product-meta">Set de 3</p>
+            <p class="price product-price">
+                MXN$159.00
+                <span class="old product-price-old">MXN$219</span>
+            </p>
+            <button class="btn btn-outline-primary btn-sm add-to-cart" data-id="manga-col-2" data-name="Jujutsu Kaisen Tomos 1-3" data-price="159.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+    <!-- Pichu Llavero -->
+    <div class="item-card bg-1 product-card" data-id="pikachu-key" data-name="Llavero Pikachu Pokebola" data-price="179.00" data-tags="llavero pokemon pichu goma anime">
+        <img src="Llaveros IMAGENES/15.png" alt="Pikachu">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Pichu</h3>
+            <p class="product-meta">Goma Suave Premium</p>
+            <p class="price product-price">
+                MXN$179.00
+                <span class="old product-price-old">MXN$249</span>
+            </p>
+            <button class="btn btn-outline-primary btn-sm add-to-cart" data-id="pikachu-key" data-name="Llavero Pikachu Pokebola" data-price="179.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+    <!-- Snitch Dorada -->
+    <div class="item-card bg-2 product-card" data-id="snitch-key" data-name="Golden Snitch Llavero" data-price="159.00" data-tags="llavero harry potter snitch metal dorado coleccion">
+        <img src="Llaveros IMAGENES/16.png" alt="Golden Snitch">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Snitch Dorada</h3>
+            <p class="product-meta">Metal Dorado</p>
+            <p class="price product-price">
+                MXN$159.00
+                <span class="old product-price-old">MXN$249</span>
+            </p>
+            <button class="btn btn-outline-primary btn-sm add-to-cart" data-id="snitch-key" data-name="Golden Snitch Llavero" data-price="159.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+</div>
+<div class="cards-container">
+
+    <!-- Harry Potter Chibi Funko -->
+    <div class="item-card bg-1 product-card" data-id="anime-band" data-name="Llavero Banda Anime" data-price="139.00" data-tags="llavero harry potter funko chibi cinta">
+        <img src="Llaveros IMAGENES/17.png" alt="Harry Potter Chibi">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Harry Potter Chibi Funko</h3>
+            <p class="product-meta">Cinta decorativa ‘Be Magical’</p>
+            <p class="price product-price">
+                MXN$139.00
+                <span class="old product-price-old">MXN$199</span>
+            </p>
+            <button class="btn btn-outline-primary btn-sm add-to-cart" data-id="anime-band" data-name="Llavero Banda Anime" data-price="139.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+    <!-- Niffler Harry Potter Set de 3 -->
+    <div class="item-card bg-2 product-card" data-id="silhouettes" data-name="Llavero Siluetas Anime" data-price="139.00" data-tags="llavero niffler harry potter animales fantasticos set">
+        <img src="Llaveros IMAGENES/18.png" alt="Niffler Set">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Niffler de Harry Potter Set de 3</h3>
+            <p class="product-meta">Mini figuras acrílicas</p>
+            <p class="price product-price">
+                MXN$139.00
+                <span class="old product-price-old">MXN$199</span>
+            </p>
+            <button class="btn btn-outline-primary btn-sm add-to-cart" data-id="silhouettes" data-name="Llavero Siluetas Anime" data-price="139.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+     <!-- Goku Funko Chibi -->
+    <div class="item-card bg-1 product-card" data-id="fig-ss" data-name="Saint Seiya Myth Cloth Sagitario" data-price="1899.00" data-tags="llavero goku funko chibi dragon ball z anime">
+        <img src="Llaveros IMAGENES/10.png" alt="Goku Chibi">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Goku Funko Chibi</h3>
+            <p class="product-meta">PVC + cinta bordada</p>
+            <p class="price product-price">
+                MXN$1,899.00
+                <span class="old product-price-old">MXN$2,499</span>
+            </p>
+            <button class="add-to-cart btn btn-outline-primary btn-sm" data-id="fig-ss" data-name="Saint Seiya Myth Cloth Sagitario" data-price="1899.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+    <!-- Coraline Mini Funko -->
+    <div class="item-card bg-2 product-card" data-id="fig-itachi" data-name="Itachi Uchiha Ópera Series" data-price="799.00" data-tags="llavero funko coraline mini coleccion">
+        <img src="Llaveros IMAGENES/11.png" alt="Coraline Funko">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Coraline Mini Funko</h3>
+            <p class="product-meta">Vinyl Miniatura</p>
+            <p class="price product-price">
+                MXN$799.00
+                <span class="old product-price-old">MXN$1,099</span>
+            </p>
+            <button class="add-to-cart btn btn-outline-primary btn-sm" data-id="fig-itachi" data-name="Itachi Uchiha Ópera Series" data-price="799.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+</div>
+<div class="cards-container">
+
+    <!-- Esfera de Cristal Eevee -->
+    <div class="item-card bg-3 product-card" data-id="fig-goku" data-name="Goku Super Saiyan 3" data-price="999.00" data-tags="llavero eevee esfera cristal 3d anime">
+        <img src="Llaveros IMAGENES/12.png" alt="Eevee Cristal">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Eevee Cristal 3D</h3>
+            <p class="product-meta">Esfera de cristal iluminada</p>
+            <p class="price product-price">
+                MXN$999.00
+                <span class="old product-price-old">MXN$1,499</span>
+            </p>
+            <button class="add-to-cart btn btn-outline-primary btn-sm" data-id="fig-goku" data-name="Goku Super Saiyan 3" data-price="999.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+    <!-- Pokéball Cristal Azul -->
+    <div class="item-card bg-4 product-card" data-id="fig-guts" data-name="Guts Berserk Armor" data-price="2499.00" data-tags="llavero pokeball cristal azul pokemon anime">
+        <img src="Llaveros IMAGENES/13.png" alt="Pokeball Cristal Azul">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Pokéball Cristal Azul</h3>
+            <p class="product-meta">Cristal Templado</p>
+            <p class="price product-price">
+                MXN$2,499.00
+                <span class="old product-price-old">MXN$3,299</span>
+            </p>
+            <button class="add-to-cart btn btn-outline-primary btn-sm" data-id="fig-guts" data-name="Guts Berserk Armor" data-price="2499.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+</div>
+<div class="cards-container">
+
+    <!-- Pokéball Morada Cristal -->
+    <div class="item-card bg-1 product-card" data-id="key-dbz" data-name="Llavero Funko Dragon Ball Z" data-price="159.00" data-tags="llavero pokeball cristal morado pokemon anime">
+        <img src="Llaveros IMAGENES/14.png" alt="Pokeball Morada">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Pokéball Cristal Morado</h3>
+            <p class="product-meta">Cristal Templado Premium</p>
+            <p class="price product-price">
+                MXN$159.00
+                <span class="old product-price-old">MXN$249</span>
+            </p>
+            <button class="add-to-cart btn btn-outline-primary btn-sm" data-id="key-dbz" data-name="Llavero Funko Dragon Ball Z" data-price="159.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+    <!-- Barita de Sauco -->
+    <div class="item-card bg-2 product-card" data-id="mug-op" data-name="Taza 3D One Piece" data-price="259.00" data-tags="llavero varita sauco harry potter metal dorado">
+        <img src="Llaveros IMAGENES/19.png" alt="Varita Sauco">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Varita de Sauco</h3>
+            <p class="product-meta">Metal Dorado</p>
+            <p class="price product-price">
+                MXN$259.00
+                <span class="old product-price-old">MXN$349</span>
+            </p>
+            <button class="add-to-cart btn btn-outline-primary btn-sm" data-id="mug-op" data-name="Taza 3D One Piece" data-price="259.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+    <!-- Inosuke Chibi Funko -->
+    <div class="item-card bg-3 product-card" data-id="book-op" data-name="Sujetalibros One Piece Going Merry" data-price="549.00" data-tags="llavero inosuke chibi funko anime">
+        <img src="Llaveros IMAGENES/20.png" alt="Inosuke Chibi">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Inosuke Chibi Funko</h3>
+            <p class="product-meta">PVC + Cinta decorativa</p>
+            <p class="price product-price">
+                MXN$549.00
+                <span class="old product-price-old">MXN$699</span>
+            </p>
+            <button class="add-to-cart btn btn-outline-primary btn-sm" data-id="book-op" data-name="Sujetalibros One Piece Going Merry" data-price="549.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+    <!-- Inosuke Acrílico HD -->
+    <div class="item-card bg-4 product-card" data-id="stand-cyber" data-name="Soporte Gaming Cyberpunk" data-price="329.00" data-tags="llavero inosuke acrilico hd demon slayer anime">
+        <img src="Llaveros IMAGENES/21.png" alt="Inosuke Acrílico">
+        <div class="item-info product-body">
+            <span class="tag product-tag">LLAVERO</span>
+            <h3 class="product-title">Inosuke Acrílico HD</h3>
+            <p class="product-meta">Acrílico HD</p>
+            <p class="price product-price">
+                MXN$329.00
+                <span class="old product-price-old">MXN$499</span>
+            </p>
+            <button class="add-to-cart btn btn-outline-primary btn-sm" data-id="stand-cyber" data-name="Soporte Gaming Cyberpunk" data-price="329.00">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+
+</div>
+
+
+    <!-- FOOTER -->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="mb-3">Picks</h5>
+                    <p class="small mb-0">
+                        E-commerce especializado en figuras, cartas, posters, accesorios y
+                        más coleccionables para fans de todas las edades.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Navegación</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#ediciones-especiales">Ediciones especiales</a></li>
+                        <li><a href="#ofertas">Ofertas</a></li>
+                        <li><a href="#correo">Correo</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6>Síguenos</h6>
+                    <ul class="list-unstyled small">
+                        <li>Instagram</li>
+                        <li>Facebook</li>
+                        <li>X (Twitter)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center small mt-3 text-muted">
+                © 2025 Picks. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log("✅ JavaScript cargado correctamente");
+        
+        // Elementos del carrito
+        const cartOverlay = document.getElementById("cartOverlay");
+        const cartItemsContainer = document.getElementById("cartItems");
+        const cartTotalElement = document.getElementById("cartTotal");
+        const cartCountElement = document.getElementById("cartCount");
+        const cartTrigger = document.getElementById("cartTrigger");
+        const cartClose = document.getElementById("cartClose");
+        
+        // Botón del modal
+        const modalAddToCartBtn = document.getElementById("modalAddToCartBtn");
+
+        let cart = [];
+
+        // Información específica para cada producto
+      const productInfo = {
+
+    // 3 — Ojos Anime – Llavero Acrílico
+    "Ojos Anime – Llavero Acrílico": {
+        description: "Llavero acrílico premium inspirado en arte de ojos anime, con impresión HD y acabado brillante resistente al desgaste. Ideal para mochilas, llaves o colección.",
+        artist: "Anime Art Studio",
+        format: "Acrílico doble capa",
+        sku: "KEY-AE-003",
+        oldPrice: "MXN$399"
+    },
+
+    // 4 — Set Mini Funkos Marvel – Llavero
+    "Set Mini Funkos Marvel – Llavero": {
+        description: "Set de llaveros tipo Funko en miniatura con personajes de Marvel. Resistentes, ligeros y perfectos para coleccionar.",
+        artist: "Funko Style",
+        format: "Mini vinyl keychain",
+        sku: "KEY-FNK-004",
+        oldPrice: "MXN$299"
+    },
+
+    // 5 — Llavero Gamer Retro – PVC
+    "Llavero Gamer Retro – PVC": {
+        description: "Llavero plano estilo gamer con estampado de iconos clásicos. Material rígido, lavable y muy duradero.",
+        artist: "RetroGame Co.",
+        format: "PVC estampado",
+        sku: "KEY-RG-005",
+        oldPrice: "MXN$259"
+    },
+
+    // 6 — Mini Cajas Gamer – Llavero
+    "Mini Cajas Gamer – Llavero": {
+        description: "Mini cajas gamer convertidas en llaveros coleccionables. Perfectos para decorar mochilas o escritorios.",
+        artist: "GeekCraft",
+        format: "Mini box keychain",
+        sku: "KEY-GC-006",
+        oldPrice: "MXN$349"
+    },
+
+    // 7 — Cajas Gamer set de 3 – Llavero
+    "Cajas Gamer set de 3 – Llavero": {
+        description: "Set de tres llaveros tipo tarjeta con diseños gamer variados. Acabado laminado resistente y de alta calidad.",
+        artist: "Marvel Fan Art",
+        format: "PVC rígido",
+        sku: "KEY-SPD-007",
+        oldPrice: "MXN$499"
+    },
+
+    // 9 — Set Logos Anime Metálicos – Llavero
+    "Set Logos Anime Metálicos – Llavero": {
+        description: "Set de llaveros metálicos de logotipos icónicos de anime: L, Akatsuki y Alas de Libertad. Alta durabilidad.",
+        artist: "Otaku Metal Works",
+        format: "Metal zinc premium",
+        sku: "KEY-AN-009",
+        oldPrice: "MXN$219"
+    },
+
+    // 10 — Goku Funko Chibi – Llavero
+    "Goku Funko Chibi – Llavero": {
+        description: "Tierno llavero chibi de Goku con cinta bordada. Diseño ligero y vibrante ideal para coleccionistas.",
+        artist: "DBZ Studio",
+        format: "PVC + tela bordada",
+        sku: "KEY-GK-010",
+        oldPrice: "MXN$2,499"
+    },
+
+    // 11 — Coraline Funko Mini – Llavero
+    "Coraline Funko Mini – Llavero": {
+        description: "Mini llavero estilo Funko de Coraline con detalles fieles al personaje. Perfecto para fans de la película.",
+        artist: "Funko",
+        format: "Mini vinyl",
+        sku: "KEY-COR-011",
+        oldPrice: "MXN$1,099"
+    },
+
+    // 12 — Esfera Cristal Eevee 3D – Llavero
+    "Esfera Cristal Eevee 3D – Llavero": {
+        description: "Elegante llavero esfera de cristal con figura 3D de Eevee. Brilla con la luz y tiene base facetada.",
+        artist: "Crystal Anime Co.",
+        format: "Cristal grabado",
+        sku: "KEY-CR-012",
+        oldPrice: "MXN$1,499"
+    },
+
+    // 13 — Pokéball Cristal Azul – Llavero
+    "Pokéball Cristal Azul – Llavero": {
+        description: "Llavero Pokéball de cristal azul con efecto brillante. Muy resistente y estético.",
+        artist: "PokeCraft",
+        format: "Cristal templado",
+        sku: "KEY-PK-013",
+        oldPrice: "MXN$3,299"
+    },
+
+    // 14 — Pokéball Cristal Morado – Llavero
+    "Pokéball Cristal Morado – Llavero": {
+        description: "Elegante Pokéball de cristal morado con efecto prismático. Perfecta para fans de Pokémon.",
+        artist: "PokeCraft",
+        format: "Cristal templado",
+        sku: "KEY-PK-014",
+        oldPrice: "MXN$249"
+    },
+
+    // 15 — Pichu – Llavero
+    "Pichu – Llavero": {
+        description: "Llavero de Pichu con cinta decorativa amarilla. Suave, ligero y adorable.",
+        artist: "Pokémon Co.",
+        format: "PVC + Polyester strap",
+        sku: "KEY-PK-015",
+        oldPrice: "MXN$249"
+    },
+
+    // 16 — Snitch Dorada – Llavero Metálico
+    "Snitch Dorada – Llavero Metálico": {
+        description: "Llavero metálico de la Snitch Dorada de Harry Potter. Pulido brillante y resistente.",
+        artist: "Wizard Merch",
+        format: "Metal zinc",
+        sku: "KEY-HP-016",
+        oldPrice: "MXN$249"
+    },
+
+    // 17 — Harry Potter Chibi Funko – Llavero
+    "Harry Potter Chibi Funko – Llavero": {
+        description: "Llavero chibi de Harry Potter con cinta ‘Be Magical’. Ideal para fans de la saga.",
+        artist: "Magic Co.",
+        format: "PVC + tela bordada",
+        sku: "KEY-HP-017",
+        oldPrice: "MXN$249"
+    },
+
+    // 18 — Niffer de Harry Potter Set de 3 – Llavero
+    "Niffer de Harry Potter Set de 3 – Llavero": {
+        description: "Set de 3 llaveros de Niffler estilo mini figura. Súper adorables y detallados.",
+        artist: "Wizard Pets",
+        format: "PVC + pintura brillante",
+        sku: "KEY-NF-018",
+        oldPrice: "MXN$599"
+    },
+
+    // 19 — Barita de Zauco Harry Potter – Llavero
+    "Barita de Zauco Harry Potter – Llavero": {
+        description: "Llavero inspirado en la varita de Saúco. Acabado metálico y resistente.",
+        artist: "Wizard Forge",
+        format: "Metal oscuro",
+        sku: "KEY-ZO-019",
+        oldPrice: "MXN$349"
+    },
+
+    // 20 — Inosuke Chibi Funko – Llavero
+    "Inosuke Chibi Funko – Llavero": {
+        description: "Llavero chibi de Inosuke con cinta decorativa. Muy tierno y perfecto para mochilas.",
+        artist: "Demon Slayer Art",
+        format: "PVC + poliéster",
+        sku: "KEY-IN-020",
+        oldPrice: "MXN$699"
+    },
+
+    // 21 — Inosuke – Llavero
+    "Inosuke – Llavero": {
+        description: "Llavero acrílico del grupo de Demon Slayer estilo chibi. Excelente calidad de impresión.",
+        artist: "KNY Studio",
+        format: "Acrílico HD",
+        sku: "KEY-KNY-021",
+        oldPrice: "MXN$499"
+    }
+};
+
+
+        // Función para actualizar el carrito
+        function updateCartDisplay() {
+            console.log("🔄 Actualizando carrito, items:", cart.length);
+            cartItemsContainer.innerHTML = "";
+            let total = 0;
+            let count = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="cart-items-empty">Tu carrito está vacío.</div>';
+                cartItemsContainer.classList.add('cart-items-empty');
+            } else {
+                cartItemsContainer.classList.remove('cart-items-empty');
+                
+                cart.forEach((item, index) => {
+                    total += item.price * item.quantity;
+                    count += item.quantity;
+
+                    const div = document.createElement("div");
+                    div.classList.add("cart-item");
+                    div.innerHTML = `
+                        <div class="cart-item-info">
+                            <p class="cart-item-name"><strong>${item.name}</strong></p>
+                            <p class="cart-item-price">MXN$${item.price} x ${item.quantity}</p>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="cart-qty-btn decrease" data-index="${index}">-</button>
+                            <span class="cart-qty">${item.quantity}</span>
+                            <button class="cart-qty-btn increase" data-index="${index}">+</button>
+                            <button class="cart-remove" data-index="${index}">×</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(div);
+                });
+            }
+
+            cartTotalElement.textContent = "MXN$" + total.toFixed(2);
+            cartCountElement.textContent = count;
+            
+            // Agregar event listeners a los botones recién creados
+            addCartItemEventListeners();
+            
+            console.log("✅ Carrito actualizado");
+        }
+
+        // Función para agregar event listeners a los botones del carrito
+        function addCartItemEventListeners() {
+            document.querySelectorAll('.decrease').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    if (cart[index].quantity > 1) {
+                        cart[index].quantity--;
+                    } else {
+                        cart.splice(index, 1);
+                    }
+                    updateCartDisplay();
+                });
+            });
+
+            document.querySelectorAll('.increase').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cart[index].quantity++;
+                    updateCartDisplay();
+                });
+            });
+
+            document.querySelectorAll('.cart-remove').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cart.splice(index, 1);
+                    updateCartDisplay();
+                });
+            });
+        }
+
+        // Función para agregar al carrito
+        function addToCart(name, price) {
+            console.log("➕ Agregando producto:", name, price);
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCartDisplay();
+        }
+
+        // EVENTO PARA EL BOTÓN DEL MODAL
+        if (modalAddToCartBtn) {
+            modalAddToCartBtn.addEventListener("click", function() {
+                const name = this.getAttribute("data-name");
+                const price = parseFloat(this.getAttribute("data-price"));
+                
+                if (name && price) {
+                    addToCart(name, price);
+                    
+                    // Cerrar el modal
+                    const modalElement = document.getElementById("productDetailModal");
+                    if (modalElement) {
+                        const modal = bootstrap.Modal.getInstance(modalElement);
+                        if (modal) {
+                            modal.hide();
+                        }
+                    }
+                    
+                    // Abrir el carrito
+                    if (cartOverlay) {
+                        cartOverlay.classList.add("open");
+                    }
+                }
+            });
+        }
+
+        // Eventos para abrir/cerrar carrito
+        if (cartTrigger) {
+            cartTrigger.addEventListener("click", function() {
+                cartOverlay.classList.add("open");
+            });
+        }
+
+        if (cartClose) {
+            cartClose.addEventListener("click", function() {
+                cartOverlay.classList.remove("open");
+            });
+        }
+
+        // Botones "Añadir al carrito" fuera del modal - agregan directamente y abren carrito
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const name = this.getAttribute('data-name');
+                const price = parseFloat(this.getAttribute('data-price'));
+                
+                // Agregar directamente al carrito
+                addToCart(name, price);
+                
+                // Abrir el carrito automáticamente
+                if (cartOverlay) {
+                    cartOverlay.classList.add("open");
+                }
+            });
+        });
+
+        // Conectar imágenes de productos al modal
+        document.querySelectorAll('.item-card img').forEach(image => {
+            image.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Encontrar el producto card padre
+                const productCard = this.closest('.product-card');
+                if (productCard) {
+                    const name = productCard.getAttribute('data-name');
+                    const price = parseFloat(productCard.getAttribute('data-price'));
+                    const category = productCard.querySelector('.product-tag').textContent;
+                    const meta = productCard.querySelector('.product-meta').textContent;
+                    const imageSrc = this.getAttribute('src');
+                    const oldPrice = productCard.querySelector('.old').textContent;
+                    
+                    openProductModal(name, price, category, meta, imageSrc, oldPrice);
+                }
+            });
+        });
+
+        // Función para abrir el modal del producto
+        function openProductModal(name, price, category, meta, imageSrc, oldPrice) {
+            // Obtener información del producto
+            const product = productInfo[name] || {
+                description: "Descripción detallada de " + name + ". Producto de alta calidad con garantía del fabricante.",
+                artist: "Editorial Desconocida",
+                format: "Formato estándar",
+                sku: "SKU-000",
+                oldPrice: oldPrice
+            };
+            
+            // Actualizar el modal con los datos del producto
+            document.getElementById('modalProductName').textContent = name;
+            document.getElementById('modalProductPrice').textContent = "MXN$" + price;
+            document.getElementById('modalProductOldPrice').textContent = product.oldPrice;
+            document.getElementById('modalProductCategory').textContent = category;
+            document.getElementById('modalProductMeta').textContent = meta;
+            document.getElementById('modalProductDescription').textContent = product.description;
+            
+            // Actualizar la imagen del producto
+            if (imageSrc) {
+                document.getElementById('modalProductImage').src = imageSrc;
+                document.getElementById('modalProductImage').alt = name;
+            }
+            
+            // Actualizar los nuevos campos
+            const modalProductArtist = document.getElementById('modalProductArtist');
+            const modalProductFormat = document.getElementById('modalProductFormat');
+            const modalProductSKU = document.getElementById('modalProductSKU');
+            
+            if (modalProductArtist) modalProductArtist.textContent = product.artist;
+            if (modalProductFormat) modalProductFormat.textContent = product.format;
+            if (modalProductSKU) modalProductSKU.textContent = product.sku;
+            
+            // Actualizar el botón del modal con los datos
+            if (modalAddToCartBtn) {
+                modalAddToCartBtn.setAttribute('data-name', name);
+                modalAddToCartBtn.setAttribute('data-price', price);
+            }
+            
+            // Abrir el modal
+            const modal = new bootstrap.Modal(document.getElementById('productDetailModal'));
+            modal.show();
+        }
+
+        // Inicializar
+        updateCartDisplay();
+        console.log("🚀 Aplicación inicializada correctamente");
+    });
+    </script>
+       
+</body>
+</html>
