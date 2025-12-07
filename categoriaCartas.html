@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Picks - Figuras</title>
+    <title>Picks - Cartas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <style>
@@ -1414,7 +1414,7 @@ body {
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="/ediciones">Ediciones especiales</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Fandom</a>
@@ -1428,8 +1428,8 @@ body {
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">Categoría</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item active" href="/figuras">Figuras</a></li>
-            <li><a class="dropdown-item" href="#">Cartas</a></li>
+            <li><a class="dropdown-item active" href="CategoriaFiguras.html">Figuras</a></li>
+            <li><a class="dropdown-item" href="categoriaCartas.html">Cartas</a></li>
             <li><a class="dropdown-item" href="#">Posters</a></li>
             <li><a class="dropdown-item" href="#">Llaveros</a></li>
           </ul>
@@ -1448,493 +1448,323 @@ body {
 </nav>
 
 <!-- HERO FIGURAS -->
+<!-- HERO CARTAS -->
 <section class="hero-panel" style="background: var(--color-primary); color: white;">
   <div class="container py-5 text-center">
     <span class="badge-cta">Categoría</span>
-    <h1 class="hero-title">Figuras Coleccionables</h1>
-    <p class="hero-subtitle">Anime • Cómics • Videojuegos • Fantasía</p>
-    <p class="hero-note">Ediciones limitadas, figuras premium y más.</p>
+    <h1 class="hero-title">Cartas Coleccionables</h1>
+    <p class="hero-subtitle">Pokémon • Yu-Gi-Oh! • One Piece • Magic</p>
+    <p class="hero-note">Cartas raras, sobres sellados y ediciones especiales.</p>
   </div>
 </section>
 
-<!-- GRID DE FIGURAS (SIN FILTROS) -->
+<!-- GRID DE CARTAS -->
 <section class="productos-section py-5">
   <div class="container">
-    <h2 class="section-title mb-4">Todas las Figuras</h2>
+    <h2 class="section-title mb-4">Todas las cartas</h2>
 
-    <div class="row g-4" id="figurasContainer">
-     <!-- FIGURA 1 -->
-<!-- FIGURA 1 - Goku Super Saiyan -->
+    <div class="row g-4" id="cartasContainer">
+   
+<!-- CARTA 1 - Yu-Gi-Oh! Blue-Eyes -->
 <div class="col-6 col-md-3">
-  <div class="product-card" data-name="Goku Super Saiyan" data-price="1299">
+  <div class="product-card" data-name="Blue-Eyes White Dragon" data-price="899">
     <div class="product-image">
-      <img src="images/fig1.jpeg" alt="Goku Super Saiyan">
+      <img src="images/car1.jpeg" alt="Blue-Eyes White Dragon">
     </div>
     <div class="product-body">
-      <p class="product-tag">Dragon Ball</p>
-      <h3 class="product-title">Goku Super Saiyan</h3>
-      <p class="product-meta">22 cm • Anime</p>
+      <p class="product-tag">Yu-Gi-Oh!</p>
+      <h3 class="product-title">Blue-Eyes White Dragon</h3>
+      <p class="product-meta">Edición Limitada • Anime</p>
+      <p class="product-price">MXN$899.00</p>
+      <button class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="card-1"
+        data-name="Blue-Eyes White Dragon"
+        data-price="899">Añadir al carrito</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARTA 2 - Dark Magician -->
+<div class="col-6 col-md-3">
+  <div class="product-card" data-name="Dark Magician" data-price="799">
+    <div class="product-image">
+      <img src="images/car2.jpeg" alt="Dark Magician">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Yu-Gi-Oh!</p>
+      <h3 class="product-title">Dark Magician</h3>
+      <p class="product-meta">Primera Edición • Anime</p>
+      <p class="product-price">MXN$799.00</p>
+      <button class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="card-2"
+        data-name="Dark Magician"
+        data-price="799">Añadir al carrito</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARTA 3 - Pokémon Charizard -->
+<div class="col-6 col-md-3">
+  <div class="product-card" data-name="Charizard Holo" data-price="2499">
+    <div class="product-image">
+      <img src="images/car3.jpeg" alt="Charizard Holo">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Pokémon</p>
+      <h3 class="product-title">Charizard Holo</h3>
+      <p class="product-meta">Base Set • Anime</p>
+      <p class="product-price">MXN$2,499.00</p>
+      <button class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="card-3"
+        data-name="Charizard Holo"
+        data-price="2499">Añadir al carrito</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARTA 4 - Pokémon Pikachu -->
+<div class="col-6 col-md-3">
+  <div class="product-card" data-name="Pikachu Illustrator" data-price="1899">
+    <div class="product-image">
+      <img src="images/car4.jpeg" alt="Pikachu Illustrator">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Pokémon</p>
+      <h3 class="product-title">Pikachu Illustrator</h3>
+      <p class="product-meta">Rara • Anime</p>
+      <p class="product-price">MXN$1,899.00</p>
+      <button class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="card-4"
+        data-name="Pikachu Illustrator"
+        data-price="1899">Añadir al carrito</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARTA 5 - Magic: Black Lotus -->
+<div class="col-6 col-md-3">
+  <div class="product-card" data-name="Black Lotus" data-price="9999">
+    <div class="product-image">
+      <img src="images/car5.jpeg" alt="Black Lotus">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Magic: The Gathering</p>
+      <h3 class="product-title">Black Lotus</h3>
+      <p class="product-meta">Alpha • Fantasía</p>
+      <p class="product-price">MXN$9,999.00</p>
+      <button class="btn btn-outline-primary btn-sm add-to-cart"
+        data-id="card-5"
+        data-name="Black Lotus"
+        data-price="9999">Añadir al carrito</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARTA 6 - Magic: Jace -->
+<div class="col-6 col-md-3">
+  <div class="product-card" data-name="Jace, the Mind Sculptor" data-price="1299">
+    <div class="product-image">
+      <img src="images/car6.jpeg" alt="Jace, the Mind Sculptor">
+    </div>
+    <div class="product-body">
+      <p class="product-tag">Magic: The Gathering</p>
+      <h3 class="product-title">Jace, the Mind Sculptor</h3>
+      <p class="product-meta">Worldwake • Fantasía</p>
       <p class="product-price">MXN$1,299.00</p>
       <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-1"
-        data-name="Goku Super Saiyan"
+        data-id="card-6"
+        data-name="Jace, the Mind Sculptor"
         data-price="1299">Añadir al carrito</button>
     </div>
   </div>
 </div>
 
-<!-- FIGURA 2 - Vegeta Blue -->
+<!-- CARTA 7 - One Piece: Luffy -->
 <div class="col-6 col-md-3">
-  <div class="product-card" data-name="Vegeta Blue" data-price="1499">
+  <div class="product-card" data-name="Monkey D. Luffy" data-price="699">
     <div class="product-image">
-      <img src="images/fig2.jpeg" alt="Vegeta Blue">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">Dragon Ball</p>
-      <h3 class="product-title">Vegeta Blue</h3>
-      <p class="product-meta">23 cm • Anime</p>
-      <p class="product-price">MXN$1,499.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-2"
-        data-name="Vegeta Blue"
-        data-price="1499">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 3 - Naruto Modo Sabio -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Naruto Modo Sabio" data-price="1399">
-    <div class="product-image">
-      <img src="images/fig3.jpeg" alt="Naruto Modo Sabio">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">Naruto</p>
-      <h3 class="product-title">Naruto Modo Sabio</h3>
-      <p class="product-meta">21 cm • Anime</p>
-      <p class="product-price">MXN$1,399.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-3"
-        data-name="Naruto Modo Sabio"
-        data-price="1399">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 4 - Sasuke Susanoo -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Sasuke Susanoo" data-price="1699">
-    <div class="product-image">
-      <img src="images/fig4.jpeg" alt="Sasuke Susanoo">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">Naruto</p>
-      <h3 class="product-title">Sasuke Susanoo</h3>
-      <p class="product-meta">25 cm • Anime</p>
-      <p class="product-price">MXN$1,699.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-4"
-        data-name="Sasuke Susanoo"
-        data-price="1699">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 5 - Spiderman -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Spiderman" data-price="999">
-    <div class="product-image">
-      <img src="images/fig5.jpeg" alt="Spiderman">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">Marvel</p>
-      <h3 class="product-title">Spiderman</h3>
-      <p class="product-meta">19 cm • Cómics</p>
-      <p class="product-price">MXN$999.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-5"
-        data-name="Spiderman"
-        data-price="999">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 6 - Iron Man Mark 50 -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Iron Man Mark 50" data-price="1599">
-    <div class="product-image">
-      <img src="images/fig6.jpeg" alt="Iron Man">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">Marvel</p>
-      <h3 class="product-title">Iron Man Mark 50</h3>
-      <p class="product-meta">24 cm • Cómics</p>
-      <p class="product-price">MXN$1,599.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-6"
-        data-name="Iron Man"
-        data-price="1599">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 7 - Luffy Gear 5 -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Luffy Gear 5" data-price="1799">
-    <div class="product-image">
-      <img src="images/fig7.jpeg" alt="Luffy Gear 5">
+      <img src="images/car7.jpeg" alt="Monkey D. Luffy">
     </div>
     <div class="product-body">
       <p class="product-tag">One Piece</p>
-      <h3 class="product-title">Luffy Gear 5</h3>
-      <p class="product-meta">27 cm • Anime</p>
-      <p class="product-price">MXN$1,799.00</p>
+      <h3 class="product-title">Monkey D. Luffy</h3>
+      <p class="product-meta">Gear 5 • Anime</p>
+      <p class="product-price">MXN$699.00</p>
       <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-7"
-        data-name="Luffy Gear 5"
-        data-price="1799">Añadir al carrito</button>
+        data-id="card-7"
+        data-name="Monkey D. Luffy"
+        data-price="699">Añadir al carrito</button>
     </div>
   </div>
 </div>
 
-<!-- FIGURA 8 - Zoro -->
+<!-- CARTA 8 - One Piece: Zoro -->
 <div class="col-6 col-md-3">
-  <div class="product-card" data-name="Roronoa Zoro" data-price="1499">
+  <div class="product-card" data-name="Roronoa Zoro" data-price="649">
     <div class="product-image">
-      <img src="images/fig8.jpeg" alt="Roronoa Zoro">
+      <img src="images/car8.jpeg" alt="Roronoa Zoro">
     </div>
     <div class="product-body">
       <p class="product-tag">One Piece</p>
       <h3 class="product-title">Roronoa Zoro</h3>
-      <p class="product-meta">24 cm • Anime</p>
-      <p class="product-price">MXN$1,499.00</p>
+      <p class="product-meta">Santoryu • Anime</p>
+      <p class="product-price">MXN$649.00</p>
       <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-8"
+        data-id="card-8"
         data-name="Roronoa Zoro"
-        data-price="1499">Añadir al carrito</button>
+        data-price="649">Añadir al carrito</button>
     </div>
   </div>
 </div>
 
-<!-- FIGURA 9 - Tanjiro -->
+<!-- CARTA 9 - Dragon Ball: Goku -->
 <div class="col-6 col-md-3">
-  <div class="product-card" data-name="Tanjiro Kamado" data-price="1099">
+  <div class="product-card" data-name="Son Goku SSJ" data-price="749">
     <div class="product-image">
-      <img src="images/fig9.jpeg" alt="Tanjiro Kamado">
+      <img src="images/car9.jpeg" alt="Son Goku SSJ">
     </div>
     <div class="product-body">
-      <p class="product-tag">Demon Slayer</p>
-      <h3 class="product-title">Tanjiro Kamado</h3>
-      <p class="product-meta">20 cm • Anime</p>
-      <p class="product-price">MXN$1,099.00</p>
+      <p class="product-tag">Dragon Ball</p>
+      <h3 class="product-title">Son Goku SSJ</h3>
+      <p class="product-meta">Super Saiyan • Anime</p>
+      <p class="product-price">MXN$749.00</p>
       <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-9"
-        data-name="Tanjiro Kamado"
-        data-price="1099">Añadir al carrito</button>
+        data-id="card-9"
+        data-name="Son Goku SSJ"
+        data-price="749">Añadir al carrito</button>
     </div>
   </div>
 </div>
 
-<!-- FIGURA 10 - Nezuko -->
+<!-- CARTA 10 - Dragon Ball: Vegeta -->
 <div class="col-6 col-md-3">
-  <div class="product-card" data-name="Nezuko Kamado" data-price="1199">
+  <div class="product-card" data-name="Vegeta SSJ Blue" data-price="799">
     <div class="product-image">
-      <img src="images/fig10.jpeg" alt="Nezuko Kamado">
+      <img src="images/car10.jpeg" alt="Vegeta SSJ Blue">
     </div>
     <div class="product-body">
-      <p class="product-tag">Demon Slayer</p>
-      <h3 class="product-title">Nezuko Kamado</h3>
-      <p class="product-meta">18 cm • Anime</p>
-      <p class="product-price">MXN$1,199.00</p>
+      <p class="product-tag">Dragon Ball</p>
+      <h3 class="product-title">Vegeta SSJ Blue</h3>
+      <p class="product-meta">Super Saiyan Blue • Anime</p>
+      <p class="product-price">MXN$799.00</p>
       <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-10"
-        data-name="Nezuko Kamado"
-        data-price="1199">Añadir al carrito</button>
+        data-id="card-10"
+        data-name="Vegeta SSJ Blue"
+        data-price="799">Añadir al carrito</button>
     </div>
   </div>
 </div>
 
-<!-- FIGURA 11 - Gojo -->
+<!-- CARTA 11 - Marvel: Spider-Man -->
 <div class="col-6 col-md-3">
-  <div class="product-card" data-name="Gojo Satoru" data-price="1499">
+  <div class="product-card" data-name="Spider-Man Comic" data-price="599">
     <div class="product-image">
-      <img src="images/fig11.jpeg" alt="Gojo Satoru">
+      <img src="images/car11.jpeg" alt="Spider-Man Comic">
     </div>
     <div class="product-body">
-      <p class="product-tag">Jujutsu Kaisen</p>
-      <h3 class="product-title">Gojo Satoru</h3>
-      <p class="product-meta">24 cm • Anime</p>
-      <p class="product-price">MXN$1,499.00</p>
+      <p class="product-tag">Marvel</p>
+      <h3 class="product-title">Spider-Man Comic</h3>
+      <p class="product-meta">Variant Cover • Cómics</p>
+      <p class="product-price">MXN$599.00</p>
       <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-11"
-        data-name="Gojo Satoru"
-        data-price="1499">Añadir al carrito</button>
+        data-id="card-11"
+        data-name="Spider-Man Comic"
+        data-price="599">Añadir al carrito</button>
     </div>
   </div>
 </div>
 
-<!-- FIGURA 12 - Sukuna -->
+<!-- CARTA 12 - Marvel: Iron Man -->
 <div class="col-6 col-md-3">
-  <div class="product-card" data-name="Ryomen Sukuna" data-price="1599">
+  <div class="product-card" data-name="Iron Man Mark L" data-price="649">
     <div class="product-image">
-      <img src="images/fig12.jpeg" alt="Ryomen Sukuna">
+      <img src="images/car12.jpeg" alt="Iron Man Mark L">
     </div>
     <div class="product-body">
-      <p class="product-tag">Jujutsu Kaisen</p>
-      <h3 class="product-title">Ryomen Sukuna</h3>
-      <p class="product-meta">26 cm • Anime</p>
-      <p class="product-price">MXN$1,599.00</p>
+      <p class="product-tag">Marvel</p>
+      <h3 class="product-title">Iron Man Mark L</h3>
+      <p class="product-meta">Infinity War • Cómics</p>
+      <p class="product-price">MXN$649.00</p>
       <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-12"
-        data-name="Ryomen Sukuna"
-        data-price="1599">Añadir al carrito</button>
+        data-id="card-12"
+        data-name="Iron Man Mark L"
+        data-price="649">Añadir al carrito</button>
     </div>
   </div>
 </div>
 
-<!-- FIGURA 13 - Batman -->
+<!-- CARTA 13 - DC: Batman -->
 <div class="col-6 col-md-3">
-  <div class="product-card" data-name="Batman" data-price="1299">
+  <div class="product-card" data-name="Batman Dark Knight" data-price="699">
     <div class="product-image">
-      <img src="images/fig13.jpeg" alt="Batman">
+      <img src="images/car13.jpeg" alt="Batman Dark Knight">
     </div>
     <div class="product-body">
       <p class="product-tag">DC Comics</p>
-      <h3 class="product-title">Batman</h3>
-      <p class="product-meta">22 cm • Cómics</p>
-      <p class="product-price">MXN$1,299.00</p>
+      <h3 class="product-title">Batman Dark Knight</h3>
+      <p class="product-meta">Hush Edition • Cómics</p>
+      <p class="product-price">MXN$699.00</p>
       <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-13"
-        data-name="Batman"
-        data-price="1299">Añadir al carrito</button>
+        data-id="card-13"
+        data-name="Batman Dark Knight"
+        data-price="699">Añadir al carrito</button>
     </div>
   </div>
 </div>
 
-<!-- FIGURA 14 - Joker -->
+<!-- CARTA 14 - DC: Superman -->
 <div class="col-6 col-md-3">
-  <div class="product-card" data-name="Joker" data-price="1199">
+  <div class="product-card" data-name="Superman Action" data-price="659">
     <div class="product-image">
-      <img src="images/fig14.jpeg" alt="Joker">
+      <img src="images/car14.jpeg" alt="Superman Action">
     </div>
     <div class="product-body">
       <p class="product-tag">DC Comics</p>
-      <h3 class="product-title">Joker</h3>
-      <p class="product-meta">20 cm • Cómics</p>
-      <p class="product-price">MXN$1,199.00</p>
+      <h3 class="product-title">Superman Action</h3>
+      <p class="product-meta">#1 Variant • Cómics</p>
+      <p class="product-price">MXN$659.00</p>
       <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-14"
-        data-name="Joker"
-        data-price="1199">Añadir al carrito</button>
+        data-id="card-14"
+        data-name="Superman Action"
+        data-price="659">Añadir al carrito</button>
     </div>
   </div>
 </div>
 
-<!-- FIGURA 15 - Deadpool -->
+<!-- CARTA 15 - Star Wars: Vader -->
 <div class="col-6 col-md-3">
-  <div class="product-card" data-name="Deadpool" data-price="1399">
+  <div class="product-card" data-name="Darth Vader" data-price="899">
     <div class="product-image">
-      <img src="images/fig15.jpeg" alt="Deadpool">
+      <img src="images/car15.jpeg" alt="Darth Vader">
     </div>
     <div class="product-body">
-      <p class="product-tag">Marvel</p>
-      <h3 class="product-title">Deadpool</h3>
-      <p class="product-meta">24 cm • Cómics</p>
-      <p class="product-price">MXN$1,399.00</p>
+      <p class="product-tag">Star Wars</p>
+      <h3 class="product-title">Darth Vader</h3>
+      <p class="product-meta">Legendary • Películas</p>
+      <p class="product-price">MXN$899.00</p>
       <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-15"
-        data-name="Deadpool"
-        data-price="1399">Añadir al carrito</button>
+        data-id="card-15"
+        data-name="Darth Vader"
+        data-price="899">Añadir al carrito</button>
     </div>
   </div>
 </div>
 
-<!-- FIGURA 16 - Captain America -->
+<!-- CARTA 16 - Star Wars: Luke -->
 <div class="col-6 col-md-3">
-  <div class="product-card" data-name="Captain America" data-price="1499">
+  <div class="product-card" data-name="Luke Skywalker" data-price="799">
     <div class="product-image">
-      <img src="images/fig16.jpeg" alt="Captain America">
+      <img src="images/car16.jpeg" alt="Luke Skywalker">
     </div>
     <div class="product-body">
-      <p class="product-tag">Marvel</p>
-      <h3 class="product-title">Captain America</h3>
-      <p class="product-meta">25 cm • Cómics</p>
-      <p class="product-price">MXN$1,499.00</p>
+      <p class="product-tag">Star Wars</p>
+      <h3 class="product-title">Luke Skywalker</h3>
+      <p class="product-meta">Jedi Master • Películas</p>
+      <p class="product-price">MXN$799.00</p>
       <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-16"
-        data-name="Captain America"
-        data-price="1499">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 17 - Thor -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Thor" data-price="1699">
-    <div class="product-image">
-      <img src="images/fig17.jpeg" alt="Thor">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">Marvel</p>
-      <h3 class="product-title">Thor</h3>
-      <p class="product-meta">27 cm • Cómics</p>
-      <p class="product-price">MXN$1,699.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-17"
-        data-name="Thor"
-        data-price="1699">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 18 - Hulk -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Hulk" data-price="1499">
-    <div class="product-image">
-      <img src="images/fig18.jpeg" alt="Hulk">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">Marvel</p>
-      <h3 class="product-title">Hulk</h3>
-      <p class="product-meta">26 cm • Cómics</p>
-      <p class="product-price">MXN$1,499.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-18"
-        data-name="Hulk"
-        data-price="1499">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 19 - Tanjiro Water Dragon -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Tanjiro Dragon de Agua" data-price="1699">
-    <div class="product-image">
-      <img src="images/fig19.jpeg" alt="Tanjiro Dragon de Agua">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">Demon Slayer</p>
-      <h3 class="product-title">Tanjiro Dragon de Agua</h3>
-      <p class="product-meta">22 cm • Anime</p>
-      <p class="product-price">MXN$1,699.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-19"
-        data-name="Tanjiro Dragon de Agua"
-        data-price="1699">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 20 - Miles Morales -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Miles Morales" data-price="1299">
-    <div class="product-image">
-      <img src="images/fig20.jpeg" alt="Miles Morales">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">Marvel</p>
-      <h3 class="product-title">Miles Morales</h3>
-      <p class="product-meta">19 cm • Cómics</p>
-      <p class="product-price">MXN$1,299.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-20"
-        data-name="Miles Morales"
-        data-price="1299">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 21 - Zenitsu -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Zenitsu Agatsuma" data-price="1199">
-    <div class="product-image">
-      <img src="images/fig21.jpeg" alt="Zenitsu Agatsuma">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">Demon Slayer</p>
-      <h3 class="product-title">Zenitsu Agatsuma</h3>
-      <p class="product-meta">18 cm • Anime</p>
-      <p class="product-price">MXN$1,199.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-21"
-        data-name="Zenitsu Agatsuma"
-        data-price="1199">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 22 - Saitama -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Saitama" data-price="1499">
-    <div class="product-image">
-      <img src="images/fig22.jpeg" alt="Saitama">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">One Punch Man</p>
-      <h3 class="product-title">Saitama</h3>
-      <p class="product-meta">22 cm • Anime</p>
-      <p class="product-price">MXN$1,499.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-22"
-        data-name="Saitama"
-        data-price="1499">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 23 - Genos -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Genos" data-price="1399">
-    <div class="product-image">
-      <img src="images/fig23.jpeg" alt="Genos">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">One Punch Man</p>
-      <h3 class="product-title">Genos</h3>
-      <p class="product-meta">20 cm • Anime</p>
-      <p class="product-price">MXN$1,399.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-23"
-        data-name="Genos"
-        data-price="1399">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 24 - Mikasa -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Mikasa Ackerman" data-price="1199">
-    <div class="product-image">
-      <img src="images/fig24.jpeg" alt="Mikasa Ackerman">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">Attack on Titan</p>
-      <h3 class="product-title">Mikasa Ackerman</h3>
-      <p class="product-meta">17 cm • Anime</p>
-      <p class="product-price">MXN$1,199.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-24"
-        data-name="Mikasa Ackerman"
-        data-price="1199">Añadir al carrito</button>
-    </div>
-  </div>
-</div>
-
-<!-- FIGURA 25 - Eren Titan -->
-<div class="col-6 col-md-3">
-  <div class="product-card" data-name="Eren Titan" data-price="1799">
-    <div class="product-image">
-      <img src="images/fig25.jpeg" alt="Eren Titan">
-    </div>
-    <div class="product-body">
-      <p class="product-tag">Attack on Titan</p>
-      <h3 class="product-title">Eren Titan</h3>
-      <p class="product-meta">24 cm • Anime</p>
-      <p class="product-price">MXN$1,799.00</p>
-      <button class="btn btn-outline-primary btn-sm add-to-cart"
-        data-id="fig-25"
-        data-name="Eren Titan"
-        data-price="1799">Añadir al carrito</button>
+        data-id="card-16"
+        data-name="Luke Skywalker"
+        data-price="799">Añadir al carrito</button>
     </div>
   </div>
 </div>
@@ -1976,27 +1806,27 @@ body {
                             </p>
                         </div>
                         
-                        <div class="bg-light p-3 rounded-3">
-                            <h6 class="fw-bold mb-3">Detalles</h6>
-                            <div class="row small">
-                                <div class="col-6 mb-2">
-                                    <span class="text-muted">Material:</span>
-                                    <span class="fw-medium">PVC Premium</span>
-                                </div>
-                                <div class="col-6 mb-2">
-                                    <span class="text-muted">Edición:</span>
-                                    <span class="fw-medium">Limitada</span>
-                                </div>
-                                <div class="col-6 mb-2">
-                                    <span class="text-muted">Pintura:</span>
-                                    <span class="fw-medium">A mano</span>
-                                </div>
-                                <div class="col-6 mb-2">
-                                    <span class="text-muted">Garantía:</span>
-                                    <span class="fw-medium">6 meses</span>
-                                </div>
-                            </div>
-                        </div>
+                     <div class="bg-light p-3 rounded-3">
+    <h6 class="fw-bold mb-3">Detalles de la Carta</h6>
+    <div class="row small">
+        <div class="col-6 mb-2">
+            <span class="text-muted">Tipo:</span>
+            <span class="fw-medium">Holográfica</span>
+        </div>
+        <div class="col-6 mb-2">
+            <span class="text-muted">Edición:</span>
+            <span class="fw-medium">Primera/limitada</span>
+        </div>
+        <div class="col-6 mb-2">
+            <span class="text-muted">Estado:</span>
+            <span class="fw-medium">Nueva (Mint)</span>
+        </div>
+        <div class="col-6 mb-2">
+            <span class="text-muted">Protección:</span>
+            <span class="fw-medium">Incluida</span>
+        </div>
+    </div>
+</div>
                     </div>
                 </div>
             </div>
@@ -2029,12 +1859,42 @@ body {
     </aside>
 </div>
 
-<!-- FOOTER -->
-<footer class="footer py-4">
-  <div class="container text-center small">
-    © 2025 Picks — Figuras coleccionables premium
-  </div>
-</footer>
+
+  <!-- FOOTER -->
+  <footer class="footer py-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5 class="mb-3">Picks</h5>
+          <p class="small mb-0">
+            E-commerce especializado en figuras, cartas, posters, accesorios y
+            más coleccionables para fans de todas las edades.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h6>Navegación</h6>
+          <ul class="list-unstyled small">
+            <li><a href="#ediciones-especiales">Ediciones especiales</a></li>
+            <li><a href="#ofertas">Ofertas</a></li>
+            <li><a href="#correo">Correo</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6>Síguenos</h6>
+          <ul class="list-unstyled small">
+            <li>Instagram</li>
+            <li>Facebook</li>
+            <li>X (Twitter)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center small mt-3 text-muted">
+        © 2025 Picks. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -2207,7 +2067,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('modalProductPrice').textContent = priceText;
             
             // Crear descripción
-            const description = `${title} - ${meta}. Figura coleccionable de alta calidad con detalles pintados a mano. Material PVC premium, edición limitada. Perfecta para exhibición.`;
+            const description = `${title} - ${meta}. Carta coleccionable de edición limitada, impresión premium con detalles holográficos. Perfecta para decks de juego o exhibición. Incluye protector.`;
             document.getElementById('modalProductDescription').textContent = description;
             
             // Actualizar imagen
