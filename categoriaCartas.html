@@ -1396,56 +1396,162 @@ body {
 </head>
 <body>
     
-<!-- HEADER -->
-<div class="top-bar text-center small py-1">
-  <span>Envíos a todo México • Pagos seguros • Coleccionables originales</span>
-</div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top main-navbar">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="/">
-      <span class="logo-icon">P</span>icks
-    </a>
+  
+  <!-- TOP BAR -->
+  <div class="top-bar text-center small py-1">
+    <span>Envíos a todo México • Pagos seguros • Coleccionables originales</span>
+  </div>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top main-navbar">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand fw-bold" href="#">
+        <span class="logo-icon">P</span>icks
+      </a>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="/ediciones">Ediciones especiales</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Fandom</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Anime</a></li>
-            <li><a class="dropdown-item" href="#">Cómics</a></li>
-            <li><a class="dropdown-item" href="#">Videojuegos</a></li>
-            <li><a class="dropdown-item" href="#">Series & Películas</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">Categoría</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item active" href="CategoriaFiguras.html">Figuras</a></li>
-            <li><a class="dropdown-item" href="categoriaCartas.html">Cartas</a></li>
-            <li><a class="dropdown-item" href="#">Posters</a></li>
-            <li><a class="dropdown-item" href="#">Llaveros</a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="/oferta">Ofertas</a></li>
-        <li class="nav-item"><a class="nav-link" href="#correo">Correo</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-        <li class="nav-item ms-lg-3">
-          <button class="btn btn-outline-secondary btn-sm" id="cartTrigger">
-            🛒 <span id="cartCount">0</span>
-          </button>
-        </li>
-      </ul>
+      <!-- DISPARADOR DEL BUSCADOR (HEADER) -->
+      <button type="button" id="searchTrigger" class="search-trigger d-none d-lg-flex">
+        <span class="search-icon">🔍</span>
+        <span class="search-text">Buscar</span>
+      </button>
+
+      <!-- Botón hamburguesa -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menú -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+          </li>
+
+          <!-- Ediciones especiales -->
+          <li class="nav-item">
+            <a class="nav-link" href="#ediciones-especiales">Ediciones especiales</a>
+          </li>
+
+          <!-- Fandom -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="fandomDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Fandom
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="fandomDropdown">
+              <li><a class="dropdown-item" href="#">Anime</a></li>
+              <li><a class="dropdown-item" href="#">Manga</a></li>
+              <li><a class="dropdown-item" href="#">Música</a></li>
+              <li><a class="dropdown-item" href="#">Cómics</a></li>
+              <li><a class="dropdown-item" href="#">Caricaturas</a></li>
+              <li><a class="dropdown-item" href="#">Películas y Series</a></li>
+            </ul>
+          </li>
+
+          <!-- Categoría -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="categoriaDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Categoría
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="categoriaDropdown">
+              <li><a class="dropdown-item" href="CategoriaFiguras.html">Figuras</a></li>
+              <li><a class="dropdown-item" href="#">Cartas</a></li>
+              <li><a class="dropdown-item" href="#">Llaveros</a></li>
+              <li><a class="dropdown-item" href="#">Posters</a></li>
+              <li><a class="dropdown-item" href="#">Accesorios</a></li>
+              <li><a class="dropdown-item" href="#">Cómics</a></li>
+            </ul>
+          </li>
+
+          <!-- Oferta -->
+          <li class="nav-item">
+            <a class="nav-link" href="oferta">Ofertas</a>
+          </li>
+
+          <!-- Correo (pago / newsletter) -->
+          <li class="nav-item">
+            <a class="nav-link" href="#correo">Correo</a>
+          </li>
+
+          <!-- Contacto -->
+          <li class="nav-item">
+            <a class="nav-link" href="#contacto">Contacto</a>
+          </li>
+
+          <!-- Carrito -->
+          <li class="nav-item ms-lg-3">
+            <button type="button" id="cartTrigger" class="btn btn-outline-secondary btn-sm cart-trigger">
+              🛒 <span id="cartCount">0</span>
+            </button>
+          </li>
+
+          <!-- CTA -->
+          <li class="nav-item ms-lg-3">
+            <a href="#ofertas" class="btn btn-primary btn-sm">
+              Ver colección
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- OVERLAY COMPLETO DE BÚSQUEDA -->
+  <div id="searchOverlay" class="search-overlay">
+    <div class="search-overlay-backdrop"></div>
+
+    <div class="search-overlay-content">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            <div class="search-overlay-header">
+              <span class="search-icon">🔍</span>
+              <input
+                id="searchInput"
+                type="search"
+                class="form-control search-overlay-input"
+                placeholder="Buscar coleccionables por nombre, fandom o categoría..."
+                aria-label="Buscar"
+              />
+              <button
+                type="button"
+                id="searchClose"
+                class="btn-close ms-2"
+                aria-label="Cerrar"
+              ></button>
+            </div>
+            <p class="search-overlay-helper">
+              Ejemplos: "figuras anime", "cartas holográficas", "poster ciudad", "llaveros Marvel".
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
 
 <!-- HERO FIGURAS -->
 <!-- HERO CARTAS -->
