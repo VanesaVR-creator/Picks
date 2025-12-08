@@ -750,6 +750,21 @@ body {
 
 
 /* Tarjeta de Producto */
+.product-grid{
+  align-items: stretch;
+}
+.product-card{
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+}
+.product-card .card-body{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding:0.5 rem !important;
+}
+
 .product-card {
     border: 1px solid #dee2e6;
     border-radius: 0.5rem;
@@ -777,8 +792,16 @@ body {
 }
 
 .product-name {
-    min-height: 2.5rem; /* Para alinear el botón aunque el título sea de 1 o 2 líneas */
-    font-size: 0.95rem;
+    min-height: auto; /* Para alinear el botón aunque el título sea de 1 o 2 líneas */
+    flex-shrink: 0;
+}
+.product-card .product-price{
+  margin-top:auto;
+  flex-shrink: 0;
+}
+.product-card .add-to-cart{
+  margin-top: 5px;
+  flex-shrink: 0;
 }
 
 .product-price {
@@ -916,6 +939,13 @@ body {
 }
 
 /* ANUNCIOS ROTATIVOS */
+#rotatingAds{
+  min-height: 350px;
+  position:relative;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
 .rotating-ad-container {
     /* Contenedor principal para los anuncios */
     height: 300px; /* Altura fija para el contenedor */
@@ -926,34 +956,56 @@ body {
 }
 
 .ad-slide {
-    position: absolute;
-    inset: 0;
+    position:absolute;
+    inset:0;
     padding: 15px;
-    display: flex;
+    display:flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
-    color: white;
+    color:white;
     transition: opacity 1s ease-in-out;
     opacity: 0;
+    visibility: hidden;
 }
 
 .ad-slide.active {
     opacity: 1;
+    display: flex;
+    visibility: visible;
 }
 
+
+.ad-content{
+  padding-bottom: 10px;
+  color:white;
+  background: rgba(25,183,141,0.05);
+  padding: 10px;
+  border-radius: 4px;
+  
+}
+.ad-image{
+  width: 100%;
+  height: auto;
+  display:block;
+  min-height: 0;
+  max-height: 100%;
+  border-radius: 6px;
+  margin-top: 10px;
+  object-fit: contain;
+}
 /* Estilos de anuncios de ejemplo */
 .ad-slide:nth-child(1) {
-    background: linear-gradient(135deg, #0d6efd, #004d99); /* Azul */
+    background: linear-gradient(135deg, #000000, #000000); /* Azul */
 }
 
 .ad-slide:nth-child(2) {
-    background: linear-gradient(135deg, #ffc107, #cc9a00); /* Amarillo/Dorado */
+    background: linear-gradient(135deg, #000000, #000000); /* Amarillo/Dorado */
 }
 
 .ad-slide:nth-child(3) {
-    background: linear-gradient(135deg, #20c997, #107052); /* Verde/Menta */
+    background: linear-gradient(135deg, #000000, #000000); /* Verde/Menta */
 }
 
 .ad-slide h5 {

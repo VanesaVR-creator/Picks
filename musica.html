@@ -73,7 +73,7 @@
               <li><a class="dropdown-item" href="mangas.html">Manga</a></li>
               <li><a class="dropdown-item" href="musica.html">Música</a></li>
               <li><a class="dropdown-item" href="comics.html">Cómics</a></li>
-              <li><a class="dropdown-item" href="categorias.html">Caricaturas</a></li>
+              <li><a class="dropdown-item" href="caricaturas.html">Caricaturas</a></li>
               <li><a class="dropdown-item" href="seriesPeliculas.html">Películas y Series</a></li>
             </ul>
           </li>
@@ -198,7 +198,7 @@
                 <div class="sidebar-filters shadow-sm p-4 bg-white sticky-lg-top">
                     <h5 class="fw-bold mb-3">Filtrar</h5>
                     <ul class="list-unstyled sidebar-menu">
-                        <li class="mb-2"><a href="#" class="sidebar-link active">Pop</a></li>
+                        <li class="mb-2"><a href="#" class="sidebar-link active">Todo</a></li>
                         <li class="mb-2"><a href="#" class="sidebar-link">Ost</a></li>
                         <li class="mb-2"><a href="#" class="sidebar-link">Solos</a></li>
                         <li class="mb-2"><a href="#" class="sidebar-link">K hip-hop</a></li>
@@ -767,17 +767,20 @@ const ads = [
     { 
         title: "¡Meses Gratis de Premium! 🎧", 
         text: "Suscríbete ahora a **Spotify** y escucha sin límites. ¡Regístrate!",
-        link: "https://open.spotify.com/intl-es/" 
+        link: "https://open.spotify.com/intl-es/",
+        image:"/images/Spotify.png"
     },
     { 
         title: "Vinilos de Colección 🎶", 
         text: "Ediciones limitadas en LP de tus álbumes favoritos. ¡Ver Catálogo!",
-        link: "https://udiscover.mx/collections/vinil" 
+        link: "https://udiscover.mx/collections/vinil",
+        image:"/images/kpop.png" 
     },
     { 
         title: "Mercancía Oficial K-Pop ✨", 
         text: "Lightsticks y álbumes con photocard exclusivos. ¡Compra ya!",
-        link: "https://www.ktown4u.com/" 
+        link: "https://www.ktown4u.com/",
+        image: "/images/photocards.png" 
     }
 ];
 
@@ -791,7 +794,8 @@ const renderAds = () => {
             <h5>${ad.title}</h5>
             <p>${ad.text}</p>
             <span class="btn btn-sm btn-light mt-3">Ver Oferta</span>
-        </a>
+           <img src="${ad.image}" alt="${ad.title}" class="ad-image" />
+            </a>
     `).join('');
 };
 
@@ -830,16 +834,17 @@ filterLinks.forEach(link => {
         // 1. Obtener el filtro (tag) y normalizarlo
         const filterText = link.textContent.trim();
         const filterTag = normalize(filterText);
+
+        //Definir Todo como la condición de reseteo
         
-        // **[INICIO DEL CAMBIO PARA RESETEAR EL FILTRO]**
-        // Si el filtro es "todos" o "todo" (asumiendo que este es el botón de reinicio), 
-        // establecemos una bandera.
-        const isResetFilter = (filterTag === 'todos' || filterTag === 'todo');
+        const isResetFilter = (filterTag == 'todo');
         // **[FIN DEL CAMBIO PARA RESETEAR EL FILTRO]**
 
         // 2. Manejar la clase 'active' para los enlaces (apariencia visual)
         filterLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
+        //Variables para el conteo de coincidencias
+        let matches = 0;
 
         // 3. Iterar sobre todos los productos para mostrar/ocultar
         allProducts.forEach(productWrapper => {
@@ -850,27 +855,41 @@ filterLinks.forEach(link => {
             if (isResetFilter) {
                 // Si es el filtro de reseteo ("Todos"), simplemente mostramos el producto y terminamos la iteración.
                 productWrapper.classList.remove('hidden-by-search');
+                //re-aplicar la lógica  de "Mostrar más/menos"
+                
                 return; 
             }
 
             // Lógica de filtrado para etiquetas específicas (solo si NO es el botón de reseteo)
             const productTags = productCard.dataset.tags ? normalize(productCard.dataset.tags) : '';
+            const shouldShow = productTags.includes(filterTag);
             
-            // Manejo de K-POP a kpop
-            let tagToMatch = filterTag;
-            if (tagToMatch === 'k-pop') {
-                tagToMatch = 'kpop';
-            }
-            
-            const shouldShow = productTags.includes(tagToMatch);
 
             // 4. Mostrar u ocultar el producto usando la clase CSS `hidden-by-search`
             if (shouldShow) {
+              //Muestra el producto
                 productWrapper.classList.remove('hidden-by-search');
+                productWrapper.classList.remove('hidden-on-load');//Muestra incluso si esta oculto
+                matches++;
             } else {
                 productWrapper.classList.add('hidden-by-search');
+                productWrapper.classList.add('hidden-on-load');
             }
         });
+        //5.ACTUALIZA CONTEO Y BOTONES DE PAGINACION
+        if(isResetFilter){
+          currentlyVisible=INITIAL_COUNT;
+          toggleCardsAndButtons();
+          if(loadMoreBtn)loadMoreBtn.style.display = 'block';
+        }else{
+          currentlyVisible = matches;
+          if(currentCountSpan){
+            currentCountSpan.textContent = `Mostrando ${matches} de ${TOTAL_COUNT} resultados (Filtrados)`;
+          }
+          //Oculta los botones de "Mostrar mas/menos" cuando se usa un filtro
+          if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+          if(loadLessBtn) loadLessBtn.style.display = 'none';
+        }
     });
 });
         // BUSCADOR Y CARRITO
