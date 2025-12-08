@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-<style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picks - Cartas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        /* ... (todo tu CSS existente se mantiene igual) ... */
+        
 /* Variables de color */
 :root {
   --color-primary: #df3431;   
@@ -1392,12 +1392,11 @@ body {
 }
 
 
-
-</style>
+    </style>
 </head>
 <body>
+    
 
-  
   
   <!-- TOP BAR -->
   <div class="top-bar text-center small py-1">
@@ -1552,39 +1551,6 @@ body {
         </div>
       </div>
     </div>
-  </div>
-
-<!-- CARRITO LATERAL DESPLEGABLE -->
-  <div id="cartOverlay" class="cart-overlay">
-    <div class="cart-backdrop"></div>
-
-    <aside class="cart-panel">
-      <div class="cart-header">
-        <h2 class="cart-title">Tu carrito</h2>
-        <button
-          type="button"
-          id="cartClose"
-          class="btn-close"
-          aria-label="Cerrar"
-        ></button>
-      </div>
-
-      <div class="cart-body">
-        <div id="cartItems" class="cart-items cart-items-empty">
-          Tu carrito está vacío.
-        </div>
-      </div>
-
-      <div class="cart-footer">
-        <div class="cart-total">
-          <span>Total:</span>
-          <span id="cartTotal">MXN$0.00</span>
-        </div>
-        <button class="btn btn-primary w-100" type="button">
-          Ir a pagar
-        </button>
-      </div>
-    </aside>
   </div>
 <section class="ofertas-section">
     <div class="ofertas-header">
@@ -2188,9 +2154,112 @@ body {
     </div>
   </div>
 </section>
+<!-- MODAL DE DETALLES DE PRODUCTO -->
+<div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content product-modal-content">
+            <button type="button" class="btn-close modal-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+            
+            <div class="modal-body p-4 p-md-5">
+                <div class="row">
+                    <!-- COLUMNA IZQUIERDA - IMAGEN -->
+                    <div class="col-md-6">
+                        <div class="product-image-preview mb-4 mb-md-0">
+                            <img id="modalProductImage" src="" alt="Imagen del Producto" class="img-fluid rounded-3" />
+                        </div>
+                    </div>
+
+                    <!-- COLUMNA DERECHA - INFORMACIÓN -->
+                    <div class="col-md-6">
+                        <h1 id="modalProductName" class="modal-product-name mb-2">Nombre del Producto</h1>
+                        
+                        <!-- PRECIO -->
+                        <div class="modal-price-block mb-3">
+                            <span id="modalProductPrice" class="modal-product-price fw-bold">$0.00</span>
+                        </div>
+
+                        <!-- BOTÓN AÑADIR AL CARRITO -->
+                        <button id="modalAddToCartBtn" class="btn btn-primary btn-lg w-100 mb-4" data-id="" data-name="" data-price="">
+                            🛒 Añadir al Carrito
+                        </button>
+                        
+                        <!-- ACORDEÓN DE DETALLES -->
+                        <div class="accordion" id="productDetailsAccordion">
+                            <!-- SECCIÓN 1: DETALLES DEL PRODUCTO (CONTENIDO DINÁMICO) -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+                                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Detalles del Producto
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" 
+                                     aria-labelledby="headingOne" data-bs-parent="#productDetailsAccordion">
+                                    <div class="accordion-body">
+                                        <!-- CONTENIDO DINÁMICO - SERÁ REEMPLAZADO POR JAVASCRIPT -->
+                                        <div id="modalProductDynamicContent">
+                                            <p>Cargando detalles del producto...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- SECCIÓN 2: ENVÍO Y DEVOLUCIONES (FIJO) -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Información de Envío y Devoluciones
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" 
+                                     aria-labelledby="headingTwo" data-bs-parent="#productDetailsAccordion">
+                                    <div class="accordion-body">
+                                        <p>Envío a todo México en 3-5 días hábiles. Costo de envío se calcula al finalizar la compra.</p>
+                                        <ul class="list-unstyled">
+                                            <li>• Envío gratuito en compras mayores a $799 MXN</li>
+                                            <li>• Tiempo de procesamiento: 24-48 horas</li>
+                                            <li>• Política de devoluciones: 15 días</li>
+                                            <li>• Productos originales con garantía</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CARRITO LATERAL -->
+<div id="cartOverlay" class="cart-overlay">
+    <div class="cart-backdrop"></div>
+    <aside class="cart-panel">
+        <div class="cart-header">
+            <h2 class="cart-title">Tu carrito</h2>
+            <button type="button" id="cartClose" class="btn-close" aria-label="Cerrar"></button>
+        </div>
+        <div class="cart-body">
+            <div id="cartItems" class="cart-items cart-items-empty">
+                Tu carrito está vacío.
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">MXN$0.00</span>
+            </div>
+            <button class="btn btn-primary w-100" type="button">
+                Ir a pagar
+            </button>
+        </div>
+    </aside>
+</div>
 
 
-   <!-- FOOTER -->
+  <!-- FOOTER -->
   <footer class="footer py-4">
     <div class="container">
       <div class="row g-4">
@@ -2224,512 +2293,492 @@ body {
       </div>
     </div>
   </footer>
-  
- <div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content product-modal-content">
-            <button type="button" class="btn-close modal-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
-            
-            <div class="modal-body p-4 p-md-5">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="product-image-preview">
-                            <img id="modalProductImage" src="" alt="Imagen del Producto" class="img-fluid rounded-3" />
-                        </div>
-                    </div>
 
-                    <div class="col-md-7 mt-4 mt-md-0">
-                        <h1 id="modalProductName" class="modal-product-name mb-2">Nombre del Producto</h1>
-                        <p class="text-muted small mb-3">
-                            <span id="modalProductFandom">Coleccionables</span> | 
-                            <span id="modalProductTags">Edición Especial</span>
-                        </p>
 
-                        <div class="modal-price-block mb-4">
-                            <span id="modalProductPrice" class="modal-product-price fw-bold">$0.00</span>
-                        </div>
-
-                        <button id="modalAddToCartBtn" class="btn btn-primary btn-lg w-100 mb-3" data-id="" data-name="" data-price="">
-                            🛒 Añadir al Carrito
-                        </button>
-                        
-                        <div class="accordion" id="productDetailsAccordion">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Detalles del Producto
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#productDetailsAccordion">
-                                    <div class="accordion-body">
-                                        <p id="modalProductDescription">Descripción del producto aparecerá aquí.</p>
-                                        <ul class="list-unstyled">
-                                            <li><strong>Artista:</strong> <span id="modalProductArtist">Artista Desconocido</span></li>
-                                            <li><strong>Formato:</strong> <span id="modalProductFormat">Formato estándar</span></li>
-                                            <li><strong>SKU:</strong> <span id="modalProductSKU">SKU-000</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Información de Envío y Devoluciones
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#productDetailsAccordion">
-                                    <div class="accordion-body">
-                                        <p>Envío a todo México en 3-5 días hábiles. Costo de envío se calcula al finalizar la compra. Devoluciones aceptadas solo si el producto llega dañado y sin abrir.</p>
-                                        <ul class="list-unstyled">
-                                            <li>• Envío gratuito en compras mayores a $799 MXN</li>
-                                            <li>• Tiempo de procesamiento: 24-48 horas</li>
-                                            <li>• Política de devoluciones: 15 días</li>
-                                            <li>• Productos originales con garantía</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("✅ JavaScript cargado correctamente");
+    console.log("✅ Página cargada correctamente");
     
-    // Elementos del carrito
+    // ============ SISTEMA DE CARRITO ============
+    const cart = [];
     const cartOverlay = document.getElementById("cartOverlay");
     const cartItemsContainer = document.getElementById("cartItems");
     const cartTotalElement = document.getElementById("cartTotal");
     const cartCountElement = document.getElementById("cartCount");
     const cartTrigger = document.getElementById("cartTrigger");
     const cartClose = document.getElementById("cartClose");
-    
-    console.log("Elementos del carrito:", {
-        cartOverlay: !!cartOverlay,
-        cartItemsContainer: !!cartItemsContainer,
-        cartTotalElement: !!cartTotalElement,
-        cartCountElement: !!cartCountElement,
-        cartTrigger: !!cartTrigger,
-        cartClose: !!cartClose
-    });
-
-    // Botón del modal
     const modalAddToCartBtn = document.getElementById("modalAddToCartBtn");
-    console.log("Botón modal encontrado:", !!modalAddToCartBtn);
-
-    let cart = [];
-
-    // Información específica para cada producto
-    const productInfo = {
-        "Figura Heroe de Fuego": {
-            description: "Figura coleccionable del Héroe de Fuego en pose de batalla. Edición limitada con detalles pintados a mano y base especial. Material: PVC de alta calidad.",
-            artist: "Studio Artisan",
-            format: "Figura PVC 1:8",
-            sku: "FIG-HF-001"
-        },
+    
+    // ============ BASE DE DATOS DE PRODUCTOS CON DETALLES ESPECÍFICOS ============
+    const productosDetallados = {
         "Deck Galaxy Legends": {
-            description: "Mazo de cartas holográficas Galaxy Legends con 50 cartas exclusivas. Incluye cartas raras, súper raras y una carta secreta. Perfecto para jugadores competitivos.",
-            artist: "TCG Masters",
-            format: "Mazo 50 cartas",
-            sku: "CARD-GL-002"
+            categoria: "carta",
+            detalles: {
+                "Tipo": "Holográfica",
+                "Edición": "Primera/limitada",
+                "Estado": "Nueva (Mint)",
+                "Protección": "Incluida"
+            },
+            descripcion: "Mazo temático de Galaxy Legends con cartas de personajes cósmicos y criaturas estelares."
         },
         "Poster Ciudad Neon": {
-            description: "Póster de alta calidad con diseño de ciudad futurista en tonos neón. Impresión HD en papel premium de 200g. Ideal para decoración de habitación u oficina.",
-            artist: "Neon Dreams Studio",
-            format: "Póster 50x70cm",
-            sku: "POST-CN-003"
+            categoria: "poster",
+            detalles: {
+                "Tamaño": "50 x 70 cm",
+                "Impresión": "A todo color, alta resolución",
+                "Material": "Papel fotográfico mate",
+                "Incluye": "Tubo de envío protector"
+            },
+            descripcion: "Representación artística de una metrópolis futurista bañada en luces de neón y lluvia digital."
         },
         "Llavero Portal Estelar": {
-            description: "Llavero acrílico de doble cara con diseño de portal estelar. Resistente y duradero, perfecto para fans de la ciencia ficción.",
-            artist: "Cosmic Crafts",
-            format: "Llavero acrílico",
-            sku: "KEY-SP-004"
+            categoria: "llavero",
+            detalles: {
+                "Material": "Aleación de metal",
+                "Diseño": "Figura en 3D, esmaltado",
+                "Largo": "8 cm con argolla",
+                "Incluye": "Cadena corta adicional"
+            },
+            descripcion: "Llavero con diseño de portal dimensional que parece abrirse a otro universo."
+        },
+        "Figura Heroe de Fuego": {
+            categoria: "accesorio",
+            detalles: {
+                "Tipo": "Anillo de plata",
+                "Diseño": "Temático, grabado",
+                "Talla": "Ajustable",
+                "Incluye": "Estuche de presentación"
+            },
+            descripcion: "Figura del Héroe de Fuego en pose de batalla épica con detalles pintados a mano."
         },
         "Poster Galaxia Azul": {
-            description: "Impresionante póster de galaxia con tonos azules profundos. Impresión en alta resolución que captura cada detalle estelar.",
-            artist: "Space Art Collective",
-            format: "Póster 50x70cm",
-            sku: "POST-GA-005"
+            categoria: "poster",
+            detalles: {
+                "Tamaño": "50 x 70 cm",
+                "Impresión": "A todo color, alta resolución",
+                "Material": "Papel fotográfico mate",
+                "Incluye": "Tubo de envío protector"
+            },
+            descripcion: "Galaxia espiral en tonos azules profundos con estrellas brillantes y nebulosas etéreas."
         },
         "Poster Bosque Místico": {
-            description: "Póster artístico de bosque encantado con efectos de luz mística. Crea una atmósfera mágica en cualquier espacio.",
-            artist: "Fantasy Artists",
-            format: "Póster 60x90cm",
-            sku: "POST-BM-006"
+            categoria: "poster",
+            detalles: {
+                "Tamaño": "60 x 90 cm",
+                "Impresión": "A todo color, alta resolución",
+                "Material": "Papel fotográfico mate",
+                "Incluye": "Tubo de envío protector"
+            },
+            descripcion: "Bosque encantado al atardecer con rayos de luz filtrándose entre los árboles antiguos."
         },
         "Poster Samurai": {
-            description: "Arte tradicional japonés de samurái en pose de combate. Diseño minimalista con trazos precisos y elegantes.",
-            artist: "Japanese Art Studio",
-            format: "Póster 40x60cm",
-            sku: "POST-SAM-007"
+            categoria: "poster",
+            detalles: {
+                "Tamaño": "40 x 60 cm",
+                "Impresión": "A todo color, alta resolución",
+                "Material": "Papel fotográfico mate",
+                "Incluye": "Tubo de envío protector"
+            },
+            descripcion: "Samurái en meditación bajo un cerezo en flor, capturando la esencia del bushido."
         },
         "Poster Montañas Doradas": {
-            description: "Paisaje sereno de montañas bañadas por la luz dorada del atardecer. Inspirado en la naturaleza y la tranquilidad.",
-            artist: "Nature Vision",
-            format: "Póster 50x50cm",
-            sku: "POST-MD-008"
-        },
-        "Poster Atardecer Rosa": {
-            description: "Espectacular póster de atardecer con cielos rosados y nubes dramáticas. Perfecto para amantes del arte y la fotografía.",
-            artist: "Sky Art Studio",
-            format: "Póster 50x80cm",
-            sku: "POST-AR-009"
-        },
-        "Poster Lobo Alfa": {
-            description: "Retrato poderoso de un lobo alfa en su hábitat natural. Simboliza fuerza, libertad y espíritu salvaje.",
-            artist: "Wildlife Artists",
-            format: "Póster 45x60cm",
-            sku: "POST-LA-010"
-        },
-        "Poster Retro Gamer": {
-            description: "Diseño retro inspirado en los videojuegos clásicos de los 80s y 90s. Nostalgia pura para gamers.",
-            artist: "Retro Pixel Studio",
-            format: "Póster 40x50cm",
-            sku: "POST-RG-011"
-        },
-        "Poster Olas Turquesa": {
-            description: "Captura artística de olas del océano en tonos turquesa vibrantes. Tranquilidad y movimiento en una sola imagen.",
-            artist: "Ocean Art Co.",
-            format: "Póster 50x90cm",
-            sku: "POST-OT-012"
-        },
-        "Poster Cyber Punk": {
-            description: "Visión futurista de ciudad cyberpunk con neones, tecnología y arquitectura distópica.",
-            artist: "Future Vision Studio",
-            format: "Póster 60x100cm",
-            sku: "POST-CP-013"
-        },
-        "Poster Minimalista Zen": {
-            description: "Diseño minimalista que promueve la calma y la armonía. Perfecto para espacios de meditación y relax.",
-            artist: "Zen Design Co.",
-            format: "Póster 40x70cm",
-            sku: "POST-MZ-014"
-        },
-        "Poster Automóvil Clásico": {
-            description: "Elegante póster de automóvil clásico de los años 60. Para amantes de los coches vintage.",
-            artist: "Vintage Motors Art",
-            format: "Póster 60x80cm",
-            sku: "POST-AC-015"
-        },
-        "Poster Anime Nights": {
-            description: "Escena nocturna de anime con ciudad iluminada y personajes estilo japonés. Arte anime de alta calidad.",
-            artist: "Anime Art Studio",
-            format: "Póster 50x70cm",
-            sku: "POST-AN-016"
-        },
-        "Figura Dragón Carmesí": {
-            description: "Figura detallada del Dragón Carmesí con alas desplegadas. Escultura de resina con efectos de pintura especiales.",
-            artist: "Dragon Art Studio",
-            format: "Figura resina 1:10",
-            sku: "FIG-DC-017"
-        },
-        "Llavero Ninja Sombra": {
-            description: "Llavero de ninja en movimiento con diseño de sombras. Acrílico de doble capa con efecto 3D.",
-            artist: "Shadow Crafts",
-            format: "Llavero acrílico 3D",
-            sku: "KEY-NS-018"
-        },
-        "Figura Guerrero Estelar": {
-            description: "Guerrero estelar con armadura futurista y detalles metálicos. Articulaciones móviles para diferentes poses.",
-            artist: "Space Warriors Co.",
-            format: "Figura articulada 1:10",
-            sku: "FIG-GE-019"
-        },
-        "Póster Bosque Místico": {
-            description: "Versión extendida del bosque místico con más detalles y criaturas fantásticas escondidas.",
-            artist: "Fantasy Artists",
-            format: "Póster 60x90cm",
-            sku: "POST-BM2-020"
-        },
-        "Llavero Espíritu Zorro": {
-            description: "Llavero del espíritu zorro (kitsune) con nueve colas. Diseño tradicional japonés en acrílico premium.",
-            artist: "Japanese Legends",
-            format: "Llavero acrílico",
-            sku: "KEY-EZ-021"
-        },
-        "Figura Robot Centinela": {
-            description: "Robot centinela futurista con articulaciones completas y accesorios intercambiables.",
-            artist: "Mecha Design Studio",
-            format: "Figura articulada 1:12",
-            sku: "FIG-RC-022"
-        },
-        "Mini Figura Guardián Azul": {
-            description: "Mini figura del Guardián Azul, perfecta para coleccionar o decorar tu espacio de trabajo.",
-            artist: "Mini Art Co.",
-            format: "Mini figura 8cm",
-            sku: "FIG-MG-023"
-        },
-        "Figura Maga Celestial": {
-            description: "Maga celestial con vestuario etéreo y varita mágica luminosa. Edición coleccionista numerada.",
-            artist: "Fantasy Masters",
-            format: "Figura PVC 1:7",
-            sku: "FIG-MC-024"
-        },
-        "Llavero Dragón Azul": {
-            description: "Llavero del Dragón Azul, símbolo de sabiduría y poder en la mitología oriental.",
-            artist: "Eastern Myths",
-            format: "Llavero acrílico",
-            sku: "KEY-DA-025"
-        },
-        "Póster Ciudad Retro": {
-            description: "Ciudad retro con estética vaporwave y colores pastel. Diseño único para amantes del estilo vintage.",
-            artist: "Vaporwave Studio",
-            format: "Póster 50x70cm",
-            sku: "POST-CR-026"
-        },
-        "Figura Samurái Oscuro": {
-            description: "Samurái oscuro con armadura negra y detalles en rojo. Actitud intimidante y pose de combate.",
-            artist: "Dark Art Studio",
-            format: "Figura PVC 1:12",
-            sku: "FIG-SO-027"
+            categoria: "poster",
+            detalles: {
+                "Tamaño": "50 x 50 cm",
+                "Impresión": "A todo color, alta resolución",
+                "Material": "Papel fotográfico mate",
+                "Incluye": "Tubo de envío protector"
+            },
+            descripcion: "Paisaje alpino al amanecer con montañas reflejando la luz dorada del sol naciente."
         }
     };
-
-    // Función para actualizar el carrito
+    
+    // ============ FUNCIONES DEL CARRITO ============
+    
     function updateCartDisplay() {
-        console.log("🔄 Actualizando carrito, items:", cart.length);
+        if (!cartItemsContainer) return;
+        
         cartItemsContainer.innerHTML = "";
-        let total = 0;
-        let count = 0;
-
+        
         if (cart.length === 0) {
             cartItemsContainer.innerHTML = '<div class="cart-items-empty">Tu carrito está vacío.</div>';
-            cartItemsContainer.classList.add('cart-items-empty');
-        } else {
-            cartItemsContainer.classList.remove('cart-items-empty');
-            
-            cart.forEach((item, index) => {
-                total += item.price * item.quantity;
-                count += item.quantity;
-
-                const div = document.createElement("div");
-                div.classList.add("cart-item");
-                div.innerHTML = `
-                    <div class="cart-item-info">
-                        <p class="cart-item-name"><strong>${item.name}</strong></p>
-                        <p class="cart-item-price">MXN$${item.price} x ${item.quantity}</p>
-                    </div>
-                    <div class="cart-item-actions">
-                        <button class="cart-qty-btn decrease" data-index="${index}">-</button>
-                        <span class="cart-qty">${item.quantity}</span>
-                        <button class="cart-qty-btn increase" data-index="${index}">+</button>
-                        <button class="cart-remove" data-index="${index}">×</button>
-                    </div>
-                `;
-                cartItemsContainer.appendChild(div);
-            });
+            if (cartTotalElement) cartTotalElement.textContent = "MXN$0.00";
+            if (cartCountElement) cartCountElement.textContent = "0";
+            return;
         }
-
-        cartTotalElement.textContent = `MXN$${total.toFixed(2)}`;
-        cartCountElement.textContent = count;
         
-        // Agregar event listeners a los botones recién creados
-        addCartItemEventListeners();
+        let total = 0;
+        let totalItems = 0;
         
-        console.log("✅ Carrito actualizado");
+        cart.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            totalItems += item.quantity;
+            
+            const itemElement = document.createElement("div");
+            itemElement.className = "cart-item";
+            itemElement.innerHTML = `
+                <div class="cart-item-info">
+                    <p class="cart-item-name"><strong>${item.name}</strong></p>
+                    <p class="cart-item-price">MXN$${item.price.toFixed(2)} x ${item.quantity}</p>
+                </div>
+                <div class="cart-item-actions">
+                    <button class="cart-qty-btn decrease" data-index="${index}">-</button>
+                    <span class="cart-qty">${item.quantity}</span>
+                    <button class="cart-qty-btn increase" data-index="${index}">+</button>
+                    <button class="cart-remove" data-index="${index}">×</button>
+                </div>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+        });
+        
+        if (cartTotalElement) cartTotalElement.textContent = `MXN$${total.toFixed(2)}`;
+        if (cartCountElement) cartCountElement.textContent = totalItems;
+        
+        attachCartItemEvents();
     }
-
-    // Función para agregar event listeners a los botones del carrito
-    function addCartItemEventListeners() {
-        // Botones de disminuir cantidad
-        document.querySelectorAll('.decrease').forEach(button => {
-            button.addEventListener('click', function(e) {
+    
+    function attachCartItemEvents() {
+        document.querySelectorAll('.decrease').forEach(btn => {
+            btn.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
-                console.log("➖ Disminuyendo cantidad del producto:", index);
-                
                 if (cart[index].quantity > 1) {
                     cart[index].quantity--;
                 } else {
-                    // Si la cantidad es 1, eliminar el producto
                     cart.splice(index, 1);
                 }
                 updateCartDisplay();
             });
         });
-
-        // Botones de aumentar cantidad
-        document.querySelectorAll('.increase').forEach(button => {
-            button.addEventListener('click', function(e) {
+        
+        document.querySelectorAll('.increase').forEach(btn => {
+            btn.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
-                console.log("➕ Aumentando cantidad del producto:", index);
-                
                 cart[index].quantity++;
                 updateCartDisplay();
             });
         });
-
-        // Botones de eliminar
-        document.querySelectorAll('.cart-remove').forEach(button => {
-            button.addEventListener('click', function(e) {
+        
+        document.querySelectorAll('.cart-remove').forEach(btn => {
+            btn.addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
-                console.log("🗑️ Eliminando producto:", index);
-                
                 cart.splice(index, 1);
                 updateCartDisplay();
             });
         });
     }
-
-    // Función para agregar al carrito
-    function addToCart(name, price) {
-        console.log("➕ Agregando producto:", name, price);
-        const existing = cart.find(item => item.name === name);
-        if (existing) {
-            existing.quantity++;
+    
+    function addToCart(productName, productPrice) {
+        const price = parseFloat(productPrice);
+        const existingIndex = cart.findIndex(item => item.name === productName);
+        
+        if (existingIndex > -1) {
+            cart[existingIndex].quantity++;
         } else {
-            cart.push({ name, price, quantity: 1 });
+            cart.push({
+                name: productName,
+                price: price,
+                quantity: 1
+            });
         }
+        
         updateCartDisplay();
+        console.log("✅ Producto agregado al carrito:", productName, price);
     }
-
-    // EVENTO PARA EL BOTÓN DEL MODAL (cierra modal y abre carrito)
-    if (modalAddToCartBtn) {
-        modalAddToCartBtn.addEventListener("click", function() {
-            console.log("🎯 CLICK en botón modal detectado");
-            const name = this.getAttribute("data-name");
-            const price = parseFloat(this.getAttribute("data-price"));
+    
+    // ============ FUNCIONES PARA EL MODAL ============
+    
+    function getProductInfo(productName) {
+        // Buscar en la base de datos detallada
+        if (productosDetallados[productName]) {
+            return productosDetallados[productName];
+        }
+        
+        // Si no está, crear información básica según el nombre
+        const lowerName = productName.toLowerCase();
+        let categoria = "producto";
+        let descripcion = `${productName}. Producto coleccionable de alta calidad.`;
+        let detalles = {};
+        
+        if (lowerName.includes('figura') || lowerName.includes('dragon') || lowerName.includes('heroe')) {
+            categoria = "accesorio";
+            descripcion = `${productName}. Figura coleccionable con detalles pintados a mano.`;
+            detalles = {
+                "Tipo": "Anillo de plata",
+                "Diseño": "Temático, grabado",
+                "Talla": "Ajustable",
+                "Incluye": "Estuche de presentación"
+            };
+        } else if (lowerName.includes('poster') || lowerName.includes('póster')) {
+            categoria = "poster";
+            descripcion = `${productName}. Póster impreso en alta resolución.`;
+            detalles = {
+                "Tamaño": "50 x 70 cm",
+                "Impresión": "A todo color, alta resolución",
+                "Material": "Papel fotográfico mate",
+                "Incluye": "Tubo de envío protector"
+            };
+        } else if (lowerName.includes('llavero') || lowerName.includes('llave')) {
+            categoria = "llavero";
+            descripcion = `${productName}. Llavero coleccionable con diseño exclusivo.`;
+            detalles = {
+                "Material": "Aleación de metal",
+                "Diseño": "Figura en 3D, esmaltado",
+                "Largo": "8 cm con argolla",
+                "Incluye": "Cadena corta adicional"
+            };
+        } else if (lowerName.includes('carta') || lowerName.includes('deck')) {
+            categoria = "carta";
+            descripcion = `${productName}. Mazo de cartas coleccionables.`;
+            detalles = {
+                "Tipo": "Holográfica",
+                "Edición": "Primera/limitada",
+                "Estado": "Nueva (Mint)",
+                "Protección": "Incluida"
+            };
+        }
+        
+        return {
+            categoria: categoria,
+            descripcion: descripcion,
+            detalles: detalles
+        };
+    }
+    
+    function getProductPriceFromCard(productCard) {
+        const addToCartBtn = productCard.querySelector('.add-to-cart');
+        if (addToCartBtn && addToCartBtn.getAttribute('data-price')) {
+            return addToCartBtn.getAttribute('data-price');
+        }
+        
+        const priceElement = productCard.querySelector('.product-price');
+        if (priceElement) {
+            const priceText = priceElement.textContent;
+            const match = priceText.match(/MXN\$([\d\.]+)/);
+            if (match) {
+                return match[1];
+            }
+        }
+        
+        return "0.00";
+    }
+    
+    // FUNCIÓN PRINCIPAL PARA ABRIR EL MODAL
+    function openProductModal(productCard, clickedImg) {
+        console.log("🔄 Abriendo modal...");
+        
+        // 1. Obtener información básica de la tarjeta
+        const productName = productCard.getAttribute('data-name');
+        const price = getProductPriceFromCard(productCard);
+        const title = productCard.querySelector('.product-title')?.textContent || productName;
+        const imgSrc = clickedImg ? clickedImg.getAttribute('src') : "";
+        
+        // 2. Obtener información detallada del producto
+        const productoInfo = getProductInfo(productName);
+        
+        // 3. Actualizar elementos básicos del modal
+        const modalProductName = document.getElementById('modalProductName');
+        const modalProductPrice = document.getElementById('modalProductPrice');
+        const modalProductImage = document.getElementById('modalProductImage');
+        
+        if (modalProductName) modalProductName.textContent = title;
+        if (modalProductPrice) modalProductPrice.textContent = `MXN$${price}`;
+        if (modalProductImage && imgSrc) {
+            modalProductImage.src = imgSrc;
+            modalProductImage.alt = title;
+        }
+        
+        // 4. Actualizar botón del modal
+        if (modalAddToCartBtn) {
+            modalAddToCartBtn.setAttribute('data-name', productName);
+            modalAddToCartBtn.setAttribute('data-price', price);
+            modalAddToCartBtn.textContent = `🛒 Añadir al Carrito - MXN$${price}`;
+        }
+        
+        // 5. Generar contenido dinámico para los detalles
+        const dynamicContent = document.getElementById('modalProductDynamicContent');
+        if (dynamicContent) {
+            // Crear HTML con los 4 detalles específicos
+            let detallesHTML = '';
             
-            console.log("Datos del producto:", {name, price});
+            // Descripción
+            detallesHTML += `<p class="mb-3"><strong>Descripción:</strong> ${productoInfo.descripcion}</p>`;
             
-            if (name && price) {
-                addToCart(name, price);
+            // Tabla con los 4 detalles
+            if (productoInfo.detalles && Object.keys(productoInfo.detalles).length > 0) {
+                detallesHTML += `
+                    <div class="table-responsive mt-3">
+                        <table class="table table-sm table-borderless">
+                            <tbody>
+                `;
                 
-                // Cerrar el modal
-                console.log("🔒 Cerrando modal...");
-                const modalElement = document.getElementById("productDetailModal");
-                if (modalElement) {
-                    const modal = bootstrap.Modal.getInstance(modalElement);
-                    if (modal) {
-                        modal.hide();
-                        console.log("✅ Modal cerrado");
-                    }
-                }
+                // Agregar cada detalle a la tabla
+                Object.entries(productoInfo.detalles).forEach(([nombre, valor]) => {
+                    detallesHTML += `
+                        <tr>
+                            <th scope="row" width="40%">${nombre}:</th>
+                            <td>${valor}</td>
+                        </tr>
+                    `;
+                });
                 
-                // Abrir el carrito
-                console.log("🛒 Abriendo carrito...");
-                if (cartOverlay) {
-                    cartOverlay.classList.add("open");
-                    console.log("✅ Clase 'open' agregada al carrito");
+                detallesHTML += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+            
+            dynamicContent.innerHTML = detallesHTML;
+        }
+        
+        // 6. Actualizar título del acordeón según categoría
+        const accordionButton = document.querySelector('#headingOne .accordion-button');
+        if (accordionButton) {
+            if (productoInfo.categoria === 'carta') {
+                accordionButton.textContent = "Detalles de la Carta";
+            } else if (productoInfo.categoria === 'poster') {
+                accordionButton.textContent = "Detalles del Póster";
+            } else if (productoInfo.categoria === 'llavero') {
+                accordionButton.textContent = "Detalles del Llavero";
+            } else if (productoInfo.categoria === 'accesorio') {
+                accordionButton.textContent = "Detalles del Accesorio";
+            } else {
+                accordionButton.textContent = "Detalles del Producto";
+            }
+        }
+        
+        // 7. Mostrar el modal
+        const modalElement = document.getElementById('productDetailModal');
+        if (modalElement) {
+            const modal = new bootstrap.Modal(modalElement);
+            modal.show();
+            console.log(`✅ Modal abierto: ${title} (${productoInfo.categoria})`);
+        } else {
+            console.error("❌ No se encontró el elemento del modal");
+        }
+    }
+    
+    // ============ EVENT LISTENERS PARA ABRIR MODAL ============
+    
+    // Evento para imágenes de productos
+    document.querySelectorAll('.product-image img').forEach(img => {
+        img.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const productCard = this.closest('.product-card');
+            if (productCard) {
+                openProductModal(productCard, this);
+            }
+        });
+    });
+    
+    // Evento para contenedores de imagen
+    document.querySelectorAll('.product-image').forEach(div => {
+        div.addEventListener('click', function(e) {
+            if (e.target.tagName !== 'IMG') {
+                const img = this.querySelector('img');
+                const productCard = this.closest('.product-card');
+                if (img && productCard) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openProductModal(productCard, img);
                 }
             }
         });
-    }
-
-    // Eventos para abrir/cerrar carrito
+    });
+    
+    // ============ EVENTOS DEL CARRITO ============
+    
     if (cartTrigger) {
-        cartTrigger.addEventListener("click", function() {
-            console.log("🎯 CLICK en icono carrito");
-            cartOverlay.classList.add("open");
+        cartTrigger.addEventListener('click', function() {
+            if (cartOverlay) cartOverlay.classList.add('open');
         });
     }
-
+    
     if (cartClose) {
-        cartClose.addEventListener("click", function() {
-            console.log("🎯 CLICK en cerrar carrito");
-            cartOverlay.classList.remove("open");
+        cartClose.addEventListener('click', function() {
+            if (cartOverlay) cartOverlay.classList.remove('open');
         });
     }
-
-    // Botones "Añadir al carrito" fuera del modal - agregan directamente y abren carrito
+    
+    if (cartOverlay) {
+        cartOverlay.addEventListener('click', function(e) {
+            if (e.target.classList.contains('cart-backdrop')) {
+                cartOverlay.classList.remove('open');
+            }
+        });
+    }
+    
+    // Botones "Añadir al carrito" en las tarjetas
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
             const name = this.getAttribute('data-name');
-            const price = parseFloat(this.getAttribute('data-price'));
+            const price = this.getAttribute('data-price');
             
-            console.log("🛒 Agregando directamente al carrito:", name, price);
-            
-            // Agregar directamente al carrito
-            addToCart(name, price);
-            
-            // Abrir el carrito automáticamente
-            if (cartOverlay) {
-                cartOverlay.classList.add("open");
-                console.log("✅ Producto agregado y carrito abierto");
+            if (name && price) {
+                addToCart(name, price);
+                if (cartOverlay) cartOverlay.classList.add('open');
             }
         });
     });
-
-    // Conectar imágenes de productos al modal
-    document.querySelectorAll('.product-image').forEach(image => {
-        image.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+    
+    // Botón "Añadir al carrito" en el modal
+    if (modalAddToCartBtn) {
+        modalAddToCartBtn.addEventListener('click', function() {
+            const name = this.getAttribute('data-name');
+            const price = this.getAttribute('data-price');
             
-            // Encontrar el producto card padre
-            const productCard = this.closest('.product-card');
-            if (productCard) {
-                const name = productCard.getAttribute('data-name');
-                // Encontrar el precio desde el botón de añadir al carrito
-                const addToCartBtn = productCard.querySelector('.add-to-cart');
-                const price = addToCartBtn ? parseFloat(addToCartBtn.getAttribute('data-price')) : 0;
+            if (name && price) {
+                addToCart(name, price);
                 
-                console.log("🖼️ Imagen producto clickeada:", name, price);
+                // Cerrar modal
+                const modalElement = document.getElementById('productDetailModal');
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                if (modal) {
+                    modal.hide();
+                }
                 
-                openProductModal(name, price);
+                // Abrir carrito
+                if (cartOverlay) cartOverlay.classList.add('open');
             }
         });
-    });
-
-    // Función para abrir el modal del producto (solo para imágenes)
-    function openProductModal(name, price) {
-        // Obtener información del producto
-        const product = productInfo[name] || {
-            description: `Descripción detallada de ${name}. Producto de alta calidad con garantía del fabricante.`,
-            artist: "Artista Desconocido",
-            format: "Formato estándar",
-            sku: "SKU-000"
-        };
-        
-        console.log("📦 Información del producto:", product);
-        
-        // Actualizar el modal con los datos del producto
-        document.getElementById('modalProductName').textContent = name;
-        document.getElementById('modalProductPrice').textContent = `MXN$${price}`;
-        document.getElementById('modalProductDescription').textContent = product.description;
-        
-        // ACTUALIZAR LOS NUEVOS CAMPOS
-        const modalProductArtist = document.getElementById('modalProductArtist');
-        const modalProductFormat = document.getElementById('modalProductFormat');
-        const modalProductSKU = document.getElementById('modalProductSKU');
-        
-        if (modalProductArtist) modalProductArtist.textContent = product.artist;
-        if (modalProductFormat) modalProductFormat.textContent = product.format;
-        if (modalProductSKU) modalProductSKU.textContent = product.sku;
-        
-        // Actualizar el botón del modal con los datos
-        if (modalAddToCartBtn) {
-            modalAddToCartBtn.setAttribute('data-name', name);
-            modalAddToCartBtn.setAttribute('data-price', price);
-            console.log("✅ Datos actualizados en botón modal");
-        }
-        
-        // Abrir el modal
-        const modal = new bootstrap.Modal(document.getElementById('productDetailModal'));
-        modal.show();
-        console.log("✅ Modal abierto para:", name);
     }
-
-    // Inicializar
+    
+    // ============ INICIALIZACIÓN ============
+    
     updateCartDisplay();
-    console.log("🚀 Aplicación inicializada correctamente");
-
-    // Función de prueba para forzar abrir el carrito
-    window.abrirCarrito = function() {
-        console.log("🔓 Forzando apertura del carrito");
-        if (cartOverlay) {
-            cartOverlay.classList.add("open");
-            console.log("✅ Carrito debería estar visible");
+    console.log("🚀 Sistema de carrito y modal inicializado");
+    
+    // ============ FUNCIONES DE DEPURACIÓN ============
+    
+    window.testModal = function(productName) {
+        const productCard = document.querySelector(`.product-card[data-name*="${productName}"]`);
+        if (productCard) {
+            const img = productCard.querySelector('img');
+            if (img) {
+                openProductModal(productCard, img);
+                console.log(`🔍 Probando modal para: ${productName}`);
+            }
+        } else {
+            console.log(`❌ No se encontró producto: ${productName}`);
         }
-    }
+    };
+    
+    // Prueba automática
+    setTimeout(() => {
+        console.log("💡 Usa testModal('Deck Galaxy Legends') para probar detalles de carta");
+        console.log("💡 Usa testModal('Llavero Portal Estelar') para probar detalles de llavero");
+        console.log("💡 Usa testModal('Figura Heroe de Fuego') para probar detalles de accesorio");
+        console.log("💡 O haz clic en cualquier imagen de producto");
+    }, 1000);
 });
 </script>
 </body>
