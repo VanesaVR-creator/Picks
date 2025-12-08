@@ -782,8 +782,12 @@ body {
 }
 
 .product-card .card-img-top {
-    height: auto; /* Ajuste para que la imagen se vea completa */
-    object-fit: cover;
+     /* Ajuste para que la imagen se vea completa */
+    width: 100%;
+    height: 240px;
+    object-fit: contain;
+    display:block;
+    padding:0px;
     border-bottom: 1px solid #dee2e6;
 }
 
@@ -982,4 +986,654 @@ body {
     margin-bottom: 0;
 }
 /*MUSICA FANDOM FIN*/
+
+
+/*EDICIONES ESPECIALES*/
+/* Variables de color */
+:root {
+  --color-primary: #df3431;
+  --color-text: #333;
+  --color-text-light: #555;
+}
+
+/* Sección */
+.coleccionables {
+  padding: 20px;
+}
+
+.titulo-seccion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.titulo-seccion h2 {
+  font-size: 1.5rem;
+  color: var(--color-text);
+}
+
+.link-ver-todo {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #555;
+}
+
+.link-ver-todo:hover {
+  color: var(--color-primary);
+}
+
+/* Grid */
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.producto {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #eee;
+}
+
+.producto img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.producto h3 {
+  font-size: 1rem;
+  margin: 10px 0 5px;
+  color: var(--color-text);
+}
+
+.producto p {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .grid-productos {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/*COLECCIONES ESPECIALES*/
+/* VARIABLES */
+:root {
+  --color-primary: #df3431;
+  --text-dark: #222;
+  --text-light: #777;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.featured {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  font-family: "Poppins", sans-serif;
+}
+
+/* TITULO Y ENLACE */
+.featured-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.featured-header h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.view-all {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+}
+
+/* GRID DE TARJETAS */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+/* TARJETA */
+.item-card {
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-5px);
+}
+
+/* FONDOS SUPERIORES */
+.bg-1 { background: #faf6e1; }
+.bg-2 { background: #f5eafd; }
+.bg-3 { background: #e7f1fc; }
+.bg-4 { background: #fdeaea; }
+
+/* CONTENIDO INTERNO */
+.item-info {
+  padding: 20px;
+  background: white;
+  margin-top: 120px;
+  border-radius: 0 0 18px 18px;
+}
+
+.tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-light);
+  letter-spacing: 1px;
+}
+
+.item-info h3 {
+  margin-top: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.item-info p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin: 4px 0 15px;
+}
+
+/* PRECIOS */
+.price {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 15px;
+}
+
+.price .new {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.price .old {
+  font-size: 0.9rem;
+  color: #bbb;
+  text-decoration: line-through;
+}
+
+/* BOTÓN */
+.add {
+  padding: 8px 15px;
+  background: white;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.add:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ====== STYLES ADICIONALES PARA LAS NUEVAS SECCIONES ====== */
+
+/* Asegura la misma estructura visual en todas las nuevas secciones */
+.featured { margin-top: 36px; }
+.featured-header .view-all { color: var(--color-primary); }
+
+/* Ajustes finos para cards-container si acaso */
+.cards-container { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; align-items: stretch;}
+
+/* Asegurar que todas las item-card se vean iguales */
+.item-card { display:flex; flex-direction:column; justify-content:space-between; min-height: 260px; text-align: center; }
+
+/* Mantener separación visual del contenido interno */
+.item-info { margin-top: 0; padding: 18px; }
+
+/* Botón: ajuste ancho para tarjetas con texto largo */
+.item-info .add { width: 100%; }
+
+/* Tipografías de título en tarjetas (consistencia) */
+.item-info h3 { font-size: 1.05rem; line-height:1.1; }
+
+/* Pequeños ajustes responsive */
+@media (max-width: 992px) {
+  .cards-container { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 576px) {
+  .cards-container { grid-template-columns: 1fr; }
+  .item-info { margin-top: 80px; padding: 14px; }
+}
+
+.product-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.item-card {
+  margin: 0 auto;     /* Esto la centra */
+  text-align: center; /* Alinea el contenido */
+}
+
+.item-card img {
+  width: 100%;
+  height: 150px;   /* Ajusta el tamaño de la tarjeta */
+  object-fit: cover;
+  display: block;
+}
+
+.item-card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: auto; /* evita que se haga gigante */
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Imagen arriba pegada bien */
+.item-card img {
+  width: 100%;
+  height: 260px; 
+  object-fit: cover;
+  display: block;
+}
+
+/* Contenido de la tarjeta */
+.item-card .card-body {
+  padding: 15px;
+  text-align: center;
+}
+
+/* Mini galería o productos */
+.galeria {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.galeria .item {
+  width: 180px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+
+.galeria .item:hover {
+  transform: scale(1.05);
+}
+
+/* MODAL DE DETALLES DE PRODUCTO */
+.product-modal-content {
+    border-radius: 1rem;
+    position: relative;
+    padding: 0;
+}
+
+/* Botón de cierre en la esquina superior derecha */
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.modal-close-btn:hover {
+    opacity: 0.9;
+}
+
+.modal-product-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.modal-product-price {
+    font-size: 2.2rem;
+    color: var(--color-primary); /* Rojo */
+}
+
+/* Imagen de producto dentro del modal */
+.product-image-preview {
+    background-color: #f7f7f7;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.product-image-preview img {
+    max-height: 500px;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Acordeón de detalles (estilo minimalista) */
+.accordion-item {
+    border: none;
+    border-bottom: 1px solid #eee;
+}
+
+.accordion-header {
+    margin: 0;
+}
+
+.accordion-button {
+    font-weight: 600;
+    padding: 1rem 0;
+    background-color: #ffffff;
+    color: #222222;
+    box-shadow: none;
+    transition: color 0.2s;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--color-primary);
+}
+
+.accordion-body {
+    padding: 0.5rem 0 1rem 0;
+}
+
+/* Responsive para el modal */
+@media (max-width: 767.98px) {
+    .modal-dialog {
+        margin: 0;
+        min-height: 100vh;
+    }
+    .product-modal-content {
+        min-height: 100vh;
+        border-radius: 0;
+    }
+    .modal-body {
+        padding: 15px !important;
+    }
+    .modal-product-name {
+        font-size: 1.5rem;
+    }
+    .modal-product-price {
+        font-size: 1.8rem; 
+    }
+}
+
+.carousel-img {
+  height: 360px; 
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+}
+/*EDICION ESPECIAL FIN/*
+
+/*LLAVEROS*/
+/* Ajusta TODAS las imágenes del carrusel */
+.carousel-item img {
+    height: 380px;          /* Ajusta la altura que quieras */
+    object-fit: cover;      /* Recorta la imagen pero NO la deforma */
+    object-position: center;
+    border-radius: 12px;    /* Opcional: bordecitos bonitos */
+}
+
+/* En pantallas pequeñas: más bajito */
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-item img {
+        height: 200px;
+    }
+}
+.carousel-item img {
+    height: 380px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+/* Cambiar texto del carrusel a color negro */
+.carousel-caption h5,
+.carousel-caption p {
+    color: #000 !important;      /* Texto negro */
+    text-shadow: none !important; /* Quita la sombra blanca que pone Bootstrap */
+}
+
+/* Opcional: fondo blanco semitransparente para más legibilidad */
+.carousel-caption {
+    background: rgba(255, 255, 255, 0.40); 
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+/* Mantener tamaño parejo de imágenes */
+.carousel-item img {
+    height: 380px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Mover el texto más abajo y hacerlo más elegante */
+.carousel-caption {
+    bottom: 15px;              /* Baja el caption */
+    background: rgba(255, 255, 255, 0.55); 
+    padding: 10px 15px;
+    border-radius: 10px;
+    width: 85%;
+    margin: 0 auto;
+}
+
+/* Texto negro */
+.carousel-caption h5,
+.carousel-caption p {
+    color: #000 !important;
+    text-shadow: none !important;
+}
+
+/* En pantallas pequeñas: bajar aún más el texto para que no estorbe */
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 250px;
+    }
+
+    .carousel-caption {
+        bottom: 5px;
+        width: 90%;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+}
+/* Carrusel más grande (alto aumentado) */
+.carousel-item img {
+    height: 460px;            /* ← AQUI lo hicimos más grande */
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+}
+
+/* Texto acomodado y más abajo */
+.carousel-caption {
+    bottom: 25px;             /* ← Baja el cuadro del texto */
+    background: rgba(220, 220, 220, 0.65); 
+    padding: 12px 20px;
+    border-radius: 12px;
+    width: 75%;               /* Más estrecho y estético */
+    margin: 0 auto;
+}
+
+/* Letras negras */
+.carousel-caption h5,
+.carousel-caption p {
+    color: #000 !important;
+    text-shadow: none !important;
+}
+
+/* Responsive para celulares */
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 300px;
+    }
+
+    .carousel-caption {
+        bottom: 10px;
+        width: 85%;
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-item img {
+        height: 240px;
+    }
+}
+/* Contenedor centrado */
+.llaveros-banner {
+    display: flex;
+    justify-content: center;
+    margin: 45px 0;
+}
+
+/* Tarjeta principal */
+.llaveros-card {
+    width: 70%;
+    background: linear-gradient(135deg, #ff4b4b, #ff8f8f); /* Rojo degradado */
+    padding: 40px;
+    border-radius: 25px;
+    color: #fff;
+    text-align: center;       /* Centra el título y el texto */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Hover bonito */
+.llaveros-card:hover {
+    transform: translateY(-6px);
+}
+
+/* Título centrado */
+.llaveros-card h2 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+/* Texto */
+.llaveros-card p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .llaveros-card {
+        width: 90%;
+        padding: 30px;
+    }
+
+    .llaveros-card h2 {
+        font-size: 24px;
+    }
+
+    .llaveros-card p {
+        font-size: 16px;
+    }
+}
+.product-card {
+    margin-bottom: 40px;   /* Ajusta si quieres más (50px, 60px, etc.) */
+}
+/* Contenedor de cada fila de productos */
+.cards-container {
+    display: flex;
+    flex-wrap: nowrap;   /* Hace que salgan en fila, no saltan a otra línea */
+    justify-content: center;
+    gap: 20px;           /* Separación entre tarjetas */
+    margin-bottom: 40px; /* ESPACIO ENTRE FILAS */
+}
+
+/* Tarjetas individuales */
+.item-card {
+    width: 260px;        /* Todas del mismo tamaño */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* Imagen */
+.item-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+/* Cuerpo */
+.item-info {
+    padding: 16px;
+    text-align: center;
+}
+
+/* Asegurar que no se peguen al borde */
+.product-card {
+    display: flex;
+    flex-direction: column;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
 

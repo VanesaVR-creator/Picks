@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Picks | Coleccionables</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="top-bar text-center small py-1">
+    <span>Envíos a todo México • Pagos seguros • Coleccionables originales</span>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top main-navbar">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">
+        <span class="logo-icon">P</span>icks
+      </a>
+
+      <button type="button" id="searchTrigger" class="search-trigger d-none d-lg-flex">
+        <span class="search-icon">🔍</span>
+        <span class="search-text">Buscar</span>
+      </button>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+            <!--NAVBAR INICIO-->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#ediciones-especiales">Ediciones especiales</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="fandomDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+               Fandom
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="fandomDropdown">
+              <li><a class="dropdown-item" href="anime.html">Anime</a></li>
+              <li><a class="dropdown-item" href="mangas.html">Manga</a></li>
+              <li><a class="dropdown-item" href="musica.html">Música</a></li>
+              <li><a class="dropdown-item" href="comics.html">Cómics</a></li>
+              <li><a class="dropdown-item" href="caricaturas.html">Caricaturas</a></li>
+              <li><a class="dropdown-item" href="seriesPeliculas.html">Películas y Series</a></li>
+            </ul>
+          </li>
+             
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="categoriaDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+    
+              Categoría
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="categoriaDropdown">
+              <li><a class="dropdown-item" href="#">Figuras</a></li>
+              <li><a class="dropdown-item" href="#">Cartas</a></li>
+              <li><a class="dropdown-item" href="#">Llaveros</a></li>
+              <li><a class="dropdown-item" href="#">Posters</a></li>
+              <li><a class="dropdown-item" href="#">Accesorios</a></li>
+              <li><a class="dropdown-item" href="#">Cómics</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#ofertas">Ofertas</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#correo">Correo</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#contacto">Contacto</a>
+          </li>
+
+          <li class="nav-item ms-lg-3">
+            <button type="button" id="cartTrigger" class="btn btn-outline-secondary btn-sm cart-trigger">
+              🛒 <span id="cartCount">0</span>
+            </button>
+          </li>
+
+          <li class="nav-item ms-lg-3">
+            <a href="#ofertas" class="btn btn-primary btn-sm">
+              Ver colección
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="searchOverlay" class="search-overlay">
+    <div class="search-overlay-backdrop"></div>
+
+    <div class="search-overlay-content">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            <div class="search-overlay-header">
+              <span class="search-icon">🔍</span>
+              <input
+                id="searchInput"
+                type="search"
+                class="form-control search-overlay-input"
+                placeholder="Buscar coleccionables por nombre, fandom o categoría..."
+                aria-label="Buscar"
+              />
+              <button
+                type="button"
+                id="searchClose"
+                class="btn-close ms-2"
+                aria-label="Cerrar"
+              ></button>
+            </div>
+            <p class="search-overlay-helper">
+              Ejemplos: “figuras anime”, “cartas holográficas”, “poster ciudad”, “llaveros Marvel”.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--CARRITO-->
+  <div id="cartOverlay" class="cart-overlay">
+    <div class="cart-backdrop"></div>
+
+    <aside class="cart-panel">
+      <div class="cart-header">
+        <h2 class="cart-title">Tu carrito</h2>
+        <button
+          type="button"
+          id="cartClose"
+          class="btn-close"
+          aria-label="Cerrar"
+        ></button>
+      </div>
+
+      <div class="cart-body">
+        <div id="cartItems" class="cart-items cart-items-empty">
+          Tu carrito está vacío.
+        </div>
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cartTotal">MXN$0.00</span>
+        </div>
+        <button class="btn btn-primary w-100" type="button">
+          Ir a pagar
+        </button>
+      </div>
+    </aside>
+  </div>
+<!--FILTRO DE PRODUCTOS: nota: falta arreglar el filtro ya que aun no sirve correctamente-->
+   <section id="productos" class="productos py-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="sidebar-filters shadow-sm p-4 bg-white sticky-lg-top">
+                    <h5 class="fw-bold mb-3">Filtrar</h5>
+                    <ul class="list-unstyled sidebar-menu">
+                        <li class="mb-2"><a href="#" class="sidebar-link active">Todos</a></li>
+                        <li class="mb-2"><a href="#" class="sidebar-link">Manga</a></li>
+                        <li class="mb-2"><a href="#" class="sidebar-link">Romcom</a></li>
+                        <li class="mb-2"><a href="#" class="sidebar-link">Clásicos</a></li>
+                        <li class="mb-2"><a href="#" class="sidebar-link">Novelas ligeras</a></li>
+                        <li class="mb-2"><a href="#" class="sidebar-link">Ediciones limitadas</a></li>
+                        <li class="mb-2"><a href="#" class="sidebar-link">Comedia</a></li>
+                        <li class="mb-2"><a href="#" class="sidebar-link">Mercancia para fans</a></li>
+                    </ul>
+
+                    <hr class="my-4" />
+                    <!--PUBLICIDAD-->
+                    <div class="ad-block bg-danger p-3 text-white text-center rounded">
+                        <p class="mb-1 small">MEJORA TU EXPERIENCIA DE COLECCIÓN</p>
+                        <h4 class="fw-bold mb-3">CONTRATA YA!</h4>
+                        <p class="lead fw-bold mb-0">POR TAN SOLO $50 PESOS AL MES</p>
+                    </div>
+
+                    <hr class="my-4" />
+                    <div class="rotating-ad-container" id="rotatingAds">
+                        </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="section-title mb-0">Mangas</h2>
+                    <span class="text-muted small">Mostrando 12 de 36 resultados</span>
+                </div>
+                <!--TARJETAS DE MANGAS-->
+                <div class="row g-4 product-grid">
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper" data-product-id="p001">
+                        <div class="product-card card shadow-sm text-center" data-name="AKU NO HANA (las flores del mal) 07 (de 11)" data-tags="manga novelas ligeras aku no hana las flores del mal" data-id="p001">
+                            <img src="/mangas-images/Aku No Hana .Las flores del mal 07.png" class="card-img-top" alt="AKU NO HANA (las flores del mal) 07" />
+                            <div class="card-body p-2">
+                                <p class="card-text small mb-1 product-fandom">Mangas</p>
+                                <h6 class="card-title fw-bold product-name">AKU NO HANA (las flores del mal) 07</h6>
+                                <p class="product-price fw-bold mb-2">$300.00</p>
+                                <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p001">
+                                    VER DETALLES
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper" data-product-id="p002">
+                        <div class="product-card card shadow-sm text-center" data-name="AKU NO HANA (las flores del mal) 09 (de 11)" data-tags="manga novelas ligeras aku no hana las flores del mal" data-id="p002">
+                            <img src="mangas-images/Aku No Hana. Las flores del mal 09.png" class="card-img-top" alt="AKU NO HANA (las flores del mal) 09" />
+                            <div class="card-body p-2">
+                                <p class="card-text small mb-1 product-fandom">Mangas</p>
+                                <h6 class="card-title fw-bold product-name">AKU NO HANA (las flores del mal) 09</h6>
+                                <p class="product-price fw-bold mb-2">$300.00</p>
+                                <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p002">
+                                    VER DETALLES
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper" data-product-id="p003">
+                        <div class="product-card card shadow-sm text-center" data-name="THE APOTHECARY DIARIES (Light novel) VOLUME 3" data-tags="novela ligera apothecary diaries" data-id="p003">
+                            <img src="/mangas-images/Apothecary Diaries Vol 03 (Light Novel).png" class="card-img-top" alt="THE APOTHECARY DIARIES (Light novel) VOLUME 3" />
+                            <div class="card-body p-2">
+                                <p class="card-text small mb-1 product-fandom">Mangas</p>
+                                <h6 class="card-title fw-bold product-name">THE APOTHECARY DIARIES VOLUME 3</h6>
+                                <p class="product-price fw-bold mb-2">$250.00</p>
+                                <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p003">
+                                    VER DETALLES
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper" data-product-id="p004">
+                        <div class="product-card card shadow-sm text-center" data-name="THE APOTHECARY DIARIES (Light novel) VOLUME 6" data-tags="novela ligera apothecary diaries" data-id="p004">
+                            <img src="/mangas-images/Apothecary Diaries Vol 06 (Light Novel).png" class="card-img-top" alt="THE APOTHECARY DIARIES (Light novel) VOLUME 6" />
+                            <div class="card-body p-2">
+                                <p class="card-text small mb-1 product-fandom">Mangas</p>
+                                <h6 class="card-title fw-bold product-name">THE APOTHECARY DIARIES VOLUME 6</h6>
+                                <p class="product-price fw-bold mb-2">$350.00</p>
+                                <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p004">VER DETALLES</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper" data-product-id="p005">
+                        <div class="product-card card shadow-sm text-center" data-name="Blue Lock #30" data-tags="manga blue lock " data-id="p005">
+                            <img src="/mangas-images/Blue Lock 30.png" class="card-img-top" alt="Blue Lock #30" />
+                            <div class="card-body p-2">
+                                <p class="card-text small mb-1 product-fandom">Mangas</p>
+                                <h6 class="card-title fw-bold product-name">Blue Lock #30</h6>
+                                <p class="product-price fw-bold mb-2">$352.00</p>
+                                <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p005">VER DETALLES</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper" data-product-id="p006">
+                        <div class="product-card card shadow-sm text-center" data-name="Blue Lock #31" data-tags="manga blue lock" data-id="p006">
+                            <img src="/mangas-images/Blue Lock 31.png" class="card-img-top" alt="Blue Lock #31" />
+                            <div class="card-body p-2">
+                                <p class="card-text small mb-1 product-fandom">Mangas</p>
+                                <h6 class="card-title fw-bold product-name">Blue Lock #31</h6>
+                                <p class="product-price fw-bold mb-2">$450.00</p>
+                                <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p006">VER DETALLES</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper" data-product-id="p007">
+                        <div class="product-card card shadow-sm text-center" data-name="Blue Lock Egoist Bible Fanbook [Libro para fans]" data-tags="mercancia para fans blue lock" data-id="p007">
+                            <img src="/mangas-images/Blue Lock Egoist Bible Fanbook [Libro para fans].jpg" class="card-img-top" alt="Blue Lock Egoist Bible Fanbook [Libro para fans]" />
+                            <div class="card-body p-2">
+                                <p class="card-text small mb-1 product-fandom">Mangas</p>
+                                <h6 class="card-title fw-bold product-name">Blue Lock Egoist Bible Fanbook [Libro para fans]</h6>
+                                <p class="product-price fw-bold mb-2">$399.00</p>
+                                <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p007">VER DETALLES</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper" data-product-id="p008">
+                        <div class="product-card card shadow-sm text-center" data-name="Bocchi The Rock Vol.1" data-tags="comedia bocchi the rock" data-id="p008">
+                            <img src="/mangas-images/Bocchi The Rock Vol 01.png" class="card-img-top" alt="Bocchi The Rock Vol.1" />
+                            <div class="card-body p-2">
+                                <p class="card-text small mb-1 product-fandom">Mangas</p>
+                                <h6 class="card-title fw-bold product-name">Bocchi The Rock Vol.1</h6>
+                                <p class="product-price fw-bold mb-2">$356.00</p>
+                                <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p008">VER DETALLES</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper" data-product-id="p009">
+                        <div class="product-card card shadow-sm text-center" data-name="Chainsaw Man Movie Reze Arc Theater Bonus Guide Book" data-tags="chainsaw man manga" data-id="p009">
+                            <img src="/mangas-images/chainsaw-man-reze-arc-cine-bonus-guidebook.jpeg" class="card-img-top" alt="Chainsaw Man Movie Reze Arc Theater Bonus Guide Book" />
+                            <div class="card-body p-2">
+                                <p class="card-text small mb-1 product-fandom">Mangas</p>
+                                <h6 class="card-title fw-bold product-name">Chainsaw Man Movie Reze Arc Theater...</h6>
+                                <p class="product-price fw-bold mb-2">$493.00</p>
+                                <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p009">VER DETALLES</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper" data-product-id="p010">
+                        <div class="product-card card shadow-sm text-center" data-name="Dandadan VOL.14" data-tags="manga ediciones limitadas dandadan" data-id="p010">
+                            <img src="/mangas-images/Dandadan Vol 14.png" class="card-img-top" alt="Dandadan VOL.14" />
+                            <div class="card-body p-2">
+                                <p class="card-text small mb-1 product-fandom">Mangas</p>
+                                <h6 class="card-title fw-bold product-name">Dandadan VOL.14</h6>
+                                <p class="product-price fw-bold mb-2">$275.00</p>
+                                <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p010">VER DETALLES</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper" data-product-id="p011">
+                        <div class="product-card card shadow-sm text-center" data-name="THE APOTHECARY DIARIES VOL.2" data-tags="novela ligera the apothecary diaries" data-id="p011">
+                            <img src="/mangas-images/Diarios de la boticaria 02.png" class="card-img-top" alt="THE APOTHECARY DIARIES VOL.2" />
+                            <div class="card-body p-2">
+                                <p class="card-text small mb-1 product-fandom">Mangas</p>
+                                <h6 class="card-title fw-bold product-name">THE APOTHECARY DIARIES VOL.2</h6>
+                                <p class="product-price fw-bold mb-2">$399.00</p>
+                                <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p011">VER DETALLES</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper" data-product-id="p012">
+                        <div class="product-card card shadow-sm text-center" data-name="Dragon Ball Kanzenban 01 " data-tags="Dragon Ball Kanzenban clasicos" data-id="p012">
+                            <img src="/mangas-images/Dragon Ball Kanzenban 01.png" class="card-img-top" alt="Dragon Ball Kanzenban 01" />
+                            <div class="card-body p-2">
+                                <p class="card-text small mb-1 product-fandom">Mangas</p>
+                                <h6 class="card-title fw-bold product-name">Dragon Ball Kanzenban 01</h6>
+                                <p class="product-price fw-bold mb-2">$453.00</p>
+                                <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p012">VER DETALLES</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p013"><div class="product-card card shadow-sm text-center" data-name="Evangelion (Neon Genesis) Edicion Deluxe 02" data-tags="evangelion clasicos" data-id="p013"><img src="/mangas-images/Evangelion Edicion Deluxe 02.png" class="card-img-top" alt="Evangelion Edicion Deluxe (Neon Genesis) 02" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Evangelion Edicion Deluxe (Neon Genesis) 02</h6><p class="product-price fw-bold mb-2">$350.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p013">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p014"><div class="product-card card shadow-sm text-center" data-name="Frieren Vol.13" data-tags="ficcion frieren" data-id="p014"><img src="/mangas-images/Frieren Vol 13.png" class="card-img-top" alt="Frieren Vol.13" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Frieren Vol.13</h6><p class="product-price fw-bold mb-2">$290.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p014">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p015"><div class="product-card card shadow-sm text-center" data-name="Heaven Officials Blessing 03" data-tags="heaven officials blessing manga" data-id="p015"><img src="/mangas-images/Heaven Officials Blessing 03.png" class="card-img-top" alt="Heaven Officials Blessing 03" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Heaven Officials Blessing- 03</h6><p class="product-price fw-bold mb-2">$350.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p015">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p016"><div class="product-card card shadow-sm text-center" data-name="Inuyasha 15- Rumiko Takahashi" data-tags="shonen ficcion clasicos" data-id="p016"><img src="/mangas-images/Inuyasha 15.png" class="card-img-top" alt="Inuyasha 15- Rumiko Takahashi" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Inuyasha 15- Rumiko Takahashi</h6><p class="product-price fw-bold mb-2">$480.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p016">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p017"><div class="product-card card shadow-sm text-center" data-name="Jujutsu Kaisen Un Verano Que Avanza Y Un Otoño De Vuelta" data-tags="jukutsu kaisen ficcion" data-id="p017"><img src="/mangas-images/Jujutsu Kaisen Un Verano Que Avanza Y Un Otoño De Vuelta.png" class="card-img-top" alt="Jujutsu Kaisen Un Verano Que Avanza Y Un Otoño De Vuelta" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Jujutsu Kaisen "Guerra de hechiceros"</h6><p class="product-price fw-bold mb-2">$320.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p017">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p018"><div class="product-card card shadow-sm text-center" data-name="Kagurabachi 02" data-tags="kagurabachi manga" data-id="p018"><img src="/mangas-images/Kagurabachi 02.png" class="card-img-top" alt="Kagurabachi 02" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Kagurabachi 02</h6><p class="product-price fw-bold mb-2">$200.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p018">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p019"><div class="product-card card shadow-sm text-center" data-name="Komi San no puede comunicarse No.18" data-tags="komi san no puede comunicarse comedia" data-id="p019"><img src="/mangas-images/Komi San no puede comunicarse 18.png" class="card-img-top" alt="Komi San no puede comunicarse No.18" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Komi San no puede comunicarse No.18</h6><p class="product-price fw-bold mb-2">$299.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p019">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p020"><div class="product-card card shadow-sm text-center" data-name="Chainsaw-Man World end GirlFriend" data-tags="Chainsaw Man World end GirlFriend shonen mercancia para fans" data-id="p020"><img src="/mangas-images/chainsaw man.jpeg" class="card-img-top" alt="Chainsaw-Man World end GirlFriend" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Chainsaw-Man World end GirlFriend</h6><p class="product-price fw-bold mb-2">$580.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p020">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p021"><div class="product-card card shadow-sm text-center" data-name="Minecraft The Manga Vol 02" data-tags="minecraft the manga" data-id="p021"><img src="/mangas-images/Minecraft The Manga Vol 02.png" class="card-img-top" alt="Minecraft The Manga Vol 02" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Minecraft The Manga Vol 02</h6><p class="product-price fw-bold mb-2">$450.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p021">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p022"><div class="product-card card shadow-sm text-center" data-name="Mushoku Tensei Novela N.14" data-tags="Mushoku Tensei novela ligera ficcion" data-id="p022"><img src="/mangas-images/Mushoku Tensei Novela N.14.png" class="card-img-top" alt="Mushoku Tensei Novela N.14" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Mushoku Tensei Novela N.14</h6><p class="product-price fw-bold mb-2">$310.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p022">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p023"><div class="product-card card shadow-sm text-center" data-name="My Hero Academia #1 [Jump Remix]" data-tags="My Hero Academia manga" data-id="p023"><img src="mangas-images/My Hero Academia.png" class="card-img-top" alt="My Hero Academia #1 [Jump Remix]" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">My Hero Academia #1 [Jump Remix]</h6><p class="product-price fw-bold mb-2">$450.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p023">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p024"><div class="product-card card shadow-sm text-center" data-name="My Hero Academia Team Up Mission 07" data-tags="my hero academia manga" data-id="p024"><img src="/mangas-images/My Hero Academia Team Up Mission 07.png" class="card-img-top" alt="My Hero Academia Team Up Mission 07" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">My Hero Academia Team Up Mission 07</h6><p class="product-price fw-bold mb-2">$200.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p024">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p025"><div class="product-card card shadow-sm text-center" data-name="My Hero Academia Vol 41" data-tags="my hero academia manga" data-id="p025"><img src="/mangas-images/My Hero Academia Vol 41.png" class="card-img-top" alt="My Hero Academia Vol 41" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">My Hero Academia Vol.41</h6><p class="product-price fw-bold mb-2">$450.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p025">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p026"><div class="product-card card shadow-sm text-center" data-name="Nana 25Th Anniversary Edition Vol 01" data-tags="nana anniversary novela ligera" data-id="p026"><img src="/mangas-images/Nana 25Th Anniversary Edition Vol 01.png" class="card-img-top" alt="nana anniversary novela ligera" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Nana 25Th Anniversary Edition Vol 01</h6><p class="product-price fw-bold mb-2">$350.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p026">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p027"><div class="product-card card shadow-sm text-center" data-name="No hay Dios en el Edén nº 03" data-tags="No hay Dios en el Edén novela ligera" data-id="p027"><img src="/mangas-images/No hay Dios en el Edén nº 03.png" class="card-img-top" alt="No hay Dios en el Edén nº 03" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">No hay Dios en el Edén nº 03</h6><p class="product-price fw-bold mb-2">$290.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p027">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p028"><div class="product-card card shadow-sm text-center" data-name="One Piece 97" data-tags="One Piece 97 clasicos" data-id="p028"><img src="/mangas-images/One Piece 97.png" class="card-img-top" alt="One Piece 97" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">One Piece 97</h6><p class="product-price fw-bold mb-2">$450.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p028">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p029"><div class="product-card card shadow-sm text-center" data-name="One Piece Episode A 01" data-tags="one piece clasicos" data-id="p029"><img src="/mangas-images/One Piece Episode A 01.png" class="card-img-top" alt="One Piece Episode A 01" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">One Piece Episode A 01</h6><p class="product-price fw-bold mb-2">$320.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p029">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p030"><div class="product-card card shadow-sm text-center" data-name="One Punch Man 33" data-tags="one punch man clasicos" data-id="p030"><img src="/mangas-images/One Punch Man 33.png" class="card-img-top" alt="One Punch Man 33" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">One Punch Man 33</h6><p class="product-price fw-bold mb-2">$299.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p030">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p031"><div class="product-card card shadow-sm text-center" data-name="Ranma 1/2 Vol.16" data-tags="ranma 1/2 romcom comedia" data-id="p031"><img src="/mangas-images/Ranma 1 2 16.png" class="card-img-top" alt="Ranma 1/2 Vol.16" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Ranma 1/2 Vol.16</h6><p class="product-price fw-bold mb-2">$350.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p031">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p032"><div class="product-card card shadow-sm text-center" data-name="Rent-A-Girlfriend- Kanojo, Okarishimasu #41 Ed. Limitada [+ Libro de arte]" data-tags="rent a girlfriend romcom edicion limitada" data-id="p032"><img src="/mangas-images/Rent-A-Girlfriend.jpeg" class="card-img-top" alt="Rent-A-Girlfriend- #41 Ed. Limitada" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Rent-A-Girlfriend- #41 Ed. Limitada...</h6><p class="product-price fw-bold mb-2">$280.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p032">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p033"><div class="product-card card shadow-sm text-center" data-name="Saint Seiya The Lost Canvas - El Mito De Hades" data-tags="caballeros del zodiaco saint seiya clasicos" data-id="p033"><img src="/mangas-images/Saint Seiya The Lost Canvas - El Mito De Hades.png" class="card-img-top" alt="Saint Seiya The Lost Canvas - El Mito De Hades" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Saint Seiya The Lost Canvas - El Mito De Hades</h6><p class="product-price fw-bold mb-2">$350.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p033">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p034"><div class="product-card card shadow-sm text-center" data-name="Sword art online 002- Reki Kawakara" data-tags="sword art online ficcion comedia" data-id="p034"><img src="/mangas-images/SAO NOVELS AINCRAD N.2- NOVEL.png" class="card-img-top" alt="Sword art online 002- Reki Kawakara" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Sword art online 002- Reki Kawakara</h6><p class="product-price fw-bold mb-2">$250.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p034">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p035"><div class="product-card card shadow-sm text-center" data-name="Spy X Family 15-Tatsuya Endo" data-tags="Spy X Family comedia" data-id="p035"><img src="/mangas-images/Spy X Family 15.png" class="card-img-top" alt="Spy X Family 15-Tatsuya Endo" /><div class="card-body p-2"><p class="card-text small mb-1 product-fandom">Mangas</p><h6 class="card-title fw-bold product-name">Spy X Family 15-Tatsuya Endo</h6><p class="product-price fw-bold mb-2">$220.00</p><button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p035">VER DETALLES</button></div></div></div>
+                    <div class="col-6 col-sm-4 col-md-3 product-card-wrapper hidden-on-load" data-product-id="p036">
+                    <div class="product-card card shadow-sm text-center" data-name="Tower of God No.6" data-tags="Tower of God shonen" data-id="p036">
+                    <img src="/mangas-images/TOWER OF GOD N.6.png" class="card-img-top" alt="Tower of God No.6" />
+                    <div class="card-body p-2">
+                    <p class="card-text small mb-1 product-fandom">Mangas</p>
+                    <h6 class="card-title fw-bold product-name">Tower of God No.6</h6>
+                    <p class="product-price fw-bold mb-2">$250.00</p>
+                    <button class="btn btn-sm btn-outline-primary w-100 view-details-btn" data-bs-toggle="modal" data-bs-target="#productDetailModal" data-product-id="p036">VER DETALLES</button>
+                    </div>
+                    </div>
+</div>
+                  </div>
+
+                <div class="text-center mt-4">
+                    <button id="loadMoreBtn" class="btn btn-outline-primary mb-3">
+                        Mostrar más resultados
+                    </button>
+                    <button id="loadLessBtn" class="btn btn-outline-secondary mb-3" style="display:none;">
+                        Mostrar menos resultados
+                    </button>
+                </div>
+                </div>
+        </div>
+    </div>
+</section>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<!--contacto y footer-->
+  <section id="correo" class="correo-section py-5">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <h3 class="section-title">Recibe ofertas y lanzamientos primero</h3>
+          <p class="section-text">
+            Déjanos tu correo para recibir preventas, cupones especiales y
+            recordatorios de tus coleccionables favoritos.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <form class="newsletter-form d-flex flex-column flex-sm-row gap-2">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Tu correo electrónico"
+              required
+            />
+            <button type="submit" class="btn btn-primary">
+              Suscribirme
+            </button>
+          </form>
+          <small class="d-block mt-2 text-muted small">
+            Más adelante aquí podrás iniciar sesión para pagar y ver tu historial de pedidos.
+          </small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contacto-section py-5 border-top">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h3 class="section-title">Contacto</h3>
+          <p class="section-text">
+            ¿Tienes dudas sobre un producto, tu pedido o quieres sugerir nuevas
+            licencias y colecciones? Escríbenos.
+          </p>
+          <ul class="list-unstyled mb-0">
+            <li><strong>Email:</strong> soporte@picks.mx</li>
+            <li><strong>WhatsApp:</strong> +52 466 260 9360</li>
+            <li><strong>Horario:</strong> Lun a Vie, 10:00 a 18:00 hrs</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <form class="contact-form">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" />
+            </div>
+            <div class="mb-3">
+              <label for="correoContacto" class="form-label">Correo</label>
+              <input type="email" class="form-control" id="correoContacto" />
+            </div>
+            <div class="mb-3">
+              <label for="mensaje" class="form-label">Mensaje</label>
+              <textarea class="form-control" id="mensaje" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-primary">
+              Enviar mensaje
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer py-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5 class="mb-3">Picks</h5>
+          <p class="small mb-0">
+            E-commerce especializado en figuras, cartas, posters, accesorios y
+            más coleccionables para fans de todas las edades.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h6>Navegación</h6>
+          <ul class="list-unstyled small">
+            <li><a href="#ediciones-especiales">Ediciones especiales</a></li>
+            <li><a href="#ofertas">Ofertas</a></li>
+            <li><a href="#correo">Correo</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6>Síguenos</h6>
+          <ul class="list-unstyled small">
+            <li>Instagram</li>
+            <li>Facebook</li>
+            <li>X (Twitter)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center small mt-3 text-muted">
+        © 2025 Picks. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!--MODAL DE PRODUCTOS-->
+  <div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content product-modal-content">
+              <button type="button" class="btn-close modal-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+              
+              <div class="modal-body p-4 p-md-5">
+                  <div class="row">
+                      <div class="col-md-5">
+                          <div class="product-image-preview">
+                              <img id="modalProductImage" src="" alt="Imagen del Producto" class="img-fluid rounded-3" />
+                          </div>
+                      </div>
+
+                      <div class="col-md-7 mt-4 mt-md-0">
+                          <h1 id="modalProductName" class="modal-product-name mb-2">Nombre del Álbum</h1>
+                          <p class="text-muted small mb-3"><span id="modalProductFandom">Música</span> | <span id="modalProductTags">Vinilo, Pop, Edición</span></p>
+
+                          <div class="modal-price-block mb-4">
+                              <span id="modalProductPrice" class="modal-product-price fw-bold">$0.00</span>
+                          </div>
+
+                          <button id="modalAddToCartBtn" class="btn btn-primary btn-lg w-100 mb-3" data-id="" data-name="" data-price="">
+                              🛒 Añadir al Carrito
+                          </button>
+                          
+                          <div class="accordion" id="productDetailsAccordion">
+                              <div class="accordion-item">
+                                  <h2 class="accordion-header" id="headingOne">
+                                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                          Detalles del Producto y Contenido
+                                      </button>
+                                  </h2>
+                                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#productDetailsAccordion">
+                                      <div class="accordion-body">
+                                          <p id="modalProductDescription">Descripción detallada del contenido del álbum o artículo: Incluye vinilo LP de 180g, inserto con letras, y póster exclusivo.</p>
+                                          <ul>
+                                              <li>Artista: <span id="modalProductArtist">Artista Desconocido</span></li>
+                                              <li>Formato: Vinilo LP</li>
+                                              <li>SKU: SKU-001</li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="accordion-item">
+                                  <h2 class="accordion-header" id="headingTwo">
+                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                          Información de Envío y Devoluciones
+                                      </button>
+                                  </h2>
+                                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#productDetailsAccordion">
+                                      <div class="accordion-body">
+                                          <p>Envío a todo México en 3-5 días hábiles. Costo de envío se calcula al finalizar la compra. Devoluciones aceptadas solo si el producto llega dañado y sin abrir.</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // =======================================================
+        // I. VARIABLES Y ELEMENTOS GLOBALES
+        // =======================================================
+
+        // NAVBAR Y BUSCADOR
+        const searchTrigger  = document.getElementById("searchTrigger");
+        const searchOverlay  = document.getElementById("searchOverlay");
+        const searchInput    = document.getElementById("searchInput");
+        const searchClose    = document.getElementById("searchClose");
+        
+        // CARRITO
+        const cartTrigger        = document.getElementById("cartTrigger");
+        const cartOverlay        = document.getElementById("cartOverlay");
+        const cartClose          = document.getElementById("cartClose");
+        const cartItemsContainer = document.getElementById("cartItems");
+        const cartTotalElement   = document.getElementById("cartTotal");
+        const cartCountElement   = document.getElementById("cartCount");
+        let cart = [];
+       // PRODUCTOS Y MOSTRAR MÁS
+const cardWrappers = document.querySelectorAll(".product-grid .product-card-wrapper"); // Cambiado a product-card-wrapper para mayor precisión
+const loadMoreBtn = document.getElementById("loadMoreBtn");
+const loadLessBtn = document.getElementById("loadLessBtn"); 
+const currentCountSpan = document.querySelector(".text-muted.small");
+
+const INITIAL_COUNT = 12;      // Número inicial de tarjetas a mostrar
+const STEP_COUNT = 12;         // Cuántas tarjetas se muestran/ocultan por clic
+const TOTAL_COUNT = 36;        // <-- MODIFICADO a 36
+let currentlyVisible = INITIAL_COUNT;
+
+// Función para actualizar el texto de "Mostrando X de Y resultados"
+const updateHeaderCount = () => {
+    if (currentCountSpan) {
+        currentCountSpan.textContent = `Mostrando ${currentlyVisible} de ${TOTAL_COUNT} resultados`;
+    }
+};
+
+// Función para mostrar/ocultar tarjetas y botones
+const toggleCardsAndButtons = () => {
+    // 1. Mostrar/Ocultar tarjetas
+    cardWrappers.forEach((wrapper, index) => {
+        if (index < currentlyVisible) {
+            wrapper.classList.remove('hidden-on-load');
+        } else {
+            wrapper.classList.add('hidden-on-load');
+        }
+    });
+
+    // 2. Actualizar contador en la cabecera
+    updateHeaderCount();
+
+    // 3. Controlar visibilidad de botones
+    if (loadMoreBtn) {
+        // Ocultar "Mostrar Más" si ya se muestran todas las tarjetas
+        if (currentlyVisible >= TOTAL_COUNT) {
+            loadMoreBtn.style.display = 'none';
+        } else {
+            loadMoreBtn.style.display = 'block';
+        }
+    }
+
+    if (loadLessBtn) {
+        // Mostrar "Mostrar Menos" si se han mostrado más del conteo inicial
+        if (currentlyVisible > INITIAL_COUNT) {
+            loadLessBtn.style.display = 'block';
+        } else {
+            loadLessBtn.style.display = 'none';
+        }
+    }
+
+    // Si se muestran todas las tarjetas, forzar a que se vea "Mostrar Menos"
+    // (Útil si se cargaron todas las tarjetas desde el inicio)
+    if (currentlyVisible === TOTAL_COUNT && currentlyVisible > INITIAL_COUNT) {
+        loadLessBtn.style.display = 'block';
+    }
+};
+
+// Listener para "Mostrar Más"
+if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', () => {
+        // Aumentar el contador, asegurándose de no pasar el TOTAL_COUNT
+        currentlyVisible = Math.min(currentlyVisible + STEP_COUNT, TOTAL_COUNT);
+        toggleCardsAndButtons();
+    });
+}
+
+// Listener para "Mostrar Menos"
+if (loadLessBtn) {
+    loadLessBtn.addEventListener('click', () => {
+        // Disminuir el contador, asegurándose de no bajar del INITIAL_COUNT
+        currentlyVisible = Math.max(currentlyVisible - STEP_COUNT, INITIAL_COUNT);
+        toggleCardsAndButtons();
+    });
+}
+
+// Inicializar: mostrar las tarjetas iniciales y configurar botones
+toggleCardsAndButtons();
+        // =======================================================
+        // III. FUNCIONALIDAD DEL MODAL DE DETALLES
+        // =======================================================
+
+        document.querySelectorAll('.view-details-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                // Encuentra la tarjeta padre más cercana
+                const card = e.target.closest('.product-card');
+                if (!card) return;
+// 1. Obtener datos de la tarjeta
+const id = card.dataset.id || e.target.dataset.productId;
+const name = card.dataset.name || 'Producto Desconocido';
+const priceText = card.querySelector('.product-price').textContent;
+
+// arrastre de precios para el modal
+let cleanedPriceText = priceText.replace('$', '').replace('MXN', '').trim();
+
+cleanedPriceText = cleanedPriceText.replace(/,/g, ''); 
+
+const price = parseFloat(cleanedPriceText) || 0; 
+
+const imageSrc = card.querySelector('.card-img-top').src;
+// ...
+                // 2. Llenar el Modal
+                modalProductName.textContent = name;
+                modalProductPrice.textContent = formatPrice(price);
+                modalProductImage.src = imageSrc;
+                
+                // Llenar el botón de "Añadir al carrito" en el modal
+                modalAddToCartBtn.dataset.id = id;
+                modalAddToCartBtn.dataset.name = name;
+                modalAddToCartBtn.dataset.price = price.toFixed(2);
+
+                // Llenar tags y descripción (usando datos de placeholder)
+                document.getElementById('modalProductTags').textContent = tags.split(' ').map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(', ');
+                modalProductDescription.innerHTML = `
+                    Descripción detallada: Este coleccionable de ${name} es una edición de ${id.substring(1)} de 35. 
+                    Ideal para coleccionistas. El formato es Vinilo LP de 180g.
+                    <br>
+                    **Contenido Exclusivo:**
+                    <ul>
+                        <li>Álbum ${name}</li>
+                        <li>Libreto de canciones</li>
+                        <li>Póster oficial o Tarjeta de foto aleatoria</li>
+                    </ul>
+                `;
+                document.getElementById('modalProductArtist').textContent = name.split(' ')[0];
+            });
+        });
+
+        // Delegar el evento de añadir al carrito al botón del modal
+        if(modalAddToCartBtn) {
+            modalAddToCartBtn.addEventListener("click", () => {
+                const id = modalAddToCartBtn.dataset.id;
+                const name = modalAddToCartBtn.dataset.name;
+                const price = parseFloat(modalAddToCartBtn.dataset.price || "0");
+
+                if (!id || !name) return;
+
+                const existing = cart.find(item => item.id === id);
+                if (existing) {
+                    existing.qty += 1;
+                } else {
+                    cart.push({ id, name, price, qty: 1 });
+                }
+
+                updateCartUI();
+                openCart();
+            });
+        }
+        // IV. PUBLICIDAD ROTATIVA
+const adContainer = document.getElementById('rotatingAds');
+const ads = [
+    { 
+        title: "¡Meses Gratis de Premium! 🎧", 
+        text: "Suscríbete ahora a **Spotify** y escucha sin límites. ¡Regístrate!",
+        link: "https://open.spotify.com/intl-es/" 
+    },
+    { 
+        title: "Vinilos de Colección 🎶", 
+        text: "Ediciones limitadas en LP de tus álbumes favoritos. ¡Ver Catálogo!",
+        link: "https://udiscover.mx/collections/vinil" 
+    },
+    { 
+        title: "Mercancía Oficial K-Pop ✨", 
+        text: "Lightsticks y álbumes con photocard exclusivos. ¡Compra ya!",
+        link: "https://www.ktown4u.com/" 
+    }
+];
+
+let currentAdIndex = 0;
+
+const renderAds = () => {
+    if (!adContainer) return;
+    
+    adContainer.innerHTML = ads.map((ad, index) => `
+        <a href="${ad.link}" target="_blank" class="ad-slide ${index === 0 ? 'active' : ''}">
+            <h5>${ad.title}</h5>
+            <p>${ad.text}</p>
+            <span class="btn btn-sm btn-light mt-3">Ver Oferta</span>
+        </a>
+    `).join('');
+};
+
+const rotateAd = () => {
+    const slides = document.querySelectorAll('.ad-slide');
+    if (slides.length === 0) return;
+
+    // Ocultar el anuncio actual
+    slides[currentAdIndex].classList.remove('active');
+
+    // Calcular el siguiente índice
+    currentAdIndex = (currentAdIndex + 1) % ads.length;
+
+    // Mostrar el siguiente anuncio
+    slides[currentAdIndex].classList.add('active');
+};
+
+if (adContainer && ads.length > 0) {
+    renderAds();
+    // Cambiar el anuncio cada 5 segundos
+    setInterval(rotateAd, 5000); 
+}
+// =======================================================
+// V. FUNCIONALIDAD DEL FILTRO DE PRODUCTOS
+// (Para solucionar la nota: "falta arreglar el filtro ya que aun no sirve correctamente")
+// =======================================================
+const filterLinks = document.querySelectorAll(".sidebar-filters .sidebar-link");
+const allProducts = document.querySelectorAll(".product-grid .product-card-wrapper");
+
+// NOTA: Asegúrate de que tu función 'normalize' esté definida arriba.
+
+filterLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // 1. Obtener el filtro (tag) y normalizarlo
+        const filterText = link.textContent.trim();
+        const filterTag = normalize(filterText);
+        
+        // **[INICIO DEL CAMBIO PARA RESETEAR EL FILTRO]**
+        // Si el filtro es "todos" o "todo" (asumiendo que este es el botón de reinicio), 
+        // establecemos una bandera.
+        const isResetFilter = (filterTag === 'todos' || filterTag === 'todo');
+        // **[FIN DEL CAMBIO PARA RESETEAR EL FILTRO]**
+
+        // 2. Manejar la clase 'active' para los enlaces (apariencia visual)
+        filterLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+
+        // 3. Iterar sobre todos los productos para mostrar/ocultar
+        allProducts.forEach(productWrapper => {
+            const productCard = productWrapper.querySelector('.product-card');
+            if (!productCard) return;
+
+            // **[LÓGICA DE RESETEO]**
+            if (isResetFilter) {
+                // Si es el filtro de reseteo ("Todos"), simplemente mostramos el producto y terminamos la iteración.
+                productWrapper.classList.remove('hidden-by-search');
+                return; 
+            }
+
+            // Lógica de filtrado para etiquetas específicas (solo si NO es el botón de reseteo)
+            const productTags = productCard.dataset.tags ? normalize(productCard.dataset.tags) : '';
+            
+            // Manejo de K-POP a kpop
+            let tagToMatch = filterTag;
+            if (tagToMatch === 'k-pop') {
+                tagToMatch = 'kpop';
+            }
+            
+            const shouldShow = productTags.includes(tagToMatch);
+
+            // 4. Mostrar u ocultar el producto usando la clase CSS `hidden-by-search`
+            if (shouldShow) {
+                productWrapper.classList.remove('hidden-by-search');
+            } else {
+                productWrapper.classList.add('hidden-by-search');
+            }
+        });
+    });
+});
+        // BUSCADOR Y CARRITO
+        function normalize(str) {
+            return str
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function formatPrice(value) {
+            return "MXN$" + parseFloat(value).toFixed(2);
+        }
+
+        /* ========= BUSCADOR: abrir/cerrar overlay ========= */
+        function openSearchOverlay() {
+            if (!searchOverlay) return;
+            searchOverlay.classList.add("open");
+            setTimeout(() => {
+                if (searchInput) searchInput.focus();
+            }, 50);
+        }
+
+        function closeSearchOverlay() {
+            if (!searchOverlay) return;
+            searchOverlay.classList.remove("open");
+            if (searchInput) searchInput.value = "";
+            
+            // reset resultados
+            cardWrappers.forEach(wrapper => {
+                wrapper.classList.remove("hidden-by-search");
+                // Restaurar el estado inicial de "Mostrar Más"
+                const index = Array.from(cardWrappers).indexOf(wrapper);
+                if (index >= INITIAL_COUNT) {
+                    wrapper.classList.add("hidden-on-load"); 
+                }
+            });
+            currentlyVisible = INITIAL_COUNT;
+            updateHeaderCount();
+            if (loadMoreBtn) {
+                loadMoreBtn.style.display = 'block';
+                loadMoreBtn.textContent = 'Mostrar Más';
+                loadMoreBtn.disabled = false;
+            }
+        }
+
+        if (searchTrigger) {
+            searchTrigger.addEventListener("click", openSearchOverlay);
+        }
+
+        if (searchClose) {
+            searchClose.addEventListener("click", closeSearchOverlay);
+        }
+
+        if (searchOverlay) {
+            searchOverlay.addEventListener("click", (e) => {
+                if (e.target.classList.contains("search-overlay-backdrop")) {
+                    closeSearchOverlay();
+                }
+            });
+        }
+
+        // Filtrado de productos mientras se escribe
+        if (searchInput) {
+            searchInput.addEventListener("input", () => {
+                const query = normalize(searchInput.value.trim());
+                let matches = 0;
+
+                cardWrappers.forEach(wrapper => {
+                    const card = wrapper.querySelector(".product-card");
+                    if (!card) return;
+
+                    const name = card.dataset.name || "";
+                    const tags = card.dataset.tags || "";
+                    const haystack = normalize(name + " " + tags);
+
+                    if (query === "" || haystack.includes(query)) {
+                        // Mostrar si coincide, eliminando ambas clases de ocultamiento
+                        wrapper.classList.remove("hidden-by-search");
+                        wrapper.classList.remove("hidden-on-load"); 
+                        matches++;
+                    } else {
+                        // Ocultar si no coincide
+                        wrapper.classList.add("hidden-by-search");
+                    }
+                });
+                
+                // Actualizar contador con los resultados de la búsqueda
+                if (query !== "") {
+                    currentCountSpan.textContent = `Mostrando ${matches} de ${TOTAL_COUNT} resultados (Filtrados)`;
+                    if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+                } else {
+                    closeSearchOverlay(); // Restaura el estado inicial de 12
+                }
+            });
+        }
+        /* ========= CARRITO: helpers y eventos ========= */
+        function updateCartUI() {
+            if (!cartItemsContainer || !cartTotalElement || !cartCountElement) return;
+
+            if (cart.length === 0) {
+                cartItemsContainer.classList.add("cart-items-empty");
+                cartItemsContainer.innerHTML = "Tu carrito está vacío.";
+                cartTotalElement.textContent = "MXN$0.00";
+                cartCountElement.textContent = "0";
+                return;
+            }
+
+            cartItemsContainer.classList.remove("cart-items-empty");
+
+            cartItemsContainer.innerHTML = cart
+            .map(item => `
+                <div class="cart-item" data-id="${item.id}">
+                <div class="cart-item-info">
+                    <p class="cart-item-name">${item.name}</p>
+                    <p class="cart-item-price">${formatPrice(item.price)} x ${item.qty}</p>
+                </div>
+                <div class="cart-item-actions">
+                    <button type="button" class="cart-qty-btn cart-qty-minus" data-id="${item.id}">-</button>
+                    <span class="cart-qty">${item.qty}</span>
+                    <button type="button" class="cart-qty-btn cart-qty-plus" data-id="${item.id}">+</button>
+                    <button type="button" class="cart-remove" data-id="${item.id}">✕</button>
+                </div>
+                </div>
+            `)
+            .join("");
+
+            const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+            cartTotalElement.textContent = formatPrice(total);
+
+            const count = cart.reduce((sum, item) => sum + item.qty, 0);
+            cartCountElement.textContent = count.toString();
+        }
+
+        function openCart() {
+            if (!cartOverlay) return;
+            cartOverlay.classList.add("open");
+        }
+
+        function closeCart() {
+            if (!cartOverlay) return;
+            cartOverlay.classList.remove("open");
+        }
+
+        if (cartTrigger) {
+            cartTrigger.addEventListener("click", openCart);
+        }
+
+        if (cartClose) {
+            cartClose.addEventListener("click", closeCart);
+        }
+
+        if (cartOverlay) {
+            cartOverlay.addEventListener("click", (e) => {
+                if (e.target.classList.contains("cart-backdrop")) {
+                    closeCart();
+                }
+            });
+        }
+        // Manejar +, -, eliminar dentro del carrito
+        if (cartItemsContainer) {
+            cartItemsContainer.addEventListener("click", (e) => {
+            const target = e.target;
+            const id = target.dataset.id;
+            if (!id) return;
+
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+
+            if (target.classList.contains("cart-qty-plus")) {
+                item.qty += 1;
+            } else if (target.classList.contains("cart-qty-minus")) {
+                item.qty -= 1;
+                if (item.qty <= 0) {
+                cart = cart.filter(i => i.id !== id);
+                }
+            } else if (target.classList.contains("cart-remove")) {
+                cart = cart.filter(i => i.id !== id);
+            }
+
+            updateCartUI();
+            });
+        }
+        // Cerrar overlays con ESC
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+            if (searchOverlay && searchOverlay.classList.contains("open")) {
+                closeSearchOverlay();
+            }
+            if (cartOverlay && cartOverlay.classList.contains("open")) {
+                closeCart();
+            }
+            }
+        });
+        // Inicializar carrito
+        updateCartUI();
+    });
+  </script> 
+</body>
+</html>

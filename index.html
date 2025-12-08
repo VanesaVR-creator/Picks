@@ -61,7 +61,7 @@
 
           <!-- Ediciones especiales -->
           <li class="nav-item">
-            <a class="nav-link" href="#ediciones-especiales">Ediciones especiales</a>
+            <a class="nav-link" href="EdicionesEspeciales.html">Ediciones Especiales</a>
           </li>
 
           <!-- Fandom -->
@@ -77,12 +77,12 @@
               Fandom
             </a>
             <ul class="dropdown-menu" aria-labelledby="fandomDropdown">
-              <li><a class="dropdown-item" href="#">Anime</a></li>
-              <li><a class="dropdown-item" href="#">Manga</a></li>
+              <li><a class="dropdown-item" href="anime.html">Anime</a></li>
+              <li><a class="dropdown-item" href="mangas.html">Manga</a></li>
               <li><a class="dropdown-item" href="musica.html">Música</a></li>
-              <li><a class="dropdown-item" href="#">Cómics</a></li>
-              <li><a class="dropdown-item" href="#">Caricaturas</a></li>
-              <li><a class="dropdown-item" href="#">Películas y Series</a></li>
+              <li><a class="dropdown-item" href="comics.html">Cómics</a></li>
+              <li><a class="dropdown-item" href="caricaturas.html">Caricaturas</a></li>
+              <li><a class="dropdown-item" href="seriesPeliculas.html">Películas y Series</a></li>
             </ul>
           </li>
 
@@ -100,8 +100,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="categoriaDropdown">
               <li><a class="dropdown-item" href="CategoriaFiguras.html">Figuras</a></li>
-              <li><a class="dropdown-item" href="categoriaCartas.html">Cartas</a></li>
-              <li><a class="dropdown-item" href="#">Llaveros</a></li>
+
               <li><a class="dropdown-item" href="#">Posters</a></li>
               <li><a class="dropdown-item" href="#">Accesorios</a></li>
               <li><a class="dropdown-item" href="#">Cómics</a></li>
@@ -227,7 +226,7 @@
               <a href="#ofertas" class="btn btn-light btn-sm">
                 Ver ofertas
               </a>
-              <a href="#ediciones-especiales" class="btn btn-outline-light btn-sm">
+              <a href="EdicionesEspeciales.html" class="btn btn-outline-light btn-sm">
                 Ediciones especiales
               </a>
             </div>
@@ -246,7 +245,7 @@
               <div class="hero-card HC-2">Cartas edición limitada</div>
               <div class="hero-card HC-3">Llaveros temáticos</div>
               <div class="hero-card HC-4">Posters exclusivos</div>
-              <div class="hero-card HC-5">Accesorios & Cómics</div>
+              <div class="hero-card HC-5">Accesorios y Cómics</div>
             </div>
           </div>
         </div>
@@ -298,7 +297,7 @@
             anime, videojuegos, Marvel, DC, música y más. Cada lanzamiento está pensado
             para coleccionistas que buscan algo único.
           </p>
-          <a href="#ediciones-especiales" class="btn btn-primary">
+          <a href="EdicionesEspeciales.html" class="btn btn-primary">
             Ver novedades
           </a>
         </div>
@@ -346,16 +345,41 @@
   </section>
 
   <!-- BANNER COLAB / HISTORIA -->
-  <section id="ediciones-especiales" class="banner-colab-section py-5">
+ <section id="ediciones-especiales" class="banner-colab-section py-5">
     <div class="container">
       <div class="row align-items-center g-4">
         <div class="col-lg-6">
-          <img
-            src="https://via.placeholder.com/600x360"
-            alt="Colección especial"
-            class="img-fluid rounded-4 shadow-sm"
-          />
-        </div>
+  <div id="coleccionesCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+
+    <div class="carousel-inner rounded-4 shadow-sm">
+
+      <div class="carousel-item active">
+        <img src="Edicion_Esp IMAGENES/21.png" class="d-block w-100 carousel-img" alt="Imagen 1">
+      </div>
+
+      <div class="carousel-item">
+        <img src="Edicion_Esp IMAGENES/22.png" class="d-block w-100 carousel-img" alt="Imagen 2">
+      </div>
+
+      <div class="carousel-item">
+        <img src="Edicion_Esp IMAGENES/20.png" class="d-block w-100 carousel-img" alt="Imagen 3">
+      </div>
+
+    </div>
+
+    <!-- Controles -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#coleccionesCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#coleccionesCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+
+  </div>
+</div>
         <div class="col-lg-6">
           <h2 class="section-title">Colecciones especiales para fans de todas las edades</h2>
           <p class="section-text">
@@ -378,7 +402,7 @@
     <div class="container">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="section-title mb-0">Coleccionables destacados</h2>
-        <a href="ofertas.html" class="link-ver-todo">Ver todo</a>
+
       </div>
 
       <div class="row g-4">
