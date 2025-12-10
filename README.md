@@ -66,8 +66,34 @@ utilizando HTML, CSS, Bootstrap y JavaScript.
 ## 📁 Estructura del proyecto
 
 ```text
-picks/
-├── index.html      # Página principal del sitio
-├── style.css       # Estilos personalizados
-└── README.md       # Documentación del proyecto
+PICKS-FINAL/
+│
+├── accesorios-imagenes/
+├── anime-images/
+├── cartoon-images/
+├── comic-images/
+├── css/
+├── Edicion_Esp IMAGENES/
+├── images/
+├── js/
+├── Llaveros IMAGENES/
+├── mangas-images/
+├── moviesandseries-images/
+├── music-images/
+├── Poster - Imagenes/
+│
+├── index.html                # Página principal
+├── anime.html
+├── mangas.html
+├── musica.html
+├── comics.html
+├── seriesPeliculas.html
+├── accesorios.html
+├── ofertas.html
+├── contacto.html
+├── pago.html                 # En desarrollo
+│
+├── style.css                 # Estilos finales unificados
+├── README.md                 # Documentación del proyecto
+└── LICENSE
 ---
